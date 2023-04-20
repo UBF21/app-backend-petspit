@@ -1,0 +1,80 @@
+
+.btn{
+    transition: .4s all;
+}
+
+.btn:hover{
+    background-color: #7ac44f;
+    opacity: .6;
+}
+
+.btn-close::before{
+    color: white;
+}
+
+.btn-padding{
+    padding: 15px 10px;
+}
+
+.navbar-toggler{
+    background-color: transparent;
+    transition: .4s all;
+}
+.navbar-toggler:focus,.navbar-toggler:active{
+    box-shadow: none;
+    outline: none;
+}
+.navbar-toggler:hover{
+   background-color: var(--color-secondary); 
+    color: white;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    width: 1000px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar-toggler-icon {
+    color: black;
+}
+
+.nav-link {
+    color: black;
+    font-weight: bold;
+    font-size: 2rem;
+    border-left: 6px solid transparent;
+    transition: .4s all;
+}
+
+.nav-link:hover {
+    border-left: 6px solid black;
+}
+
+.icon-hover{
+    color: var(--color-primary);
+    transition: .4s all;
+}
+
+.icon-hover:hover{
+    color: var(--color-secondary);
+}
+
+.badge-shop{
+    background-color: #f74905;
+}
+
+.item-nav {
+    color: #856047;
+    font-weight: 600;
+    font-size: 1.6rem;
+    border-left: 4px solid transparent;
+    transition: .4s all;
+}
+
+.item-nav:hover {
+    border-left: 4px solid rgb(144, 209, 39);
+}
