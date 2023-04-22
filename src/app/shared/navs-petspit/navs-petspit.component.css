@@ -1,10 +1,38 @@
 
 .dropdown-menu{
     width: 1000px;
-}
+    height: 600px;
+  }
 
 .dropdown:hover .dropdown-menu {
     display: block;
+  }
+
+  .navs-sub-item-title{
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: auto;
+    border-bottom: 3px solid transparent;
+    transition: .4s all;
+  }
+  
+  .navs-sub-item-title:hover{
+    border-bottom: 3px solid var(--color-secondary);
+  }
+
+  .navs-item-title{
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+    font-weight: 700;
+    border-bottom: 4px solid transparent;
+    transition: .4s all;
+  }
+  
+  .navs-item-title:hover {
+    border-bottom: 4px solid black;
   }
 
 
