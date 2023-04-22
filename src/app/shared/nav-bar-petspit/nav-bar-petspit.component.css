@@ -50,8 +50,31 @@
     transition: .4s all;
 }
 
+.title-item{
+    text-decoration: none;
+    transition: .4s all;
+}
+
+.title-item:hover{
+    text-decoration: underline;
+    color: #b8ab81;
+}
+
 .nav-link:hover {
     border-left: 6px solid black;
+}
+
+
+.icon-trash-hover{
+    color: rgb(255, 0, 0);
+    transition: .4s all;
+}
+
+.icon-trash-hover:hover{
+    color: rgb(175, 5, 5);
+    font-weight: bold;
+    width: 32px;
+    height: 32px;
 }
 
 .icon-hover{
