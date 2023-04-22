@@ -1,0 +1,12 @@
+.icon-item{
+    text-decoration: none;
+    color: white;
+    transition: .4s text-decoration;
+    transition: .1s font-weight;
+}
+
+.icon-item:hover{
+    text-decoration: underline;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
