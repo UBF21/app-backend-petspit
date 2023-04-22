@@ -7,6 +7,15 @@
     --color-sixth:rgb(255, 255, 255);
 }
 
+body::-webkit-scrollbar{
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb{
+   background: #f4a42d;
+   border-radius: 10px;
+}
+
 .color-primary{
       background-color: var(--color-primary); 
 }
