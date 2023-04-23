@@ -4,6 +4,7 @@ import { HomePagePetspitComponent } from './home-page-petspit/home-page-petspit.
 import { ContactPagePetspitComponent } from './contact-page-petspit/contact-page-petspit.component';
 import { ProductsPagePetspitComponent } from './products-page-petspit/products-page-petspit.component';
 import { SharedModule } from '../shared/shared.module';
+import { AboutPagePetspitComponent } from './about-page-petspit/about-page-petspit.component';
 
 
 
@@ -11,7 +12,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HomePagePetspitComponent,
     ContactPagePetspitComponent,
-    ProductsPagePetspitComponent
+    ProductsPagePetspitComponent,
+    AboutPagePetspitComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     HomePagePetspitComponent,
     ContactPagePetspitComponent,
-    ProductsPagePetspitComponent
+    ProductsPagePetspitComponent,
+    AboutPagePetspitComponent
   ],
   providers: [
 
