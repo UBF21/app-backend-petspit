@@ -5,6 +5,7 @@ import { ContactPagePetspitComponent } from './contact-page-petspit/contact-page
 import { ProductsPagePetspitComponent } from './products-page-petspit/products-page-petspit.component';
 import { SharedModule } from '../shared/shared.module';
 import { AboutPagePetspitComponent } from './about-page-petspit/about-page-petspit.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { AboutPagePetspitComponent } from './about-page-petspit/about-page-petsp
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     HomePagePetspitComponent,
