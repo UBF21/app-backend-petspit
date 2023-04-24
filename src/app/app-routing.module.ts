@@ -7,12 +7,12 @@ import { LoginPageComponent } from './dashboard/auth/login-page/login-page.compo
 import { AboutPagePetspitComponent } from './petspit/about-page-petspit/about-page-petspit.component';
 
 const routes: Routes = [
-  {path:'',component:HomePagePetspitComponent,pathMatch:'full'},
-  {path:'home' ,component:HomePagePetspitComponent, pathMatch: 'full'},
-  {path:'contact' ,component:ContactPagePetspitComponent, pathMatch: 'full'},
-  {path:'products' ,component:ProductsPagePetspitComponent,pathMatch: 'full'},
-  {path:'about' ,component:AboutPagePetspitComponent,pathMatch: 'full'},
-  {path:'login' ,component:LoginPageComponent,pathMatch: 'full'},
+  {path:'',component:HomePagePetspitComponent},
+  {path:'home' ,component:HomePagePetspitComponent},
+  {path:'contact' ,component:ContactPagePetspitComponent},
+  {path:'products' ,component:ProductsPagePetspitComponent},
+  {path:'about' ,component:AboutPagePetspitComponent},
+  {path:'login' ,component:LoginPageComponent},
   {path:'**' ,redirectTo:'/home',pathMatch: 'full'}
 ];
 
