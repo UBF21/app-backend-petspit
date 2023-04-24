@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PetspitModule } from './petspit/petspit.module';
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AppRoutingModule,
     PetspitModule,
     SharedModule,
+    RouterModule,
     DashboardModule
   ],
   providers: [],
