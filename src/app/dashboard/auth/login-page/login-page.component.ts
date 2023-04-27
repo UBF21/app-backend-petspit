@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
+  showRegistration:boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showRegistrationForm() {
+    this.showRegistration = !this.showRegistration;
+  }
 }
