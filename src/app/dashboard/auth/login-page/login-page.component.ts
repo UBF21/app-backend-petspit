@@ -16,5 +16,6 @@ export class LoginPageComponent implements OnInit {
 
   showRegistrationForm() {
     this.showRegistration = !this.showRegistration;
+    window.scrollTo(0,130);
   }
 }
