@@ -1,0 +1,23 @@
+.nav-item-link{
+    color: #856047;
+    text-decoration: none;
+    transition: .4s all;
+}
+
+.nav-item-link:hover{
+    text-decoration: underline;
+    color: #5c2c14;
+}
+
+.btn{
+    border:0;
+    background-color: #856047;
+    color: white;
+}
+.btn-hover{
+    transition: .4s all;
+}
+.btn-hover:hover{
+    background-color: var(--color-secondary);
+    color: black;
+}
