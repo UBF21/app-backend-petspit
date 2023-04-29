@@ -20,6 +20,10 @@ body::-webkit-scrollbar-thumb{
 .margin-y{
     margin: 40px 0 40px  0;
 }
+
+.margin-y-medium{
+    margin: 125px 0 125px  0;
+}
 .margin-y-big{
     margin: 250px 0 250px  0;
 }
