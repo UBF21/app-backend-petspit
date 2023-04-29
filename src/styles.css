@@ -16,6 +16,25 @@ body::-webkit-scrollbar-thumb{
    border-radius: 10px;
 }
 
+
+.margin-y{
+    margin: 40px 0 40px  0;
+}
+.margin-y-big{
+    margin: 250px 0 250px  0;
+}
+
+.margin-y-buttom{
+    margin: 0 0 40px  0;
+}
+.margin-y-big-top{
+    margin: 250px 0 0 0;
+}
+
+.margin-y-big-buttom{
+    margin: 0 0 250px 0;
+}
+
 .color-primary{
       background-color: var(--color-primary); 
 }
