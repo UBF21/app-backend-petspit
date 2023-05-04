@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsPagePetspitComponent implements OnInit {
 
-  constructor() { }
+  marcas:string[] = ["RicoCan","Mimascot","Acana","Choice","4 Patitas","Bravery"]
+  verMas:boolean = false;
+  cambiarVista:boolean = true;
 
+  constructor() { }
+  
   ngOnInit(): void {
   }
 
