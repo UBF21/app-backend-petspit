@@ -1,0 +1,59 @@
+
+.form-range::-webkit-slider-thumb{
+    background-color: rgb(111, 212, 16);
+}
+
+.form-range:active{
+    outline: none;
+    box-shadow: none;
+    border-color: rgb(111, 212, 16);
+}
+
+.form-check-input{
+    outline: none;
+    box-shadow: none;
+    border-color: black;
+    border-width: 1px;
+}
+
+.form-check-input:checked{
+    background-color: #f4a42d;
+}
+
+
+select {
+    outline: none;
+    box-shadow: none;
+    border-color: black;
+    padding: 10px 15px;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+
+select:focus,select:active {
+    outline: none;
+    box-shadow: none;
+    border-color: rgb(111, 212, 16);
+    border-width: 1px;
+}
+
+.btn-product{
+    background-color: #c0aa92;
+    color: black;
+}
+
+.btn-icon-change{
+    background-color: #856047;
+    color: white;
+}
+
+.nav-link{
+    color: #856047;
+    transition: .3s all;
+}
+
+.nav-link:hover{
+    color: black;
+    text-decoration: underline;
+}
