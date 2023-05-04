@@ -1,1 +1,449 @@
-<p>products-page-petspit works!</p>
+<div class="container">
+
+    <!-- navegación de vistas -->
+    <nav aria-label="breadcrumb" class="mt-4 mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
+        </ol>
+    </nav>
+
+    <div class="mt-5 mb-5">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-6">
+                <h3>Alimentos para perros ( 1 - 24 - 579 )</h3>
+            </div>
+            <div
+                class="col-lg-6 d-flex justify-lg-content-end justify-md-content-end justify-sm-content-end justify-content-center">
+                <div class="row align-items-center me-3">
+        
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-10 ms-0">
+                        <select class="form-select">
+                            <option selected>Nombre,A a Z</option>
+                            <option value="1">Nombre,Z a A</option>
+                            <option value="2">Precio,de más bajo a más alto</option>
+                            <option value="3">Precio,de más alto a más bajo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <a class="me-2 btn" (click)="cambiarVista = !cambiarVista"
+                    [ngClass]="cambiarVista ? 'btn-icon-change' : '' ">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="30"
+                        height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <rect x="4" y="4" width="6" height="6" rx="1" />
+                        <rect x="14" y="4" width="6" height="6" rx="1" />
+                        <rect x="4" y="14" width="6" height="6" rx="1" />
+                        <rect x="14" y="14" width="6" height="6" rx="1" />
+                    </svg>
+                </a>
+                <a class="btn" (click)="cambiarVista = !cambiarVista" [ngClass]="!cambiarVista ? 'btn-icon-change' : '' ">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-list" width="30"
+                        height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <rect x="4" y="4" width="16" height="6" rx="2" />
+                        <rect x="4" y="14" width="16" height="6" rx="2" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listado de productos -->
+
+    <div class="margin-y">
+        <div class="row">
+            <div class="col-lg-3">
+
+                <!--  -->
+                <div class="card py-4 px-3">
+                    <h4>Alimento</h4>
+                    <a href="" class="nav-link">Alimento seco</a>
+                    <a href="" class="nav-link">Alimento seco</a>
+                    <a href="" class="nav-link">Alimento seco</a>
+                    <a href="" class="nav-link">Alimento seco</a>
+                </div>
+                <!--  -->
+                <div class="card py-4 px-3">
+                    <h4>Marca</h4>
+
+                    <ng-container *ngFor="let marca of marcas;let i = index">
+
+                        <div *ngIf="i < 4" class="form-check ms-1">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{marca}}
+                            </label>
+                        </div>
+                        <div *ngIf="i >= 4" [hidden]="!verMas" class="form-check ms-1">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{marca}}
+                            </label>
+                        </div>
+                    </ng-container>
+                    <a (click)="verMas = !verMas" class="nav-link">Ver más</a>
+
+
+                </div>
+                <!--  -->
+                <div class="card py-4 px-3">
+                    <h4>Mascota</h4>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Perro
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Gato
+                        </label>
+                    </div>
+
+                </div>
+                <!--  -->
+                <div class="card py-4 px-3">
+                    <h4>Etapa de vida</h4>
+
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Cachorro
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Adulto
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Adulto mayor
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Madre y cachorro
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Todas las etapas
+                        </label>
+                    </div>
+
+
+                </div>
+                <!--  -->
+                <div class="card py-4 px-3">
+                    <h4>Tamaño de raza</h4>
+
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Todas las razas
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Toy
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Pequeña
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Mediana
+                        </label>
+                    </div>
+                    <div class="form-check ms-1">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Grande
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="card py-4 px-3">
+                    <h4>Peso (Kg)</h4>
+                    <input type="range" class="form-range" step="1" id="customRange1">
+                    <label for="customRange1" class="form-label">Rango 0 - 18</label>
+                </div>
+
+                <div class="card py-4 px-3">
+                    <h4>Precio (S/)</h4>
+                    <input type="range" class="form-range" step="1" id="customRange1">
+                    <label for="customRange1" class="form-label">Rango 0 - 10</label>
+
+                </div>
+
+            </div>
+            <div class="col-lg-9 p-0">
+
+                <div class="row justify-content-center gap-1 p-0" *ngIf="cambiarVista">
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-4 p-0">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                width="300" class="img-fluid" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <!-- el otro modelo de vista -->
+                <div class="row justify-content-center mt-4 gap-1" *ngIf="!cambiarVista">
+                    <div class="col-lg-9">
+
+                        <div class="row">
+
+                            <div class="col-lg-12">
+
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4">
+                                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                                width="300" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as
+                                                    a natural lead-in to additional content. This content is a little
+                                                    bit longer.</p>
+                                                    <div class="text-center">
+                                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12">
+
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4">
+                                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                                width="300" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as
+                                                    a natural lead-in to additional content. This content is a little
+                                                    bit longer.</p>
+                                                    <div class="text-center">
+                                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12">
+
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-lg-4">
+                                            <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
+                                                width="300" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as
+                                                    a natural lead-in to additional content. This content is a little
+                                                    bit longer.</p>
+                                                    <div class="text-center">
+                                                        <a href="#" class="btn btn-product">Go somewhere</a>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                  
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
