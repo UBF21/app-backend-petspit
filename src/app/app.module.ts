@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { PetspitModule } from './petspit/petspit.module';
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { RouterModule } from '@angular/router';
+import { InterceptorRequestInterceptor } from './interceptor/interceptor-request.interceptor';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PetspitModule,
-    SharedModule,
     RouterModule,
+    HttpClientModule,
+    SharedModule,
+    PetspitModule,
     DashboardModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:InterceptorRequestInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
