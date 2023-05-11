@@ -6,6 +6,7 @@ import { ProductsPagePetspitComponent } from './products-page-petspit/products-p
 import { SharedModule } from '../shared/shared.module';
 import { AboutPagePetspitComponent } from './about-page-petspit/about-page-petspit.component';
 import { RouterModule } from '@angular/router';
+import { NgModel,FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,10 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   exports: [
     HomePagePetspitComponent,
