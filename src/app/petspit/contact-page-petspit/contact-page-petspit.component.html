@@ -3,28 +3,75 @@
     <div class="row justify-content-center  rounded  py-5 margin-y-medium">
         <div class="col-lg-5  rounded p-5 shadow" style="background-color: rgb(247, 239, 239);">
             <h2 class="fw-bold mb-3">Contactenos</h2>
-            <p class="text-break text-justify mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, repellat omnis. Saepe
-                autem ad, sequi
-                nesciunt esse cum enim perferendis blanditiis aut! Tempore blanditiis consectetur dolores soluta, non
-                similique unde.</p>
+            <p class="text-break text-justify">¡Bienvenido/a a nuestra página de contacto!</p>
+            <p class="text-break text-justify mb-3">
+
+                En esta sección, nos encantaría recibir tus consultas, preguntas o comentarios sobre nuestros productos
+                y accesorios para mascotas, especialmente enfocados en perros y gatos. Estamos aquí para brindarte toda
+                la información que necesites y ayudarte a encontrar los mejores productos para tu fiel compañero peludo.
+            </p>
+            <p class="text-break text-justify">
+                Completa el formulario a continuación con tus datos de contacto y detalles sobre lo que te gustaría
+                saber o cualquier comentario que desees compartir con nosotros. Nos comprometemos a responder a la
+                brevedad posible y brindarte un servicio excepcional.
+
+                Gracias por confiar en nosotros y por preocuparte por el bienestar de tus mascotas. ¡Esperamos poder
+                ayudarte en todo lo que necesites!
+            </p>
+            <p class="text-break text-justify">Equipo de <span class="fw-bold">PetsPit</span> </p>
             <img src="./assets/img/imagen-contacto.jpg" class="img-fluid rounded-top shadow" alt="">
         </div>
         <div class="col-lg-5 rounded p-5 shadow" style="background-color: #856047;">
-            <form class="row g-4">
-                <div class="col-md-12">
+            <form class="row g-4" [formGroup]="formEmail" (ngSubmit)="enviarEmail()">
+                <div class="col-md-12 mb-2">
                     <label for="nombre" class="form-label text-white p-2 mb-3" style="font-size: 1.1rem;">Nombre</label>
-                    <input type="text" class="form-control shadow" placeholder="nombre"  id="nombre">
+                    <input type="text" autocomplete="off" formControlName="nombre" class="form-control shadow"
+                        placeholder="nombre" name="nombre" id="nombre">
+
+                    <div class="mt-2"
+                        *ngIf="formEmail.get('nombre')?.invalid && (formEmail.get('nombre')?.dirty || formEmail.get('nombre')?.touched)">
+                        <p *ngIf="formEmail.get('nombre')?.hasError('required')" class="p-1 fw-bold"
+                            style="color: rgb(187, 226, 81);">Nombre requerido.</p>
+                        <p *ngIf="formEmail.get('nombre')?.hasError('maxlength')" class="p-1 fw-bold"
+                            style="color: rgb(187, 226, 81);">El Nombre solo admite máximo 60
+                            caracteres.</p>
+                    </div>
+
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mb-2">
                     <label for="email" class="form-label text-white p-2 mb-3" style="font-size: 1.1rem;">Email</label>
-                    <input type="email" class="form-control shadow" placeholder="example@gmail.com" id="email">
+                    <input type="text" autocomplete="off" formControlName="email" class="form-control shadow"
+                        placeholder="example@gmail.com" name="email" id="email">
+
+                    <div class="mt-2"
+                        *ngIf="formEmail.get('email')?.invalid && (formEmail.get('email')?.dirty || formEmail.get('email')?.touched)">
+                        <p *ngIf="formEmail.get('email')?.hasError('required')" class="p-1 fw-bold"
+                            style="color: rgb(187, 226, 81);">Mensaje requerido.</p>
+                        <p *ngIf="formEmail.get('email')?.hasError('pattern')" class="p-1 fw-bold"
+                            style="color: rgb(187, 226, 81);">Debe ser tener el formato de correo "gmail".</p>
+                    </div>
+
+                </div>
+                <div class="col-12 mb-2">
+                    <label for="message" class="form-label text-white p-2 mb-3"
+                        style="font-size: 1.1rem;">Mensaje</label>
+                    <textarea formControlName="message" autocomplete="off" class="form-control shadow" id="message"
+                        placeholder="mensaje" name="message" rows="5"></textarea>
+
+                    <div class="mt-2"
+                        *ngIf="formEmail.get('message')?.invalid && (formEmail.get('message')?.dirty || formEmail.get('message')?.touched)">
+                        <p *ngIf="formEmail.get('message')?.hasError('required')" class="p-1 fw-bold"
+                            style="color: rgb(187, 226, 81);">Mensaje requerido.</p>
+                        <p *ngIf="formEmail.get('message')?.hasError('maxlength')" class="p-1 fw-bold"
+                            style="color: rgb(187, 226, 81);">El Mensaje solo admite máximo 255
+                            caracteres.</p>
+                    </div>
+
                 </div>
                 <div class="col-12">
-                    <label for="mensaje" class="form-label text-white p-2 mb-3" style="font-size: 1.1rem;">Mensaje</label>
-                    <textarea class="form-control shadow" id="mensaje" placeholder="mensaje" rows="5"></textarea>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-hover btn-lg mt-2 ms-1">Enviar</button>
+                    <button type="submit" [disabled]="formEmail.invalid"
+                        [ngClass]="formEmail.invalid ? 'opacity-25' : 'opacity-100' "
+                        class="btn btn-hover btn-lg mt-2 ms-1">Enviar</button>
                 </div>
             </form>
         </div>
