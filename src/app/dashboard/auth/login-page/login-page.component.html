@@ -14,7 +14,7 @@
                         <div *ngIf="!showRegistration" class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
 
-                                <form>
+                                <form (ngSubmit)="signIn()" [formGroup]="formLogin">
 
                                     <div class="d-flex justify-content-center mb-3 pb-1">
                                         <span class="h1 fw-bold mb-3">Inicio de Sesión</span>
@@ -22,19 +22,50 @@
 
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example17">Usuario</label>
-                                        <input type="text" placeholder="example21" autocomplete="off"
-                                            id="form2Example17" class="form-control form-control-lg" />
+                                        <label class="form-label" for="username">Usuario</label>
+                                        <input type="text" placeholder="example21" autocomplete="off" id="username"
+                                            formControlName="username" name="username"
+                                            class="form-control form-control-lg" />
+
+                                        <div class="mt-2"
+                                            *ngIf="formLogin.get('username')?.invalid && (formLogin.get('username')?.dirty || formLogin.get('username')?.touched)">
+                                            <p *ngIf="formLogin.get('username')?.hasError('required')"
+                                                class="p-1 fw-bold" style="color: rgb(121, 36, 36);">Username requerido.
+                                            </p>
+                                            <p *ngIf="formLogin.get('username')?.hasError('maxlength')"
+                                                class="p-1 fw-bold" style="color: rgb(121, 36, 36);">El Username solo
+                                                admite máximo 255
+                                                caracteres.</p>
+                                            <p *ngIf="formLogin.get('username')?.hasError('pattern')"
+                                                class="p-1 fw-bold" style="color: rgb(121, 36, 36);">El Username contiene caracteres no válidos.</p>
+                                        </div>
+
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27">Conraseña</label>
-                                        <input type="password" placeholder="*****" autocomplete="off"
-                                            id="form2Example27" class="form-control form-control-lg" />
+                                        <label class="form-label" for="password">Conraseña</label>
+                                        <input type="password" placeholder="*****" autocomplete="off" id="password"
+                                            name="password" formControlName="password"
+                                            class="form-control form-control-lg" />
+
+                                        <div class="mt-2"
+                                            *ngIf="formLogin.get('password')?.invalid && (formLogin.get('password')?.dirty || formLogin.get('password')?.touched)">
+                                            <p *ngIf="formLogin.get('password')?.hasError('required')"
+                                                class="p-1 fw-bold" style="color: rgb(121, 36, 36);">Password requerido.
+                                            </p>
+                                            <p *ngIf="formLogin.get('password')?.hasError('maxlength')"
+                                                class="p-1 fw-bold" style="color: rgb(121, 36, 36);">El Password solo
+                                                admite máximo 255
+                                                caracteres.</p>
+
+                                                <p *ngIf="formLogin.get('password')?.hasError('pattern')"
+                                                class="p-1 fw-bold" style="color: rgb(121, 36, 36);">El Password contiene caracteres no válidos.</p>
+                                        </div>
                                     </div>
 
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-hover btn-lg btn-block" type="button">
+                                        <button [disabled]="formLogin.invalid" class="btn btn-hover btn-lg btn-block"
+                                            type="submit">
                                             Login
                                         </button>
                                     </div>
@@ -62,13 +93,12 @@
                                         <div class="position-relative">
                                             <img src="https://ajisenramenpanama.com/wp-content/uploads/2020/07/user_icon.png"
                                                 width="80" alt="" id="imagen">
-                                   
-                                                <svg xmlns="http://www.w3.org/2000/svg"
+
+                                            <svg xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler  position-absolute bottom-0 end-50 me-2  icon-tabler-circle-plus"
                                                 width="30" height="30" viewBox="0 0 24 24" stroke-width="2"
-                                                style="color:#5c2c14;"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
+                                                style="color:#5c2c14;" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <circle cx="12" cy="12" r="9" />
                                                 <line x1="9" y1="12" x2="15" y2="12" />
