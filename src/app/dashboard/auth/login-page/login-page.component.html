@@ -4,14 +4,14 @@
             <div class="col col-xl-10">
                 <div class="card shadow" style="border-radius: 1rem;">
                     <div class="row g-0">
-                        <div class="col-md-6 col-lg-5 d-none d-md-block" *ngIf="!showRegistration">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block" *ngIf="!this.shared.showRegistration">
                             <img src="./assets/img/perro-login-extra-grande.jpg" alt="login form" class="img-fluid"
                                 style="border-radius: 1rem 0 0 1rem;min-height: 100%;border-radius: 8px 12px 15px 10px;
                                 -moz-border-radius: 8px 12px 15px 10px;
                                 -webkit-border-radius: 8px 12px 15px 10px;
                                 border: 0px solid #000000;" />
                         </div>
-                        <div *ngIf="!showRegistration" class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div *ngIf="!this.shared.showRegistration" class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
 
                                 <form (ngSubmit)="signIn()" [formGroup]="formLogin">
@@ -77,9 +77,9 @@
 
                             </div>
                         </div>
-                        <div *ngIf="showRegistration" class="col-md-12 col-lg-12 col-sm-12 col-12">
+                        <div *ngIf="this.shared.showRegistration" class="col-md-12 col-lg-12 col-sm-12 col-12">
 
-
+<!-- 
                             <div class="card-body container mt-0 mb-0 p-4 text-black">
 
                                 <form class="row justify-content-center">
@@ -166,8 +166,9 @@
                                 </form>
 
 
-                            </div>
+                            </div> -->
 
+                            <app-public-register-user></app-public-register-user>
 
                         </div>
                     </div>
