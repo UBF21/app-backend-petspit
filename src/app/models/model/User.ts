@@ -1,3 +1,4 @@
+import { Authorities } from "./Authorities";
 import { Rol } from "./Rol";
 
 export class User{
@@ -13,7 +14,11 @@ export class User{
     estado:string;
     idRol:number;
     rol:Rol;
-
+    enabled:boolean;
+    authorities:Authorities[];
+    credentialsNonExpired:boolean;
+    accountNonExpired:boolean;
+    accountNonLocked:boolean;
 
     constructor(){
         this.idUser = 0;
@@ -28,5 +33,10 @@ export class User{
         this.estado = "";
         this.idRol = 0;
         this.rol = new Rol();
+        this.authorities = [];
+        this.accountNonLocked = true;
+        this.accountNonExpired = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;
     }
 }
