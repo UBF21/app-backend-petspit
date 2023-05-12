@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserCredentials } from 'src/app/models/model/UserCredentials';
 import { ResponseUserCurrent } from 'src/app/models/response/ResponseUserRecurrent';
 import { LoginService } from 'src/app/services/auth/login.service';
+import { SharedInformationService } from 'src/app/services/shared-information/shared-information.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,23 +13,27 @@ import { LoginService } from 'src/app/services/auth/login.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  showRegistration:boolean = false;
   formLogin:FormGroup = new FormGroup({});
-
-  constructor(private http:HttpClient,private loginService:LoginService,private formBuilder : FormBuilder) { }
-
+  
+  constructor(private http:HttpClient,private loginService:LoginService,public shared : SharedInformationService,private formBuilder : FormBuilder) { }
+  
   ngOnInit(): void {
+
+    //Formulario de Inicio de Sesion
     this.formLogin = this.formBuilder.group({
        username: ['',[Validators.required,Validators.maxLength(255),Validators.pattern(/^[a-zA-Z0-9@#$%&/()<>+*?¡¿!°|]+$/)]],
        password:['',[Validators.required,Validators.maxLength(255),Validators.pattern(/^[a-zA-Z0-9@#$%&/()<>+*?¡¿!°|]+$/)]]   
     });
+
   }
 
   showRegistrationForm() {
-    this.showRegistration = !this.showRegistration;
-    window.scrollTo(0,130);
+    this.shared.showRegistration = !this.shared.showRegistration; 
+    window.scrollTo(0,260);
   }
 
+
+  //Seccion de Inicio de Sesion
   getCurrentUser():void{
 
     this.loginService.getCurrentUser().subscribe({
@@ -70,4 +75,6 @@ export class LoginPageComponent implements OnInit {
     this.generateTokenUser();
     this.formLogin.reset();
   }
+
+
 }
