@@ -5,16 +5,20 @@ import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { InterceptorRequestInterceptor } from '../interceptor/interceptor-request.interceptor';
+import { PublicRegisterUserComponent } from './components/public-register-user/public-register-user.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
-    LoginPageComponent
+    LoginPageComponent,
+    PublicRegisterUserComponent
   ],
   imports: [
     HttpClientModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     CommonModule,
     SharedModule
