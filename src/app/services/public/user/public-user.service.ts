@@ -13,6 +13,6 @@ export class PublicUserService {
   constructor(private http:HttpClient) { }
 
   public saveRegisterUser(user:User):Observable<ResponseUser>{
-    return this.http.post<ResponseUser>(`${environment.backendUrl}/global/user`,user);
+    return this.http.post<ResponseUser>(`${environment.backendUrl}global/user`,user);
   }
 }
