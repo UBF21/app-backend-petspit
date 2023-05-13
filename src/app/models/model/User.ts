@@ -10,7 +10,7 @@ export class User{
     dni:string;
     telefono:string;
     direccion:string;
-    imagen:ArrayBuffer;
+    imagen:string;
     estado:string;
     idRol:number;
     rol:Rol;
@@ -29,7 +29,7 @@ export class User{
         this.dni = "";
         this.telefono = "";
         this.direccion = "";
-        this.imagen = new ArrayBuffer(0);
+        this.imagen = "";
         this.estado = "";
         this.idRol = 0;
         this.rol = new Rol();
