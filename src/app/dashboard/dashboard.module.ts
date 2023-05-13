@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { SharedModule } from '../shared/shared.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
-import { InterceptorRequestInterceptor } from '../interceptor/interceptor-request.interceptor';
-import { PublicRegisterUserComponent } from './components/public-register-user/public-register-user.component';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
+
+import { PublicRegisterUserComponent } from './components/public-register-user/public-register-user.component';
+import { LoginPageComponent } from './auth/login-page/login-page.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ReactiveFormsModule,
     CommonModule,
+    RxReactiveFormsModule,
     SharedModule
   ],
   exports: [
