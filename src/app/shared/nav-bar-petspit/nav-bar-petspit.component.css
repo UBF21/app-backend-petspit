@@ -30,9 +30,6 @@
     font-weight: bold;
 }
 
-.dropdown-menu {
-    width: 1000px;
-}
 
 .dropdown:hover .dropdown-menu {
     display: block;
