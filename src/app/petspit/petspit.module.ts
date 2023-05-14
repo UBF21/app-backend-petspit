@@ -7,6 +7,9 @@ import { SharedModule } from '../shared/shared.module';
 import { AboutPagePetspitComponent } from './about-page-petspit/about-page-petspit.component';
 import { RouterModule } from '@angular/router';
 import { NgModel,FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserProfilePageComponent } from './user-profile-page/user-profile-page.component';
+import { UserProfileInformationComponent } from './components/user-profile-information/user-profile-information.component';
+import { UserProfileOrdersComponent } from './components/user-profile-orders/user-profile-orders.component';
 
 
 
@@ -15,7 +18,10 @@ import { NgModel,FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomePagePetspitComponent,
     ContactPagePetspitComponent,
     ProductsPagePetspitComponent,
-    AboutPagePetspitComponent
+    AboutPagePetspitComponent,
+    UserProfilePageComponent,
+    UserProfileInformationComponent,
+    UserProfileOrdersComponent
   ],
   imports: [
     CommonModule,
