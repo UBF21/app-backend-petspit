@@ -5,6 +5,7 @@ import { ContactPagePetspitComponent } from './petspit/contact-page-petspit/cont
 import { ProductsPagePetspitComponent } from './petspit/products-page-petspit/products-page-petspit.component';
 import { LoginPageComponent } from './dashboard/auth/login-page/login-page.component';
 import { AboutPagePetspitComponent } from './petspit/about-page-petspit/about-page-petspit.component';
+import { UserProfilePageComponent } from './petspit/user-profile-page/user-profile-page.component';
 
 const routes: Routes = [
   {path:'',component:HomePagePetspitComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'contact' ,component:ContactPagePetspitComponent},
   {path:'products' ,component:ProductsPagePetspitComponent},
   {path:'about' ,component:AboutPagePetspitComponent},
-  {path:'login' ,component:LoginPageComponent},
+  {path:'login' ,component:LoginPageComponent},  
+  {path:'profile' ,component:UserProfilePageComponent},  
   {path:'**' ,redirectTo:'/home',pathMatch: 'full'}
 ];
 
