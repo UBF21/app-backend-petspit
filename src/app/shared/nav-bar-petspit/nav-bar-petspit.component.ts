@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
   selector: 'app-nav-bar-petspit',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarPetspitComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loginServices:LoginService) { }
 
   ngOnInit(): void {
   }
+
 
 }
