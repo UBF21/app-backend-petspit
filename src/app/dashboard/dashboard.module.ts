@@ -9,12 +9,14 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 
 import { PublicRegisterUserComponent } from './components/public-register-user/public-register-user.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
+import { DashboardPrincipalComponent } from './dashboard-principal/dashboard-principal.component';
 
 
 @NgModule({
   declarations: [
     LoginPageComponent,
-    PublicRegisterUserComponent
+    PublicRegisterUserComponent,
+    DashboardPrincipalComponent
   ],
   imports: [
     HttpClientModule,
