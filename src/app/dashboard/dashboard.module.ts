@@ -10,6 +10,7 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { PublicRegisterUserComponent } from './components/public-register-user/public-register-user.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { DashboardPrincipalComponent } from './dashboard-principal/dashboard-principal.component';
+import { SharedDashboardModule } from './shared-dashboard/shared-dashboard.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DashboardPrincipalComponent } from './dashboard-principal/dashboard-pri
     ReactiveFormsModule,
     CommonModule,
     RxReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    SharedDashboardModule
   ],
   exports: [
     LoginPageComponent
