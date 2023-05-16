@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/auth/login.service';
+import { SharedInformationService } from 'src/app/services/shared-information/shared-information.service';
 
 @Component({
   selector: 'app-nav-bar-petspit',
@@ -8,10 +9,10 @@ import { LoginService } from 'src/app/services/auth/login.service';
 })
 export class NavBarPetspitComponent implements OnInit {
 
-  constructor(public loginServices:LoginService) { }
+
+  constructor(public shared :SharedInformationService,public loginServices:LoginService){ }
 
   ngOnInit(): void {
   }
-
 
 }
