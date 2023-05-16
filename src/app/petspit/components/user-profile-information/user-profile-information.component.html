@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row justify-content-center mb-3">
+        <div class="col-lg-12 mt-3 text-center">
+            <img [src]="this.shared.viewUser.pathName" class="shadow rounded-circle" width="130" height="130"
+                alt="imagen de user">
+        </div>
+        <div class="col-lg-12 mt-5 d-flex flex-column align-items-center">
+            <p class="fw-bold">Nombre</p>
+            <p><span class="p-2 rounded text-white shadow" style="background-color: #3a1c0d;">{{this.shared.viewUser.user.nombre}}</span></p>
+        </div>
+        <div class="col-lg-12 mt-2 d-flex flex-column align-items-center">
+            <p class="fw-bold">Apellido</p>
+            <p><span class="p-2 rounded text-white shadow" style="background-color: #3a1c0d;">{{this.shared.viewUser.user.apellido}}</span></p>
+        </div>
+        <div class="col-lg-12 mt-2 d-flex flex-column align-items-center">
+            <p class="fw-bold">Username</p>
+            <p><span class="p-2 rounded text-white shadow" style="background-color: #3a1c0d;">{{this.shared.viewUser.user.username}}</span></p>
+        </div>
+        <div class="col-lg-12 mt-2 d-flex flex-column align-items-center">
+            <p class="fw-bold">Dni</p>
+            <p><span class="p-2 rounded text-white shadow" style="background-color: #3a1c0d;">{{this.shared.viewUser.user.dni}}</span></p>
+        </div>
+        <div class="col-lg-12 mt-2 d-flex flex-column align-items-center">
+            <p class="fw-bold">Teléfono</p>
+            <p><span class="p-2 rounded text-white shadow" style="background-color: #3a1c0d;">{{this.shared.viewUser.user.telefono}}</span></p>
+        </div>
+        <div class="col-lg-12 mt-2 d-flex flex-column align-items-center">
+            <p class="fw-bold">Dirección</p>
+            <span class="p-2 rounded text-white shadow" style="background-color: #3a1c0d;">{{this.shared.viewUser.user.direccion}}</span>
+        </div>
+        <div class="col-lg-12 mt-3 d-flex flex-column align-items-center">
+            <p class="fw-bold">Rol</p>
+            <span class="p-2 rounded text-white shadow" style="background-color: #3a1c0d;">{{this.shared.viewUser.user.rol.descripcion}}</span>
+        </div>
+    </div>
+</div>
