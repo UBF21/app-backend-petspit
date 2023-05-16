@@ -6,6 +6,7 @@ import { ProductsPagePetspitComponent } from './petspit/products-page-petspit/pr
 import { LoginPageComponent } from './dashboard/auth/login-page/login-page.component';
 import { AboutPagePetspitComponent } from './petspit/about-page-petspit/about-page-petspit.component';
 import { UserProfilePageComponent } from './petspit/user-profile-page/user-profile-page.component';
+import { DashboardPrincipalComponent } from './dashboard/dashboard-principal/dashboard-principal.component';
 
 const routes: Routes = [
   {path:'',component:HomePagePetspitComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'products' ,component:ProductsPagePetspitComponent},
   {path:'about' ,component:AboutPagePetspitComponent},
   {path:'login' ,component:LoginPageComponent},  
-  {path:'profile' ,component:UserProfilePageComponent},  
+  {path:'profile' ,component:UserProfilePageComponent},
+  {path:'dashboard',component:DashboardPrincipalComponent},  
   {path:'**' ,redirectTo:'/home',pathMatch: 'full'}
 ];
 
