@@ -7,6 +7,9 @@ import { ResponseToken } from 'src/app/models/response/ResponseToken';
 import { environment } from 'src/environments/environment';
 import { ResponseUserCurrent } from 'src/app/models/response/ResponseUserRecurrent';
 import { Authorities } from 'src/app/models/model/Authorities';
+import { ViewImageUser } from 'src/app/models/interfaces/ViewImageUser';
+import { json } from '@rxweb/reactive-form-validators';
+import { User } from 'src/app/models/model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +38,9 @@ export class LoginService {
     localStorage.setItem("user", JSON.stringify(user));
   }
 
+  public saveUserViewCurrent(viewUser:ViewImageUser){
+    sessionStorage.setItem("userView",JSON.stringify(viewUser));
+  }
 
   // Obtener el rol del usuario
   public getUserRol(): Authorities {
@@ -57,6 +63,7 @@ export class LoginService {
   public logout(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    sessionStorage.removeItem("userView");
   }
 
   // Obtener el usuario del localStorage
@@ -65,6 +72,16 @@ export class LoginService {
     if (user !== null) return JSON.parse(user);
     this.logout();
     return new UserRecurrent();
+  }
+
+
+  public getUserViewRecurrent():ViewImageUser{
+      let viewUser:string = sessionStorage.getItem("userView")!;
+      if(viewUser  !== null) {
+        return JSON.parse(viewUser);
+      }
+      this.logout();
+      return {pathName:"",name:"",user:new User()};
   }
 
     // Saber si el usuario inicio sesión
