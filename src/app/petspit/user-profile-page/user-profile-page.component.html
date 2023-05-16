@@ -1,0 +1,48 @@
+<div class="container">
+
+    <div class="margin-y ms-3 me-3">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 p-0">
+                <ul class="list-group">
+                    <li (click)="showProfile = true;showOders = false"
+                        class="list-group-item text-black text-center fw-bold color-secondary">
+                        Perfil</li>
+                    <li (click)="showOders = true;showProfile = false"
+                        class="list-group-item text-black text-center fw-bold color-secondary">
+                        Ordenes</li>
+                    <a href="#" class="text-decoration-none">
+                        <li *ngIf="theRol === 'admin'" class="list-group-item text-black text-center fw-bold color-secondary">Dashboard</li>
+                    </a>
+                    <li class="list-group-item text-black text-center fw-bold color-secondary" (click)="logout()">Cerrar
+                        Sesión
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9 col-sm-12 col-md-12 col-12 rounded shadow">
+
+                <div *ngIf="!showProfile && !showOders" class="px-3 mb-3">
+                    <h3 class="text-center mt-3 mb-3">Perfil General</h3>
+                    <p>¡Bienvenido a tu perfil personalizado! Este espacio es exclusivamente tuyo, donde puedes
+                        gestionar y personalizar toda la información relacionada contigo. Aquí encontrarás todas las
+                        herramientas y opciones necesarias para mantener tu perfil actualizado, ajustar tus preferencias
+                        y disfrutar de una experiencia única.
+                    </p>
+                    <p>
+                        ¡Disfruta de tu perfil y hazlo tuyo! Personaliza tu experiencia, descubre nuevas opciones y
+                        mantente conectado con todo lo que te interesa. Estamos encantados de tenerte como parte de
+                        nuestros clientes.
+                    </p>
+                </div>
+
+                <div *ngIf="showProfile">
+                    <app-user-profile-information></app-user-profile-information>
+                </div>
+                <div *ngIf="showOders">
+                    <app-user-profile-orders></app-user-profile-orders>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
