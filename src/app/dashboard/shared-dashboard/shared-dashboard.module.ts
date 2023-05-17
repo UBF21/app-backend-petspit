@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarDashboardComponent } from './sidebar-dashboard/sidebar-dashboard.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -9,7 +10,8 @@ import { SidebarDashboardComponent } from './sidebar-dashboard/sidebar-dashboard
     SidebarDashboardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[
     SidebarDashboardComponent
