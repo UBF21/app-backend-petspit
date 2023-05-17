@@ -48,7 +48,8 @@ import { VentaDashboardModule } from './venta-dashboard/venta-dashboard.module';
     TamanioRazaDashboardModule,
     UserDashboardModule,
     VentaDashboardModule,
-    CategoryDashboardModule
+    CategoryDashboardModule,
+    RouterModule
   ],
   exports: [
     LoginPageComponent,
