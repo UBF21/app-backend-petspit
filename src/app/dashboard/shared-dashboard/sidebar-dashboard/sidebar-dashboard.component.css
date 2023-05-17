@@ -1,0 +1,12 @@
+.nav-link-custom{
+    color: black;
+    border-left: 4px solid transparent;
+    transition: .4s all;
+}
+
+.nav-link-item:hover{
+    border-left: 4px solid var(--color-primary);
+}
+.nav-link-sub-item:hover{
+    border-left: 4px solid var(--color-secondary);
+}
