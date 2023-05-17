@@ -14,6 +14,14 @@ import { ProductPageEditComponent } from './product-page-edit/product-page-edit.
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    ProductPageListComponent,
+    ProductPageAddComponent,
+    ProductPageEditComponent
+  ],
+  providers:[
+
   ]
 })
 export class ProductDashboardModule { }
