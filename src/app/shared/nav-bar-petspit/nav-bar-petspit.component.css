@@ -4,33 +4,58 @@
     border-color: rgb(111, 212, 16);
 }
 
-.btn{
+.btn {
     transition: .4s all;
 }
 
-.btn:hover{
+.btn-ver-compras {
+    background-color: #c0aa92;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-ver-compras:hover{
+    background-color: #ebdaa4;
+    color: black;
+}
+
+.btn-comprar {
+    background-color: #856047;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-comprar:hover{
+    background-color: #f4a42d;
+    color: black;
+}
+
+.btn-login:hover {
     background-color: #7ac44f;
     opacity: .6;
 }
 
-.btn-close::before{
+.btn-close::before {
     color: white;
 }
 
-.btn-padding{
+.btn-padding {
     padding: 15px 10px;
 }
 
-.navbar-toggler{
+.navbar-toggler {
     background-color: transparent;
     transition: .4s all;
 }
-.navbar-toggler:focus,.navbar-toggler:active{
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
     box-shadow: none;
     outline: none;
 }
-.navbar-toggler:hover{
-   background-color: var(--color-secondary); 
+
+.navbar-toggler:hover {
+    background-color: var(--color-secondary);
     color: white;
     font-weight: bold;
 }
@@ -52,12 +77,12 @@
     transition: .4s all;
 }
 
-.title-item{
+.title-item {
     text-decoration: none;
     transition: .4s all;
 }
 
-.title-item:hover{
+.title-item:hover {
     text-decoration: underline;
     color: #b8ab81;
 }
@@ -67,28 +92,28 @@
 }
 
 
-.icon-trash-hover{
+.icon-trash-hover {
     color: rgb(255, 0, 0);
     transition: .4s all;
 }
 
-.icon-trash-hover:hover{
+.icon-trash-hover:hover {
     color: rgb(175, 5, 5);
     font-weight: bold;
     width: 32px;
     height: 32px;
 }
 
-.icon-hover{
+.icon-hover {
     color: var(--color-primary);
     transition: .4s all;
 }
 
-.icon-hover:hover{
+.icon-hover:hover {
     color: var(--color-secondary);
 }
 
-.badge-shop{
+.badge-shop {
     background-color: #f74905;
 }
 
