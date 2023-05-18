@@ -15,7 +15,7 @@
                     <li (click)="showOders = true;showProfile = false"
                         class="list-group-item text-black text-center fw-bold color-secondary">
                         Ordenes</li>
-                    <a href="#" class="text-decoration-none">
+                    <a routerLink="/dashboard" class="text-decoration-none">
                         <li *ngIf="theRol === 'admin'" class="list-group-item text-black text-center fw-bold color-secondary">Dashboard</li>
                     </a>
                     <li class="list-group-item text-black text-center fw-bold color-secondary" (click)="logout()">Cerrar
