@@ -1,0 +1,30 @@
+
+.icon-happy svg{
+    color: var(--color-secondary);
+}
+
+.icon-sad svg{
+    color: #803d1b;
+}
+
+.bg-color{
+    background-color: var(--color-fourth);
+}
+.btn-trash{
+    background-color: red;
+}
+.btn-trash svg{
+    color: white;
+}
+
+.btn-add svg{
+    color: #e09c36;
+}
+
+.btn-edit{
+    background-color: #5c2c14;
+}
+
+.btn-edit svg{
+    color: white;
+}
