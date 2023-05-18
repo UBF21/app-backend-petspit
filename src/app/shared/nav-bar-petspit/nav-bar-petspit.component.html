@@ -291,8 +291,8 @@
         <!-- collapsables de para navegación -->
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="">
-                <div class="row mt-3 mb-3">            
-                    <div class="p-0 col-12 text-center d-inline-block mt-3 d-lg-none d-sm-inline-block d-md-none" *ngIf="this.loginServices.isLoggedIn()">
+                <div class="row">            
+                    <div class="p-0 col-12 text-center d-inline-block mt-5 mb-4 d-lg-none d-sm-inline-block d-md-none" *ngIf="this.loginServices.isLoggedIn()">
                         <a routerLink="/profile" *ngIf="shared.viewUser.pathName">
                             <img [src]="shared.viewUser.pathName || './assets/img/user_icon_default.jpg'"
                                 alt="imagen de usuario" width="75" height="75" class="rounded-circle shadow">
