@@ -12,8 +12,8 @@ export class EtapaVidaService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllEtapaVidas(): Observable<ResponseEtapaVida[]> {
-    return this.http.get<ResponseEtapaVida[]>(`${environment.backendUrl}api/etapaVida`);
+  public getAllEtapaVidas(): Observable<EtapaVida[]> {
+    return this.http.get<EtapaVida[]>(`${environment.backendUrl}api/etapaVida`);
   }
 
   public getEtapaVidaById(idEtapaVida: number): Observable<ResponseEtapaVida> {
