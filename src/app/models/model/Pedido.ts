@@ -1,3 +1,5 @@
+import { Venta } from "./Venta";
+
 export class Pedido {
     idPedido: number;
     idProduct: number;
@@ -5,6 +7,7 @@ export class Pedido {
     importe: number;
     estado: string;
     idVenta: number;
+    venta:Venta;
 
     constructor() {
         this.idPedido = 0;
@@ -13,5 +16,6 @@ export class Pedido {
         this.importe = 0;
         this.estado = "";
         this.idVenta = 0;
+        this.venta = new Venta();
     }
 }
