@@ -23,4 +23,8 @@ export class ProductService {
   public saveProduct(product:Product):Observable<ResponseProduct>{
     return this.http.post<ResponseProduct>(`${environment.backendUrl}api/product`,product);
   }
+
+  public deleteProduct(idProduct:number):Observable<ResponseProduct>{
+    return this.http.delete<ResponseProduct>(`${environment.backendUrl}api/product/${idProduct}`);
+  }
 }
