@@ -1,3 +1,10 @@
+import { Animal } from "./Animal";
+import { Category } from "./Category";
+import { EtapaVida } from "./EtapaVida";
+import { Marca } from "./Marca";
+import { SubCategory } from "./SubCategory";
+import { TamanioRaza } from "./TamanioRaza";
+
 export class Product {
     idProduct: number;
     titulo: string;
@@ -14,6 +21,12 @@ export class Product {
     idAnimal: number;
     idEtapaVida: number;
     idSubCategory: number;
+    category:Category;
+    tamanioRaza:TamanioRaza;
+    marca:Marca;
+    etapaVida:EtapaVida;
+    subCategory:SubCategory;
+    animal:Animal;                                              
 
     constructor() {
         this.idProduct = 0;
@@ -31,5 +44,11 @@ export class Product {
         this.idAnimal = 0;
         this.idEtapaVida = 0;
         this.idSubCategory = 0;
+        this.category = new Category();
+        this.tamanioRaza = new TamanioRaza();
+        this.marca = new Marca();
+        this.etapaVida = new EtapaVida();
+        this.subCategory = new SubCategory();
+        this.animal = new Animal();      
     }
 }
