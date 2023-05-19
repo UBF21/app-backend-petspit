@@ -13,8 +13,8 @@ export class TamanioRazaService {
   constructor(private http: HttpClient) { }
 
 
-  public getAllTamanioRazas(): Observable<ResponseTamanioRaza[]> {
-    return this.http.get<ResponseTamanioRaza[]>(`${environment.backendUrl}api/tamanioRaza`);
+  public getAllTamanioRazas(): Observable<TamanioRaza[]> {
+    return this.http.get<TamanioRaza[]>(`${environment.backendUrl}api/tamanioRaza`);
   }
 
   public getTamanioRazaById(idTamanioRaza: number): Observable<ResponseTamanioRaza> {
