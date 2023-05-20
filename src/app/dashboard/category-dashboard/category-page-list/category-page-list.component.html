@@ -1,7 +1,7 @@
 <h2 class="fw-bold mt-3 mb-4 text-center">Listado de Categorias <span class="badge rounded-pill p-3 bg-color">44</span>
 </h2>
 
-<a href="" class="btn btn-add mb-1">
+<a routerLink="/dashboard/categoria/add" class="btn btn-add mb-1">
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus-filled" width="44"
         height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round">
@@ -23,10 +23,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="align-middle">
-            <td class="text-center">1</td>
-            <td>Comida seca</td>
-            <td class="text-center icon-happy">
+        <tr class="align-middle" *ngFor="let category of categories">
+            <td class="text-center">{{category.idCategory}}</td>
+            <td>{{category.descripcion}}</td>
+            <td class="text-center icon-happy" *ngIf="category.estado === 'A' ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-happy-filled"
                     width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -36,36 +36,7 @@
                         stroke-width="0" fill="currentColor" />
                 </svg>
             </td>
-            <td class="text-center">Perro</td>
-            <td>
-                <a href="" class="btn btn-trash btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-filled" width="27"
-                        height="27" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                            d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
-                            stroke-width="0" fill="currentColor" />
-                        <path
-                            d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
-                            stroke-width="0" fill="currentColor" />
-                    </svg>
-                </a> |
-                <a href="" class="btn btn-edit btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="27"
-                        height="27" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
-                        <path d="M13.5 6.5l4 4" />
-                    </svg>
-                </a>
-            </td>
-        </tr>
-        <tr class="align-middle">
-            <td class="text-center">1</td>
-            <td>Comida húmedo</td>
-            <td class="text-center icon-sad">
+            <td class="text-center icon-sad" *ngIf="category.estado === 'I' ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-sad-filled" width="36"
                     height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -75,9 +46,9 @@
                         stroke-width="0" fill="currentColor" />
                 </svg>
             </td>
-            <td class="text-center">Gato</td>
+            <td class="text-center">{{category.animal.claseAnimal}}</td>
             <td>
-                <a href="" class="btn btn-trash btn-sm">
+                <a class="btn btn-trash btn-sm" (click)="deleteCategory(category.idCategory)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-filled" width="27"
                         height="27" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
