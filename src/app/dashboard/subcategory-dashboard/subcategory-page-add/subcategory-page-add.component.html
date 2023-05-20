@@ -1,1 +1,66 @@
-<p>subcategory-page-add works!</p>
+<div class="container">
+    <div class="margin-y">
+
+
+        <form (ngSubmit)="submitSubCategory()" class="row g-3 justify-content-center" [formGroup]="formAddSubCategory">
+            <div class="col-7">
+                <h2 class="fw-bold mb-2 mt-3">Formulario de SubCategory</h2>
+            </div>
+            <div class="col-7">
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" name="descripcion" id="descripcion" autocomplete="off"
+                        formControlName="descripcion" placeholder="example">
+                    <label for="descripcion">Descripción</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddSubCategory.get('descripcion')?.invalid && (formAddSubCategory.get('descripcion')?.dirty || formAddSubCategory.get('descripcion')?.touched)">
+                    <p *ngIf="formAddSubCategory.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Descripción requerido.
+                    </p>
+                </div>
+            </div>
+            <div class="col-7">
+
+                <div class="form-floating  mb-2">
+                    <select class="form-select" name="estado" formControlName="estado" id="estado">
+                        <option selected value="">Seleccionar</option>
+                        <option value="A">Activo</option>
+                        <option value="I">Inactivo</option>
+                    </select>
+                    <label for="estado">Estado</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddSubCategory.get('estado')?.invalid && (formAddSubCategory.get('estado')?.dirty || formAddSubCategory.get('estado')?.touched)">
+                    <p *ngIf="formAddSubCategory.get('estado')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione un Estado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-7">
+
+                <div class="form-floating  mb-2">
+                    <select class="form-select" name="category" formControlName="category" id="category">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="category.idCategory"  *ngFor="let category of categories">{{category.descripcion}}</option>
+                    </select>
+                    <label for="estado">Animal</label>
+                </div>
+                
+
+                <div class="mt-1"
+                    *ngIf="formAddSubCategory.get('category')?.invalid && (formAddSubCategory.get('category')?.dirty || formAddSubCategory.get('category')?.touched)">
+                    <p *ngIf="formAddSubCategory.get('category')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione una Category.
+                    </p>
+                </div>
+            </div>
+            <div class="col-7 mt-4">
+                <button type="submit" [disabled]="formAddSubCategory.invalid"
+                    class="btn btn-custom btn-hover">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>
