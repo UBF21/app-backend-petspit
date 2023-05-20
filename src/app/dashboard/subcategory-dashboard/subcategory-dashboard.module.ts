@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SubcategoryPageListComponent } from './subcategory-page-list/subcategory-page-list.component';
 import { SubcategoryPageAddComponent } from './subcategory-page-add/subcategory-page-add.component';
 import { SubcategoryPageEditComponent } from './subcategory-page-edit/subcategory-page-edit.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 
 
@@ -13,7 +16,11 @@ import { SubcategoryPageEditComponent } from './subcategory-page-edit/subcategor
     SubcategoryPageEditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RxReactiveFormsModule
   ],
   exports:[
 
