@@ -39,7 +39,7 @@ export class LoginService {
   }
 
   public saveUserViewCurrent(viewUser:ViewImageUser){
-    sessionStorage.setItem("userView",JSON.stringify(viewUser));
+    localStorage.setItem("userView",JSON.stringify(viewUser));
   }
 
   // Obtener el rol del usuario
@@ -63,7 +63,7 @@ export class LoginService {
   public logout(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    sessionStorage.removeItem("userView");
+    localStorage.removeItem("userView");
   }
 
   // Obtener el usuario del localStorage
@@ -76,7 +76,7 @@ export class LoginService {
 
 
   public getUserViewRecurrent():ViewImageUser{
-      let viewUser:string = sessionStorage.getItem("userView")!;
+      let viewUser:string = localStorage.getItem("userView")!;
       if(viewUser  !== null) {
         return JSON.parse(viewUser);
       }
