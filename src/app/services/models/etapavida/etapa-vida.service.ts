@@ -21,7 +21,7 @@ export class EtapaVidaService {
   }
 
   public saveEtapaVida(etapaVida: EtapaVida): Observable<ResponseEtapaVida> {
-    return this.http.post<ResponseEtapaVida>(`${environment.backendUrl}api/etapaVida}`, etapaVida);
+    return this.http.post<ResponseEtapaVida>(`${environment.backendUrl}api/etapaVida`, etapaVida);
   }
 
   public deleteEtapaVida(idEtapaVida: number): Observable<ResponseEtapaVida> {
