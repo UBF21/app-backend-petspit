@@ -1,1 +1,66 @@
-<p>category-page-add works!</p>
+<div class="container">
+    <div class="margin-y">
+
+
+        <form (ngSubmit)="submitCategory()" class="row g-3 justify-content-center" [formGroup]="formAddCategory">
+            <div class="col-7">
+                <h2 class="fw-bold mb-2 mt-3">Formulario de Etapa de vida</h2>
+            </div>
+            <div class="col-7">
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" name="descripcion" id="descripcion" autocomplete="off"
+                        formControlName="descripcion" placeholder="example">
+                    <label for="descripcion">Descripción</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddCategory.get('descripcion')?.invalid && (formAddCategory.get('descripcion')?.dirty || formAddCategory.get('descripcion')?.touched)">
+                    <p *ngIf="formAddCategory.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Descripción requerido.
+                    </p>
+                </div>
+            </div>
+            <div class="col-7">
+
+                <div class="form-floating  mb-2">
+                    <select class="form-select" name="animal" formControlName="estado" id="estado">
+                        <option selected value="">Seleccionar</option>
+                        <option value="A">Activo</option>
+                        <option value="I">Inactivo</option>
+                    </select>
+                    <label for="estado">Estado</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddCategory.get('estado')?.invalid && (formAddCategory.get('estado')?.dirty || formAddCategory.get('estado')?.touched)">
+                    <p *ngIf="formAddCategory.get('estado')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione un Estado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-7">
+
+                <div class="form-floating  mb-2">
+                    <select class="form-select" name="animal" formControlName="animal" id="animal">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="animal.idAnimal"  *ngFor="let animal of animales">{{animal.claseAnimal}}</option>
+                    </select>
+                    <label for="estado">Animal</label>
+                </div>
+                
+
+                <div class="mt-1"
+                    *ngIf="formAddCategory.get('animal')?.invalid && (formAddCategory.get('animal')?.dirty || formAddCategory.get('animal')?.touched)">
+                    <p *ngIf="formAddCategory.get('animal')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione un Animal.
+                    </p>
+                </div>
+            </div>
+            <div class="col-7 mt-4">
+                <button type="submit" [disabled]="formAddCategory.invalid"
+                    class="btn btn-custom btn-hover">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>
