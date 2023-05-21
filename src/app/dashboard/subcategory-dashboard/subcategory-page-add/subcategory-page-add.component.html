@@ -18,6 +18,12 @@
                     <p *ngIf="formAddSubCategory.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
                         style="color: rgb(121, 36, 36);">Descripción requerido.
                     </p>
+                    <p *ngIf="formAddSubCategory.get('descripcion')?.hasError('maxlength')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">
+                        La Descripción solo
+                        admite
+                        máximo 255 caracteres.
+                    </p>
                 </div>
             </div>
             <div class="col-7">
@@ -44,11 +50,12 @@
                 <div class="form-floating  mb-2">
                     <select class="form-select" name="category" formControlName="category" id="category">
                         <option selected value="">Seleccionar</option>
-                        <option [value]="category.idCategory"  *ngFor="let category of categories">{{category.descripcion}}</option>
+                        <option [value]="category.idCategory" *ngFor="let category of categories">
+                            {{category.descripcion}}</option>
                     </select>
                     <label for="estado">Animal</label>
                 </div>
-                
+
 
                 <div class="mt-1"
                     *ngIf="formAddSubCategory.get('category')?.invalid && (formAddSubCategory.get('category')?.dirty || formAddSubCategory.get('category')?.touched)">
