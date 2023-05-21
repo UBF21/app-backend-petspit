@@ -60,5 +60,7 @@ export class TamanioRazaPageAddComponent implements OnInit {
     this.addTamanioRaza(tamanioRaza);
     console.log(this.formAddTamanioRaza.value);
     this.formAddTamanioRaza.reset();
+    this.formAddTamanioRaza.get('animal')?.setValue('');
+    this.formAddTamanioRaza.get('estado')?.setValue('');
   }
 }
