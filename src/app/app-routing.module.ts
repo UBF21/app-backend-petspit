@@ -111,6 +111,7 @@ const routerChildrenUser: Routes = [
 
 //Rutas principales del dashboard
 const routerChildrenDashboard: Routes = [
+  { path: '', component: HomePageDashboardComponent },
   { path: 'home', component: HomePageDashboardComponent },
   { path: 'categoria', children:routerChildrenCategory },
   { path: 'sub-categoria', children: routerChildrenSubCategory },
