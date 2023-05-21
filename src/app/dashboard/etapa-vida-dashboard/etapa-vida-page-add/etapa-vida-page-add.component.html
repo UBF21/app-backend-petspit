@@ -18,6 +18,11 @@
                     <p *ngIf="formAddEtapaVida.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
                         style="color: rgb(121, 36, 36);">Descripción requerido.
                     </p>
+                    <p *ngIf="formAddEtapaVida.get('descripcion')?.hasError('maxlength')" class="p-1 fw-bold"
+                    style="color: rgb(121, 36, 36);"> La Descripción solo
+                    admite
+                    máximo 255 caracteres.
+                </p>
                 </div>
             </div>
             <div class="col-7">
