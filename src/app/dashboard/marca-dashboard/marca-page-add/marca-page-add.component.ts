@@ -26,7 +26,7 @@ export class MarcaPageAddComponent implements OnInit {
     this.getAllAnimals();
     this.formAddMarca = this.formBuilder.group({
       imagen: ['', [Validators.required, RxwebValidators.fileSize({ maxSize: 5 * 1024 * 1024, message: "El Máximo son 5MB." }), RxwebValidators.extension({ extensions: ['jpeg', 'jpg'], message: "La Imagen solo admite formato jpg." })]],
-      descripcion: ['', [Validators.required]],
+      descripcion: ['', [Validators.required, Validators.maxLength(255)]],
       estado: ['', [Validators.required]],
       animal: ['', [Validators.required]]
     });
@@ -54,9 +54,9 @@ export class MarcaPageAddComponent implements OnInit {
     }
   }
 
-  fillMarcaForSave(image:File){
+  fillMarcaForSave(image: File) {
 
-    let marca:Marca = new Marca();
+    let marca: Marca = new Marca();
     marca.idMarca = 0;
     marca.descripcion = this.formAddMarca.value.descripcion;
     marca.idAnimal = this.formAddMarca.value.animal;
@@ -67,7 +67,7 @@ export class MarcaPageAddComponent implements OnInit {
 
     return marca;
   }
-  
+
   saveMarca(marca: Marca, image: File): void {
 
     this.marcaService.saveMarca(marca)
@@ -92,8 +92,8 @@ export class MarcaPageAddComponent implements OnInit {
 
 
   submitMarca(): void {
-    let marca:Marca = this.fillMarcaForSave(this.fileImage);
-    this.saveMarca(marca,this.fileImage);
+    let marca: Marca = this.fillMarcaForSave(this.fileImage);
+    this.saveMarca(marca, this.fileImage);
     this.formAddMarca.reset();
     this.formAddMarca.get('estado')?.setValue('');
     this.formAddMarca.get('animal')?.setValue('');
