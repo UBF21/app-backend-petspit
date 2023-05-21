@@ -20,7 +20,7 @@ export class TamanioRazaPageAddComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAnimals();
     this.formAddTamanioRaza = this.formBuilder.group({
-      descripcion: ['', [Validators.required]],
+      descripcion: ['', [Validators.required,Validators.maxLength(255)]],
       estado: ['', [Validators.required]],
       animal: ['', [Validators.required]],
     });
