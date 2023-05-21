@@ -4,7 +4,7 @@
 
         <form (ngSubmit)="submitCategory()" class="row g-3 justify-content-center" [formGroup]="formAddCategory">
             <div class="col-7">
-                <h2 class="fw-bold mb-2 mt-3">Formulario de Etapa de vida</h2>
+                <h2 class="fw-bold mb-2 mt-3">Formulario de Category</h2>
             </div>
             <div class="col-7">
                 <div class="form-floating mb-2">
@@ -67,6 +67,7 @@
             <div class="col-7 mt-4">
                 <button type="submit" [disabled]="formAddCategory.invalid"
                     class="btn btn-custom btn-hover">Agregar</button>
+                <a routerLink="/dashboard/categoria/" class="btn btn-list ms-2">Categories</a>
             </div>
         </form>
     </div>
