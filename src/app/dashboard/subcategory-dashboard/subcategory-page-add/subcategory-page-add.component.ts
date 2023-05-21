@@ -63,5 +63,7 @@ export class SubcategoryPageAddComponent implements OnInit {
     this.addSubCategory(subCategory);
     console.log(this.formAddSubCategory.value);
     this.formAddSubCategory.reset();
+    this.formAddSubCategory.get('animal')?.setValue('');
+    this.formAddSubCategory.get('category')?.setValue('');
   }
 }
