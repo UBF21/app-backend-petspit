@@ -18,6 +18,12 @@
                     <p *ngIf="formAddTamanioRaza.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
                         style="color: rgb(121, 36, 36);">Descripción requerido.
                     </p>
+                    <p *ngIf="formAddTamanioRaza.get('descripcion')?.hasError('maxlength')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">
+                        La Descripción solo
+                        admite
+                        máximo 255 caracteres.
+                    </p>
                 </div>
             </div>
             <div class="col-7">
@@ -44,11 +50,12 @@
                 <div class="form-floating  mb-2">
                     <select class="form-select" name="animal" formControlName="animal" id="animal">
                         <option selected value="">Seleccionar</option>
-                        <option [value]="animal.idAnimal"  *ngFor="let animal of animales">{{animal.claseAnimal}}</option>
+                        <option [value]="animal.idAnimal" *ngFor="let animal of animales">{{animal.claseAnimal}}
+                        </option>
                     </select>
                     <label for="estado">Animal</label>
                 </div>
-                
+
 
                 <div class="mt-1"
                     *ngIf="formAddTamanioRaza.get('animal')?.invalid && (formAddTamanioRaza.get('animal')?.dirty || formAddTamanioRaza.get('animal')?.touched)">
