@@ -1,1 +1,241 @@
-<p>user-page-add works!</p>
+<div class="card-body container mt-0 mb-0 p-4 text-black">
+
+    <form class="row justify-content-center" [formGroup]="formRegister"
+        (ngSubmit)="submitUser()">
+
+        <div class="d-flex justify-content-center mb-3 pb-1">
+            <span class="h1 fw-bold mb-3">Formulario de User</span>
+        </div>
+
+        <div class="col-lg-10 mb-5 mt-2 text-center">
+
+            <div class="position-relative">
+                <img [src]=" photoCargada || './assets/img/user_icon_default.jpg' " width="120" height="120" alt=""
+                    class="rounded-circle shadow" id="imagen" (click)="imagen.click()">
+
+            </div>
+
+
+            <input type="file" (change)="getImage( $event )" name="file" #imagen formControlName="file"
+                autocomplete="off" id="imagen" class="form-control d-none" />
+
+            <div class="mt-2  mb-0"
+                *ngIf="formRegister.get('file')?.invalid && (formRegister.get('file')?.dirty || formRegister.get('file')?.touched)">
+                <p *ngIf="formRegister.controls['file'].errors && formRegister.controls['file'].errors['fileSize']"
+                    class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
+                    {{formRegister.controls['file'].errors['fileSize'].message}}
+                </p>
+
+                <p *ngIf="formRegister.controls['file'].errors && formRegister.controls['file'].errors['extension']"
+                    class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
+                    {{formRegister.controls['file'].errors['extension'].message}}
+                </p>
+
+                <p *ngIf="formRegister.get('file')?.hasError('required')" class="p-1 fw-bold"
+                    style="color: rgb(121, 36, 36);">La Imagen es requerida.</p>
+            </div>
+
+        </div>
+
+        <div class="col-lg-5 mb-3">
+            <div class="form-floating">
+                <input type="text" placeholder="nombre" name="nombre" formControlName="nombre" autocomplete="off"
+                    id="nombre" class="form-control" />
+                <label class="form-label" for="nombre">Nombre</label>
+            </div>
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('nombre')?.invalid && (formRegister.get('nombre')?.dirty || formRegister.get('nombre')?.touched)">
+
+                <p *ngIf="formRegister.get('nombre')?.hasError('required')" class="p-1 fw-bold">El Nombre es requerido.
+                </p>
+                <p *ngIf="formRegister.get('nombre')?.hasError('maxlength')" class="p-1 fw-bold">El Nombre solo admite
+                    máximo 255 caracteres.</p>
+
+            </div>
+        </div>
+
+        <div class="col-lg-5  mb-3">
+            <div class="form-floating">
+                <input type="text" placeholder="apellido" name="apellido" formControlName="apellido" autocomplete="off"
+                    id="apellido" class="form-control" />
+                <label class="form-label" for="apellido">Apellido</label>
+            </div>
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('apellido')?.invalid && (formRegister.get('apellido')?.dirty || formRegister.get('apellido')?.touched)">
+
+                <p *ngIf="formRegister.get('apellido')?.hasError('required')" class="p-1 fw-bold">El Apellido es
+                    requerido.
+                </p>
+                <p *ngIf="formRegister.get('apellido')?.hasError('maxlength')" class="p-1 fw-bold">El Apellido solo
+                    admite
+                    máximo 255 caracteres.</p>
+
+            </div>
+        </div>
+
+        <div class="col-lg-10  mb-3">
+
+            <div class="form-floating">
+                <input type="text" placeholder="example" name="username" formControlName="username" autocomplete="off"
+                    id="username" class="form-control" />
+                <label class="form-label" for="username">Usuario</label>
+            </div>
+
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('username')?.invalid && (formRegister.get('username')?.dirty || formRegister.get('username')?.touched)">
+
+                <p *ngIf="formRegister.get('username')?.hasError('required')" class="p-1 fw-bold">El Usuario es
+                    requerido.
+                </p>
+                <p *ngIf="formRegister.get('username')?.hasError('maxlength')" class="p-1 fw-bold">El Usuario solo
+                    admite
+                    máximo 255 caracteres.</p>
+                <p *ngIf="formRegister.get('username')?.hasError('pattern')" class="p-1 fw-bold">El Usuario contiene
+                    caracteres no válidos.</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-10  mb-3">
+            <div class="form-floating">
+                <input type="password" placeholder="*****" name="password" formControlName="password" autocomplete="off"
+                    id="password" class="form-control" />
+                <label class="form-label" for="password">Conraseña</label>
+            </div>
+
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('password')?.invalid && (formRegister.get('password')?.dirty || formRegister.get('password')?.touched)">
+
+                <p *ngIf="formRegister.get('password')?.hasError('required')" class="p-1 fw-bold">El Password es
+                    requerido.
+                </p>
+                <p *ngIf="formRegister.get('password')?.hasError('maxlength')" class="p-1 fw-bold">El Password solo
+                    admite
+                    máximo 255 caracteres.</p>
+                <p *ngIf="formRegister.get('password')?.hasError('pattern')" class="p-1 fw-bold">El Password contiene
+                    caracteres no válidos.</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-5  mb-3">
+            <div class="form-floating">
+                <input type="number" placeholder="xxxxxxxx" name="dni" formControlName="dni" autocomplete="off" id="dni"
+                    class="form-control" />
+                <label class="form-label" for="dni">Dni</label>
+            </div>
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('dni')?.invalid && (formRegister.get('dni')?.dirty || formRegister.get('dni')?.touched)">
+
+                <p *ngIf="formRegister.get('dni')?.hasError('required')" class="p-1 fw-bold">El Dni es
+                    requerido.
+                </p>
+                <p *ngIf="formRegister.get('dni')?.hasError('pattern')" class="p-1 fw-bold">El Dni es de 8 dígitos.</p>
+            </div>
+
+        </div>
+
+        <div class="col-lg-5  mb-3">
+            <div class="form-floating">
+                <input type="number" placeholder="999999999" name="telefono" formControlName="telefono"
+                    autocomplete="off" id="telefono" class="form-control" />
+                <label class="form-label" for="telefono">Teléfono</label>
+            </div>
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('telefono')?.invalid && (formRegister.get('telefono')?.dirty || formRegister.get('telefono')?.touched)">
+
+                <p *ngIf="formRegister.get('telefono')?.hasError('required')" class="p-1 fw-bold">El Teléfono es
+                    requerido.
+                </p>
+                <p *ngIf="formRegister.get('telefono')?.hasError('pattern')" class="p-1 fw-bold">El Teléfono es de 9
+                    dígitos.</p>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-5  mb-3">
+            <div class="form-floating">
+                <div class="form-floating">
+                    <select class="form-select" id="estado" name="estado" formControlName="estado">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="A">Activo</option>
+                        <option value="I">Inactivo</option>
+                    </select>
+                    <label for="estado">Estado</label>
+                </div>
+            </div>
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('estado')?.invalid && (formRegister.get('estado')?.dirty || formRegister.get('estado')?.touched)">
+
+                <p *ngIf="formRegister.get('estado')?.hasError('required')" class="p-1 fw-bold">
+                    Seleccione un Estado.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-lg-5  mb-3">
+            <div class="form-floating">
+                <div class="form-floating">
+                    <select class="form-select" id="rol" name="rol" formControlName="rol">
+                        <option value="" selected>Seleccionar</option>
+                        <option [value]="rol.idRol" *ngFor="let rol of rols">{{rol.descripcion}}</option>
+                    </select>
+                    <label for="rol">Rol</label>
+                </div>
+            </div>
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('rol')?.invalid && (formRegister.get('rol')?.dirty || formRegister.get('rol')?.touched)">
+
+                <p *ngIf="formRegister.get('rol')?.hasError('required')" class="p-1 fw-bold">
+                    Seleccione un Rol.
+                </p>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-lg-10 mb-3">
+
+            <div class="form-floating">
+                <textarea class="form-control" id="direccion" name="direccion" formControlName="direccion"
+                    id="direccion" style="height: 120px"></textarea>
+                <label for="direccion">Dirección</label>
+            </div>
+
+            <div class="mt-2 mb-0"
+                *ngIf="formRegister.get('direccion')?.invalid && (formRegister.get('direccion')?.dirty || formRegister.get('direccion')?.touched)">
+
+                <p *ngIf="formRegister.get('direccion')?.hasError('required')" class="p-1 fw-bold">La Dirección es
+                    requerido.
+                </p>
+                <p *ngIf="formRegister.get('direccion')?.hasError('maxlength')" class="p-1 fw-bold">La Dirección solo
+                    admite
+                    máximo 300 caracteres.</p>
+            </div>
+        </div>
+
+        <div class="pt-1 mb-3 col-lg-10">
+            <button class="btn btn-hover btn-lg btn-custom btn-block" [disabled]="formRegister.invalid" type="submit">
+                Agregar
+            </button>
+        </div>
+    </form>
+
+
+</div>
+
+
