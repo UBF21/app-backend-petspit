@@ -13,7 +13,7 @@ export class UploadImageService {
 
   // upload para Marca
   getImageToMarca(fileName:string): Observable<any> {
-    return this.http.get<any>(`${environment.backendUrl}upload/marca/image/${fileName}`);
+    return this.http.get<any>(`${environment.backendUrl}upload/marca/image/${fileName}`, { responseType: "blob" as "json" });
   }
 
   saveImageToMarca(image:FormData): Observable<ResponseUpload> {
@@ -26,7 +26,7 @@ export class UploadImageService {
 
   //upload para Product
   getImageToProduct(fileName:string): Observable<any> {
-    return this.http.get<any>(`${environment.backendUrl}upload/product/image/${fileName}`);
+    return this.http.get<any>(`${environment.backendUrl}upload/product/image/${fileName}`, { responseType: "blob" as "json" });
   }
 
   saveImageToProduct(image:FormData): Observable<ResponseUpload> {
