@@ -20,7 +20,7 @@ export class SubcategoryPageAddComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCategories();
     this.formAddSubCategory = this.formBuilder.group({
-      descripcion: ['', [Validators.required]],
+      descripcion: ['', [Validators.required, Validators.maxLength(255)]],
       estado: ['', [Validators.required]],
       category: ['', [Validators.required]]
     });
