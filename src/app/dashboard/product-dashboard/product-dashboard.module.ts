@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ProductPageListComponent } from './product-page-list/product-page-list.component';
 import { ProductPageAddComponent } from './product-page-add/product-page-add.component';
 import { ProductPageEditComponent } from './product-page-edit/product-page-edit.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +16,11 @@ import { ProductPageEditComponent } from './product-page-edit/product-page-edit.
     ProductPageEditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RxReactiveFormsModule
   ],
   exports:[
     ProductPageListComponent,
