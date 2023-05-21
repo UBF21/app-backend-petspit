@@ -66,7 +66,7 @@ export class EtapaVidaPageAddComponent implements OnInit {
     this.addEtapaVida(etapaVida);
     console.log(this.formAddEtapaVida.value);
     this.formAddEtapaVida.reset();
-    this.formAddCategory.get('animal')?.setValue('');
-    this.formAddCategory.get('estado')?.setValue('');
+    this.formAddEtapaVida.get('animal')?.setValue('');
+    this.formAddEtapaVida.get('estado')?.setValue('');
   }
 }
