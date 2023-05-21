@@ -1,3 +1,4 @@
+import { Product } from "./Product";
 import { Venta } from "./Venta";
 
 export class Pedido {
@@ -8,6 +9,7 @@ export class Pedido {
     estado: string;
     idVenta: number;
     venta:Venta;
+    product:Product;
 
     constructor() {
         this.idPedido = 0;
@@ -17,5 +19,6 @@ export class Pedido {
         this.estado = "";
         this.idVenta = 0;
         this.venta = new Venta();
+        this.product = new Product();
     }
 }
