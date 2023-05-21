@@ -60,5 +60,7 @@ export class CategoryPageAddComponent implements OnInit {
     this.addCategory(category);
     console.log(this.formAddCategory.value);
     this.formAddCategory.reset();
+    this.formAddCategory.get('animal')?.setValue('');
+    this.formAddCategory.get('estado')?.setValue('');
   }
 }
