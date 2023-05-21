@@ -1,5 +1,5 @@
 <h2 class="fw-bold mt-3 mb-4 text-center">Listado de Marcas <span class="badge rounded-pill p-3 bg-color">44</span></h2>
-<a href="" class="btn btn-add mb-1">
+<a routerLink="/dashboard/marca/add" class="btn btn-add mb-1">
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus-filled" width="44"
         height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round">
@@ -21,15 +21,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="align-middle">
-            <td class="text-center">1</td>
+        <tr class="align-middle" *ngFor="let viewMarca of viewMarcas">
+            <td class="text-center">{{viewMarca.marca.idMarca}}</td>
             <td class="text-center">
-                <img src="https://superpet.pe/11035-home_default/dogxtreme-dog-adult-lamb-and-rice-3-kg.jpg" width="80"
+                <img [src]="viewMarca.pathName" width="80"
                     height="80" class="img-fluid shadow rounded-top" alt="">
             </td>
-            <td class="text-center">Comida seca</td>
-            <td class="text-center icon-happy">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-happy-filled"
+            <td class="text-center">{{viewMarca.marca.descripcion}}</td>
+            <td class="text-center icon-happy" *ngIf="viewMarca.marca.estado === 'A' " >
+                <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-happy-filled"
                     width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -38,9 +38,19 @@
                         stroke-width="0" fill="currentColor" />
                 </svg>
             </td>
-            <td class="text-center">Perro</td>
+            <td class="text-center icon-sad" *ngIf="viewMarca.marca.estado === 'I' ">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-sad-filled" width="36"
+                height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                    d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-5 9.86a4.5 4.5 0 0 0 -3.214 1.35a1 1 0 1 0 1.428 1.4a2.5 2.5 0 0 1 3.572 0a1 1 0 0 0 1.428 -1.4a4.5 4.5 0 0 0 -3.214 -1.35zm-2.99 -4.2l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm6 0l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z"
+                    stroke-width="0" fill="currentColor" />
+            </svg>
+            </td>
+            <td class="text-center">{{viewMarca.marca.animal.claseAnimal}}</td>
             <td>
-                <a href="" class="btn btn-trash btn-sm">
+                <a class="btn btn-trash btn-sm" (click)="deleteMarca(viewMarca.marca.idMarca)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-filled" width="27"
                         height="27" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
