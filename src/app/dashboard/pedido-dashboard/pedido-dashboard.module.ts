@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { PedidoPageListComponent } from './pedido-page-list/pedido-page-list.component';
 import { PedidoPageAddComponent } from './pedido-page-add/pedido-page-add.component';
 import { PedidoPageEditComponent } from './pedido-page-edit/pedido-page-edit.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +16,11 @@ import { PedidoPageEditComponent } from './pedido-page-edit/pedido-page-edit.com
     PedidoPageEditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RxReactiveFormsModule
   ],
   exports:[
     PedidoPageListComponent,
