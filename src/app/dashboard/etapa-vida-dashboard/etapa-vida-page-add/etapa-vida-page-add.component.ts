@@ -22,7 +22,7 @@ export class EtapaVidaPageAddComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAnimals();
     this.formAddEtapaVida = this.formBuilder.group({
-      descripcion: ['', [Validators.required]],
+      descripcion: ['', [Validators.required,Validators.maxLength(255)]],
       estado: ['', [Validators.required]],
       animal: ['', [Validators.required]],
     });
