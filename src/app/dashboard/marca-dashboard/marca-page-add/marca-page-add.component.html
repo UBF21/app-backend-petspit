@@ -11,25 +11,25 @@
                 <div class="position-relative text-center">
                     <img [src]=" photoCargada || './assets/img/image-placeholder.jpg' " width="170" height="170" alt=""
                         class="rounded-bottom mt-1 mb-3 shadow" id="file" (click)="imagen.click()">
-    
+
                 </div>
-    
-    
+
+
                 <input type="file" (change)="getImage( $event )" name="imagen" #imagen formControlName="imagen"
                     autocomplete="off" id="imagen" class="form-control d-none" />
-    
+
                 <div class="mt-2 text-center mb-0"
                     *ngIf="formAddMarca.get('imagen')?.invalid && (formAddMarca.get('imagen')?.dirty || formAddMarca.get('imagen')?.touched)">
                     <p *ngIf="formAddMarca.controls['imagen'].errors && formAddMarca.controls['imagen'].errors['fileSize']"
                         class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
                         {{formAddMarca.controls['imagen'].errors['fileSize'].message}}
                     </p>
-    
+
                     <p *ngIf="formAddMarca.controls['imagen'].errors && formAddMarca.controls['imagen'].errors['extension']"
                         class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
                         {{formAddMarca.controls['imagen'].errors['extension'].message}}
                     </p>
-    
+
                     <p *ngIf="formAddMarca.get('imagen')?.hasError('required')" class="p-1 fw-bold"
                         style="color: rgb(121, 36, 36);">La Imagen es requerida.</p>
                 </div>
@@ -46,6 +46,11 @@
                     *ngIf="formAddMarca.get('descripcion')?.invalid && (formAddMarca.get('descripcion')?.dirty || formAddMarca.get('descripcion')?.touched)">
                     <p *ngIf="formAddMarca.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
                         style="color: rgb(121, 36, 36);">Descripción requerido.
+                    </p>
+                    <p *ngIf="formAddMarca.get('descripcion')?.hasError('maxlength')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);"> La Descripción solo
+                        admite
+                        máximo 255 caracteres.
                     </p>
                 </div>
             </div>
@@ -73,11 +78,12 @@
                 <div class="form-floating  mb-2">
                     <select class="form-select" name="animal" formControlName="animal" id="animal">
                         <option selected value="">Seleccionar</option>
-                        <option [value]="animal.idAnimal"  *ngFor="let animal of animales">{{animal.claseAnimal}}</option>
+                        <option [value]="animal.idAnimal" *ngFor="let animal of animales">{{animal.claseAnimal}}
+                        </option>
                     </select>
                     <label for="estado">Animal</label>
                 </div>
-                
+
 
                 <div class="mt-1"
                     *ngIf="formAddMarca.get('animal')?.invalid && (formAddMarca.get('animal')?.dirty || formAddMarca.get('animal')?.touched)">
