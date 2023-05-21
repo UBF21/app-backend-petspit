@@ -19,6 +19,18 @@
     color: white;
 }
 
+.btn-list{
+    border: 0;
+    background-color: #c0aa92;
+    color: black;
+    transition: .4s all;
+}
+
+.btn-list:hover{
+    background-color: #5c2c14;
+    color: white;
+}
+
 .btn-hover {
     transition: .4s all;
 }
