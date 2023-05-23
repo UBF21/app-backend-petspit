@@ -1,0 +1,45 @@
+
+textarea{
+    resize: none;
+} 
+
+.form-select:active,.form-select:focus, input:focus,input:active,textarea:focus,textarea:active {
+    outline: none;
+    box-shadow: none;
+    border-color: rgb(111, 212, 16);
+}
+
+.form-select .option-custom:active {
+    background-color: rgb(111, 212, 16);
+}
+
+.form-select .option-custom:hover {
+    background-color: rgb(111, 212, 16);
+}
+
+.btn-custom {
+    border: 0;
+    background-color: #856047;
+    color: white;
+}
+
+.btn-list{
+    border: 0;
+    background-color: #c0aa92;
+    color: black;
+    transition: .4s all;
+}
+
+.btn-list:hover{
+    background-color: #5c2c14;
+    color: white;
+}
+
+.btn-hover {
+    transition: .4s all;
+}
+
+.btn-hover:hover {
+    background-color: var(--color-secondary);
+    color: black;
+}
