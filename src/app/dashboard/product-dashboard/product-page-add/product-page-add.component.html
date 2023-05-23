@@ -1,1 +1,323 @@
-<p>product-page-add works!</p>
+<div class="container">
+    <div class="margin-y">
+
+
+        <form (ngSubmit)="submitProduct()" class="row g-3 justify-content-center" [formGroup]="formAddProduct">
+            <div class="col-7">
+                <h2 class="fw-bold mb-2 mt-4 text-center">Formulario de Marca</h2>
+            </div>
+
+            <div class="col-12 col-lg-12">
+                <div class="position-relative text-center">
+                    <img [src]=" photoCargada || './assets/img/image-placeholder.jpg' " width="170" height="170" alt=""
+                        class="rounded-bottom mt-1 mb-3 shadow" id="file" (click)="imagen.click()">
+
+                </div>
+
+
+                <input type="file" (change)="getImage( $event )" name="imagen" #imagen formControlName="imagen"
+                    autocomplete="off" id="imagen" class="form-control d-none" />
+
+                <div class="mt-2 text-center mb-0"
+                    *ngIf="formAddProduct.get('imagen')?.invalid && (formAddProduct.get('imagen')?.dirty || formAddProduct.get('imagen')?.touched)">
+                    <p *ngIf="formAddProduct.controls['imagen'].errors && formAddProduct.controls['imagen'].errors['fileSize']"
+                        class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
+                        {{formAddProduct.controls['imagen'].errors['fileSize'].message}}
+                    </p>
+
+                    <p *ngIf="formAddProduct.controls['imagen'].errors && formAddProduct.controls['imagen'].errors['extension']"
+                        class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
+                        {{formAddProduct.controls['imagen'].errors['extension'].message}}
+                    </p>
+
+                    <p *ngIf="formAddProduct.get('imagen')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">La Imagen es requerida.</p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5">
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" name="titulo" id="titulo" autocomplete="off"
+                        formControlName="titulo" placeholder="example">
+                    <label for="titulo">Título</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('titulo')?.invalid && (formAddProduct.get('titulo')?.dirty || formAddProduct.get('titulo')?.touched)">
+                    <p *ngIf="formAddProduct.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Título requerido.
+                    </p>
+                    <p *ngIf="formAddProduct.get('titulo')?.hasError('maxlength')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);"> El Título solo
+                        admite
+                        máximo 255 caracteres.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5">
+                <div class="form-floating mb-2">
+                    <input type="number" class="form-control" name="precio" id="precio" autocomplete="off"
+                        formControlName="precio" placeholder="example">
+                    <label for="precio">Precio</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('precio')?.invalid && (formAddProduct.get('precio')?.dirty || formAddProduct.get('precio')?.touched)">
+                    <p *ngIf="formAddProduct.get('precio')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Precio requerido.
+                    </p>
+
+                    <p *ngIf="formAddProduct.get('precio')?.hasError('pattern')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">El Precio debe ser un número decimal (máximo 10 entero y 2 decimales).
+                    </p>
+                    <p *ngIf="formAddProduct.controls['precio'].errors && formAddProduct.controls['precio'].errors['numeric']"
+                        class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
+                        El Precio debe ser decimal positivo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5">
+                <div class="form-floating mb-2">
+                    <input type="number" class="form-control" name="peso" id="peso" autocomplete="off"
+                        formControlName="peso" placeholder="example">
+                    <label for="peso">Peso</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('peso')?.invalid && (formAddProduct.get('peso')?.dirty || formAddProduct.get('peso')?.touched)">
+                    <p *ngIf="formAddProduct.get('peso')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Peso requerido.
+                    </p>
+
+                    <p *ngIf="formAddProduct.get('peso')?.hasError('pattern')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">El Peso debe ser un número decimal (máximo 10 entero y 2 decimales).
+                    </p>
+                    <p *ngIf="formAddProduct.controls['peso'].errors && formAddProduct.controls['peso'].errors['numeric']"
+                        class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
+                        El Peso debe ser decimal positivo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5">
+                <div class="form-floating mb-2">
+                    <input type="number" class="form-control" name="stock" id="stock" autocomplete="off"
+                        formControlName="stock" placeholder="example">
+                    <label for="stock">Stock</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('stock')?.invalid && (formAddProduct.get('stock')?.dirty || formAddProduct.get('stock')?.touched)">
+                    <p *ngIf="formAddProduct.get('stock')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Stock requerido.
+                    </p>
+
+                    <p *ngIf="formAddProduct.get('stock')?.hasError('pattern')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">El Stock debe ser un número entero.
+                    </p>
+                    <p *ngIf="formAddProduct.controls['stock'].errors && formAddProduct.controls['stock'].errors['numeric']"
+                        class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
+                        El Stock solo admite enteros positivos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5">
+
+                <div class="form-floating  mb-2">
+                    <select class="form-select" name="estado" formControlName="estado" id="estado">
+                        <option selected value="">Seleccionar</option>
+                        <option value="A">Activo</option>
+                        <option value="I">Inactivo</option>
+                    </select>
+                    <label for="estado">Estado</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('estado')?.invalid && (formAddProduct.get('estado')?.dirty || formAddProduct.get('estado')?.touched)">
+                    <p *ngIf="formAddProduct.get('estado')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione un Estado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5">
+
+                <div class="form-floating  mb-2">
+                    <select class="form-select" name="animal" formControlName="animal" id="animal"
+                        (change)="onChangeAnimal( $event )">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="animal.idAnimal" *ngFor="let animal of animals">
+                            {{animal.claseAnimal}}
+                        </option>
+                    </select>
+                    <label for="animal">Animal</label>
+                </div>
+
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('animal')?.invalid && (formAddProduct.get('animal')?.dirty || formAddProduct.get('animal')?.touched)">
+                    <p *ngIf="formAddProduct.get('animal')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione un Animal.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5">
+
+
+                <div class="form-floating  mb-2" *ngIf="!formAddProduct.get('category')?.disabled">
+                    <select class="form-select" name="category" formControlName="category" id="category"
+                        (change)="onChangeCategory( $event )">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="category.idCategory" *ngFor="let category of categories">
+                            {{category.descripcion}}
+                        </option>
+                    </select>
+                    <label for="category">Categoría</label>
+                </div>
+
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('category')?.invalid && (formAddProduct.get('category')?.dirty || formAddProduct.get('category')?.touched)">
+                    <p *ngIf="formAddProduct.get('category')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione una Categoría.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5" [ngClass]="formAddProduct.get('tamanioRaza')?.disabled ? 'd-none' : ''">
+
+
+                <div class="form-floating  mb-2" *ngIf="!formAddProduct.get('tamanioRaza')?.disabled">
+                    <select class="form-select" name="tamanioRaza" formControlName="tamanioRaza" id="tamanioRaza">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="tamanioRaza.idTamanioRaza" *ngFor="let tamanioRaza of tamanioRazas">
+                            {{tamanioRaza.descripcion}}
+                        </option>
+                    </select>
+                    <label for="tamanioRaza">Tamaño de raza</label>
+                </div>
+
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('tamanioRaza')?.invalid && (formAddProduct.get('tamanioRaza')?.dirty || formAddProduct.get('tamanioRaza')?.touched)">
+                    <p *ngIf="formAddProduct.get('tamanioRaza')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione un Tamaño de raza.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5" [ngClass]="formAddProduct.get('marca')?.disabled ? 'd-none' : ''">
+
+
+                <div class="form-floating  mb-2" *ngIf="!formAddProduct.get('marca')?.disabled">
+                    <select class="form-select" name="marca" formControlName="marca" id="marca">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="marca.idMarca" *ngFor="let marca of marcas">
+                            {{marca.descripcion}}
+                        </option>
+                    </select>
+                    <label for="marca">Marca</label>
+                </div>
+
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('marca')?.invalid && (formAddProduct.get('marca')?.dirty || formAddProduct.get('marca')?.touched)">
+                    <p *ngIf="formAddProduct.get('marca')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione una Marca.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-5" [ngClass]="formAddProduct.get('etapaVida')?.disabled ? 'd-none' : ''">
+
+                <div class="form-floating  mb-2" *ngIf="!formAddProduct.get('etapaVida')?.disabled">
+                    <select class="form-select" name="etapaVida" formControlName="etapaVida" id="etapaVida">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="etapaVida.idEtapaVida" *ngFor="let etapaVida of etapaVidas">
+                            {{etapaVida.descripcion}}
+                        </option>
+                    </select>
+                    <label for="etapaVida">Etapa de vida</label>
+                </div>
+
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('etapaVida')?.invalid && (formAddProduct.get('etapaVida')?.dirty || formAddProduct.get('etapaVida')?.touched)">
+                    <p *ngIf="formAddProduct.get('etapaVida')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione una Etapa de vida.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-10" [ngClass]="formAddProduct.get('subCategory')?.disabled ? 'd-none' : ''">
+
+                <div class="form-floating  mb-2" *ngIf="!formAddProduct.get('subCategory')?.disabled">
+                    <select class="form-select" name="subCategory" formControlName="subCategory" id="subCategory">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="subCategory.idSubCategory" *ngFor="let subCategory of subCategories">
+                            {{subCategory.descripcion}}
+                        </option>
+                    </select>
+                    <label for="subCategory">subCategoría</label>
+                </div>
+
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('subCategory')?.invalid && (formAddProduct.get('subCategory')?.dirty || formAddProduct.get('subCategory')?.touched)">
+                    <p *ngIf="formAddProduct.get('subCategory')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione una SubCategoría.
+                    </p>
+                </div>
+            
+            </div>
+
+            <div class="col-10">
+                <div class="form-floating mb-2">
+                    <textarea type="text" class="form-control" name="descripcion" id="descripcion" autocomplete="off"
+                        formControlName="descripcion" placeholder="example" style="height: 290px"></textarea>
+                    <label for="descripcion">Descripción</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('descripcion')?.invalid && (formAddProduct.get('descripcion')?.dirty || formAddProduct.get('descripcion')?.touched)">
+                    <p *ngIf="formAddProduct.get('descripcion')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Descripción requerido.
+                    </p>
+                    <p *ngIf="formAddProduct.get('descripcion')?.hasError('maxlength')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);"> La Descripción solo
+                        admite
+                        máximo 65,535 caracteres.
+                    </p>
+                </div>
+            </div>
+
+
+
+            <div class="col-10">
+                <div class="form-floating">
+                    <textarea class="form-control" name="contenidoNutricional" formControlName="contenidoNutricional"
+                        id="contenidoNutricional" style="height: 390px"></textarea>
+                    <label for="contenidoNutricional">Contenido nutricional</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddProduct.get('contenidoNutricional')?.invalid && (formAddProduct.get('contenidoNutricional')?.dirty || formAddProduct.get('contenidoNutricional')?.touched)">
+                    <p *ngIf="formAddProduct.get('contenidoNutricional')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Contenido nutricional requerido.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-10 mt-4">
+                <button type="submit" [disabled]="formAddProduct.invalid"
+                    class="btn btn-custom btn-hover">Agregar</button>
+                <a routerLink="/dashboard/marca/" class="btn btn-list ms-2">Marcas</a>
+            </div>
+        </form>
+    </div>
+</div>
