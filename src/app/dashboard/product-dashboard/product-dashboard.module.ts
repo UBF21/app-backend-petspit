@@ -6,6 +6,7 @@ import { ProductPageEditComponent } from './product-page-edit/product-page-edit.
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
+    EditorModule
   ],
   exports:[
     ProductPageListComponent,
