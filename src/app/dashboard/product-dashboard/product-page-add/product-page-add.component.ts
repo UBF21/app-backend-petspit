@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumericValueType, RxwebValidators } from '@rxweb/reactive-form-validators';
 
@@ -20,13 +20,16 @@ import { ProductService } from 'src/app/services/models/product/product.service'
 import { SubcategoryService } from 'src/app/services/models/subcategory/subcategory.service';
 import { TamanioRazaService } from 'src/app/services/models/tamanioraza/tamanio-raza.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { TinyMCE,Editor } from 'tinymce';
+
+declare const tinymce: TinyMCE;
 
 @Component({
   selector: 'app-product-page-add',
   templateUrl: './product-page-add.component.html',
   styleUrls: ['./product-page-add.component.css']
 })
-export class ProductPageAddComponent implements OnInit {
+export class ProductPageAddComponent implements OnInit,AfterViewInit {
 
   formAddProduct: FormGroup = new FormGroup({});
   photoCargada: ArrayBuffer | string = "";
@@ -41,6 +44,14 @@ export class ProductPageAddComponent implements OnInit {
   tamanioRazas: TamanioRaza[] = [];
   marcas: Marca[] = [];
   etapaVidas: EtapaVida[] = [];
+
+  editorConfig:any = {
+    height: 900,
+    plugins:'lists link image table code help wordcount' ,
+    toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist',
+    menubar: false,
+    toolbar_drawer: 'floating'
+  };
 
   constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private categoryService: CategoryService,
     private subCategoryService: SubcategoryService, private tamanioRazaService: TamanioRazaService, private marcaService: MarcaService,
@@ -71,6 +82,14 @@ export class ProductPageAddComponent implements OnInit {
     this.formAddProduct.get('marca')?.disable();
     this.formAddProduct.get('etapaVida')?.disable();
     this.formAddProduct.get('subCategory')?.disable();
+  }
+
+  ngAfterViewInit(): void {
+    
+    tinymce.init({
+        selector:"#otroIDUnico",
+        ...this.editorConfig
+      })
   }
 
   // listado de entidades
