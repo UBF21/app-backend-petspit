@@ -69,7 +69,8 @@
                     </p>
 
                     <p *ngIf="formAddProduct.get('precio')?.hasError('pattern')" class="p-1 fw-bold"
-                        style="color: rgb(121, 36, 36);">El Precio debe ser un número decimal (máximo 10 entero y 2 decimales).
+                        style="color: rgb(121, 36, 36);">El Precio debe ser un número decimal (máximo 10 entero y 2
+                        decimales).
                     </p>
                     <p *ngIf="formAddProduct.controls['precio'].errors && formAddProduct.controls['precio'].errors['numeric']"
                         class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
@@ -92,7 +93,8 @@
                     </p>
 
                     <p *ngIf="formAddProduct.get('peso')?.hasError('pattern')" class="p-1 fw-bold"
-                        style="color: rgb(121, 36, 36);">El Peso debe ser un número decimal (máximo 10 entero y 2 decimales).
+                        style="color: rgb(121, 36, 36);">El Peso debe ser un número decimal (máximo 10 entero y 2
+                        decimales).
                     </p>
                     <p *ngIf="formAddProduct.controls['peso'].errors && formAddProduct.controls['peso'].errors['numeric']"
                         class="p-1 fw-bold" style="color: rgb(121, 36, 36);">
@@ -272,7 +274,7 @@
                         style="color: rgb(121, 36, 36);">Seleccione una SubCategoría.
                     </p>
                 </div>
-            
+
             </div>
 
             <div class="col-10">
@@ -298,11 +300,11 @@
 
 
             <div class="col-10">
-                <div class="form-floating">
-                    <textarea class="form-control" name="contenidoNutricional" formControlName="contenidoNutricional"
-                        id="contenidoNutricional" style="height: 390px"></textarea>
-                    <label for="contenidoNutricional">Contenido nutricional</label>
-                </div>
+
+                    <label for="contenidoNutricional"  class="form-label p-2">Contenido nutricional</label>
+                    <editor id="otroIDUnico" formControlName="contenidoNutricional"
+                        [init]="{base_url: '/tinymce',suffix: '.min'}">
+                    </editor>
 
                 <div class="mt-1"
                     *ngIf="formAddProduct.get('contenidoNutricional')?.invalid && (formAddProduct.get('contenidoNutricional')?.dirty || formAddProduct.get('contenidoNutricional')?.touched)">
@@ -316,7 +318,7 @@
             <div class="col-10 mt-4">
                 <button type="submit" [disabled]="formAddProduct.invalid"
                     class="btn btn-custom btn-hover">Agregar</button>
-                <a routerLink="/dashboard/marca/" class="btn btn-list ms-2">Marcas</a>
+                <a routerLink="/dashboard/producto/" class="btn btn-list ms-2">Productos</a>
             </div>
         </form>
     </div>
