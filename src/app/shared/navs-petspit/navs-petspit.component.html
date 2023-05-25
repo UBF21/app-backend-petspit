@@ -9,42 +9,11 @@
                 <div class="dropdown-menu m-0 p-0" aria-labelledby="dropdownMenuButton">
                     <div class="container p-5 position-relative">
                         <div class="row  justify-content-center">
-                            <div class="col-lg-4">
-                                <a href="" class="navs-item-title">
-                                    Alimentos
+                            <div class="col-lg-4" *ngFor="let category of categories">
+                                <a class="navs-item-title" (click)="routerOfCategory(category.descripcion)">
+                                    {{category.animal.claseAnimal === 'Perro' ? category.descripcion : ''}}
                                 </a>
-                                <div class=" mb-2 mt-3"><a href="" class="navs-sub-item-title">Pastillas</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Cremas</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Quitapulgas</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Pasta Dental</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Inyecciones</a></div>
-                                
-                            </div>
-                            <div class="col-lg-4">
-                                <a href="" class="navs-item-title">
-                                    Salud
-                                </a>
-
-                                <div class=" mb-2 mt-3"><a href="" class="navs-sub-item-title">Pastillas</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Cremas</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Quitapulgas</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Pasta Dental</a></div>
-                                <div class=" mb-2"><a href="" class="navs-sub-item-title">Inyecciones</a></div>
-                                
-                                
-                            </div>
-                            <div class="col-lg-4">
-                                <a href="" class="navs-item-title">
-                                    Accesorios
-                                </a>
-
-                                
-                                <div class="mb-2 mt-3"><a href="" class="navs-sub-item-title ">Pastillas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Cremas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Quitapulgas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Pasta Dental</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Inyecciones</a></div>                                
-
+                                <div class="mb-2" *ngFor="let subCategory of Subcategories"><a (click)="routerOfSubCategory(subCategory.descripcion)" class="navs-sub-item-title" >{{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Perro' ? subCategory.descripcion : ''}}</a></div>                                
                             </div>
                         </div>
                     </div>
@@ -86,44 +55,12 @@
                 <div class="dropdown-menu m-0 p-0" aria-labelledby="dropdownMenuButton">
                     <div class="container p-5 position-relative">
                         <div class="row  justify-content-center">
-                            <div class="col-lg-4">
-                                <a href="" class="navs-item-title">
-                                    Alimentos
+                            <div class="col-lg-4" *ngFor="let category of categories">
+                                <a class="navs-item-title" (click)="routerOfCategory(category.descripcion)">
+                                    {{category.animal.claseAnimal === 'Gato' ? category.descripcion : ''}}
                                 </a>
 
-                                <div class="mb-2 mt-3"><a href="" class="navs-sub-item-title">Pastillas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Cremas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Quitapulgas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Pasta Dental</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title ">Inyecciones</a></div>
-                            </div>
-                            <div class="col-lg-4">
-                                <a href="" class="navs-item-title">
-                                    Salud
-                                </a>
-                                
-                                <div class="mb-2 mt-3"><a href="" class="navs-sub-item-title">Pastillas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Cremas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Quitapulgas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Pasta Dental</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Inyecciones</a></div>
-                                
-                            </div>
-                            <div class="col-lg-4">
-                                <a href="" class="navs-item-title">
-                                    Accesorios
-                                </a>
-
-                                <div class="mb-2 mt-3"><a href="" class="navs-sub-item-title">Pastillas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Cremas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Quitapulgas</a></div>
-                                <div class="mb-2"><a href="" class="navs-sub-item-title">Pasta Dental</a></div>
-                                <div class=""><a href="" class="navs-sub-item-title">Inyecciones</a></div>
-                                
-                                
-                                
-                                
-                                
+                                <div class="mb-2"><a class="navs-sub-item-title" *ngFor="let subCategory of Subcategories" (click)="routerOfSubCategory(subCategory.descripcion)">{{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato' ? subCategory.descripcion : ''}}</a></div>
                             </div>
                         </div>
                     </div>
