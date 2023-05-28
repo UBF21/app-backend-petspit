@@ -128,3 +128,15 @@
 .item-nav:hover {
     border-left: 4px solid rgb(144, 209, 39);
 }
+
+.subItem-nav{
+    color: #6d472d;
+    font-weight: 600;
+    font-size: 1.6rem;
+    border-left: 4px solid transparent;
+    transition: .4s all;
+}
+
+.subItem-nav:hover{
+    border-left: 4px solid rgb(95, 138, 26);
+}
