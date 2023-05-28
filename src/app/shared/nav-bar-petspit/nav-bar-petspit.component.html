@@ -36,7 +36,8 @@
 
                     </a>
 
-                    <div class="spinner-grow shadow" style="width: 36px;height: 36px;" role="status" *ngIf="!shared.viewUser.pathName">
+                    <div class="spinner-grow shadow" style="width: 36px;height: 36px;" role="status"
+                        *ngIf="!shared.viewUser.pathName">
                     </div>
                 </div>
                 <div class="col-3 p-0">
@@ -70,8 +71,8 @@
 
 
                     <!-- Panel de carrito de compras -->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" data-bs-scroll="true" data-bs-backdrop="true" id="offcanvasRight"
-                        aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" data-bs-scroll="true" data-bs-backdrop="true"
+                        id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
 
                         <div class="offcanvas-header text-white color-fourth">
                             <h5 id="offcanvasRightLabel">Resumen de compra</h5>
@@ -247,7 +248,7 @@
                             <div class="d-grid gap-2 mt-4">
                                 <button class="btn btn-ver-compras" type="button">Ver Productos</button>
                                 <button class="btn btn-comprar" type="button">Comprar</button>
-                              </div>
+                            </div>
 
                         </div>
 
@@ -282,7 +283,8 @@
 
 
 <!-- Panel de Menú -->
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true"  tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasExampleLabel">
             Menú
@@ -291,96 +293,78 @@
     </div>
     <div class="offcanvas-body">
 
+        <div class="row">
+            <div class="p-0 col-12 text-center d-inline-block mt-5 mb-4 d-lg-none d-sm-inline-block d-md-none"
+                *ngIf="this.loginServices.isLoggedIn()">
+                <a routerLink="/profile" *ngIf="shared.viewUser.pathName">
+                    <img [src]="shared.viewUser.pathName || './assets/img/user_icon_default.jpg'"
+                        alt="imagen de usuario" width="75" height="75" class="rounded-circle shadow">
+
+                </a>
+
+                <div class="spinner-grow" style="width: 75px;height: 75px;" role="status"
+                    *ngIf="!shared.viewUser.pathName">
+                </div>
+            </div>
+        </div>
 
         <!-- collapsables de para navegación -->
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="">
-                <div class="row">            
-                    <div class="p-0 col-12 text-center d-inline-block mt-5 mb-4 d-lg-none d-sm-inline-block d-md-none" *ngIf="this.loginServices.isLoggedIn()">
-                        <a routerLink="/profile" *ngIf="shared.viewUser.pathName">
-                            <img [src]="shared.viewUser.pathName || './assets/img/user_icon_default.jpg'"
-                                alt="imagen de usuario" width="75" height="75" class="rounded-circle shadow">
-            
-                        </a>
-            
-                        <div class="spinner-grow" style="width: 75px;height: 75px;" role="status" *ngIf="!shared.viewUser.pathName">
-                        </div>
-                    </div>
-                </div>
 
-                <a class="nav-link collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                    aria-expanded="false" aria-controls="flush-collapseOne">
                     Perro
                 </a>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                     data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
 
-                        <!-- collapse dentro de otro -->
-                        <div class="">
-                            <a class="nav-link item-nav collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne1" aria-expanded="false"
-                                aria-controls="flush-collapseOne1">
-                                Alimento seco
+                        <ng-container *ngFor="let category of categories">
+                            <a class="nav-link item-nav" data-bs-toggle="collapse" *ngIf="category.animal.claseAnimal === 'Perro'" [href]="'#item-category'+category.idCategory" role="button"
+                                aria-expanded="false" [attr.aria-controls]="'item-category'+category.idCategory">
+                                {{category.animal.claseAnimal === 'Perro' ? category.descripcion : null}}
                             </a>
-                            <div id="flush-collapseOne1" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample1">
-                                <div class="accordion-body">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit at blanditiis,
-                                        alias dicta voluptas cum aut reprehenderit eos laudantium possimus ipsa!</p>
+                            <div class="collapse" [id]="'item-category'+category.idCategory">
+
+                                <div class="mt-0" *ngFor="let subCategory of Subcategories">
+
+                                    <a class="ms-5 nav-link subItem-nav" (click)="routerOfSubCategory(subCategory.descripcion)" *ngIf="subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Perro'">
+                                        {{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Perro' ? subCategory.descripcion : ''}}
+                                    </a>
+
                                 </div>
+
                             </div>
-                        </div>
-
-
-                        <div class="">
-                            <a class="nav-link item-nav collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne2" aria-expanded="false"
-                                aria-controls="flush-collapseOne2">
-                                Alimento Vitaminico
-                            </a>
-                            <div id="flush-collapseOne2" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample2">
-                                <div class="accordion-body">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit at blanditiis,
-                                        alias dicta voluptas cum aut reprehenderit eos laudantium possimus ipsa!</p>
-                                </div>
-                            </div>
-                        </div>
-
-
+                        </ng-container>
 
                     </div>
                 </div>
             </div>
             <div class="">
-                <a class="nav-link collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsable-gato"
+                    aria-expanded="false" aria-controls="collapsable-gato">
                     Gato
                 </a>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-                    data-bs-parent="#accordionFlushExampleG">
+                <div id="collapsable-gato" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
 
-                        <!-- collapse dentro de otro -->
-                        <div class="">
-                            <a class="nav-link item-nav collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseTwo2" aria-expanded="false"
-                                aria-controls="flush-collapseTwo2">
-                                Alimento seco
+                        <ng-container *ngFor="let category of categories">                            
+                            <a class="nav-link item-nav" data-bs-toggle="collapse" *ngIf="category.animal.claseAnimal === 'Gato'" [href]="'#item-category-gato'+category.idCategory" role="button"
+                                aria-expanded="false" [attr.aria-controls]="'item-category-gato'+category.idCategory">
+                                {{category.animal.claseAnimal === 'Gato' ? category.descripcion : null}}
                             </a>
-                            <div id="flush-collapseTwo2" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExampleG">
-                                <div class="accordion-body">
-
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad saepe possimus,
-                                        reiciendis vero recusandae animi fuga minima quaerat magnam quasi adipisci.</p>
-
-
+                            <div class="collapse" [id]="'item-category-gato'+category.idCategory">
+    
+                                <div class="mt-0" *ngFor="let subCategory of Subcategories">
+    
+                                    <a class="ms-5 nav-link subItem-nav" (click)="routerOfSubCategory(subCategory.descripcion)"  *ngIf="subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato'">{{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato' ? subCategory.descripcion : ''}}</a>
+    
                                 </div>
+    
                             </div>
-                        </div>
-
+                        </ng-container>
 
 
                     </div>
