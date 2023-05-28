@@ -54,4 +54,8 @@ export class NavBarPetspitComponent implements OnInit {
   routerOfSubCategory(descripcion:string){
     this.router.navigate(['/products'],{queryParams :{subCategory : descripcion}});
   }
+
+  routerOfAllProducts(){
+    this.router.navigate(['/products'],{queryParams :{todas : "all"}});
+  }
 }
