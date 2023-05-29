@@ -359,7 +359,9 @@
     
                                 <div class="mt-0" *ngFor="let subCategory of Subcategories">
     
-                                    <a class="ms-5 nav-link subItem-nav" (click)="routerOfSubCategory(subCategory.descripcion)"  *ngIf="subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato'">{{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato' ? subCategory.descripcion : ''}}</a>
+                                    <a class="ms-5 nav-link subItem-nav" (click)="routerOfSubCategory(subCategory.descripcion)"  *ngIf="subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato'">
+                                        {{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato' ? subCategory.descripcion : ''}}
+                                    </a>
     
                                 </div>
     
