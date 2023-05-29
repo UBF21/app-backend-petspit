@@ -60,7 +60,7 @@
                                     {{category.animal.claseAnimal === 'Gato' ? category.descripcion : ''}}
                                 </a>
 
-                                <div class="mb-2"><a class="navs-sub-item-title" *ngFor="let subCategory of Subcategories" (click)="routerOfSubCategory(subCategory.descripcion)">{{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato' ? subCategory.descripcion : ''}}</a></div>
+                                <div class="mb-2" *ngFor="let subCategory of Subcategories"><a class="navs-sub-item-title text-break"  (click)="routerOfSubCategory(subCategory.descripcion)">{{subCategory.idCategory === category.idCategory && category.animal.claseAnimal === 'Gato' ? subCategory.descripcion : ''}}</a></div>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
             <a class="nav-link" routerLink="/contact">Contacto</a>
         </li>
         <li class="nav-item ms-3 me-3">
-            <a  class="nav-link" routerLink="/products" >productos</a>
+            <a  class="nav-link" (click)="routerOfAllProducts()" >productos</a>
         </li>
         <li class="nav-item">
             <a  routerLink="/about" class="nav-link">Quiénes somos</a>
