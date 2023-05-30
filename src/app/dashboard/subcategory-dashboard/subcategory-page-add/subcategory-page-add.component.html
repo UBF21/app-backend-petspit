@@ -48,12 +48,30 @@
             <div class="col-7">
 
                 <div class="form-floating  mb-2">
+                    <select class="form-select" name="animal" (change)="onChangeAnimal( $event )" formControlName="animal" id="animal">
+                        <option selected value="">Seleccionar</option>
+                        <option [value]="animal.idAnimal" *ngFor="let animal of animals">{{animal.claseAnimal}}</option>
+                    </select>
+                    <label for="animal">Animal</label>
+                </div>
+
+                <div class="mt-1"
+                    *ngIf="formAddSubCategory.get('animal')?.invalid && (formAddSubCategory.get('animal')?.dirty || formAddSubCategory.get('animal')?.touched)">
+                    <p *ngIf="formAddSubCategory.get('animal')?.hasError('required')" class="p-1 fw-bold"
+                        style="color: rgb(121, 36, 36);">Seleccione un Animal.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-7" [ngClass]="formAddSubCategory.get('category')?.disabled ? 'd-none': ''">
+
+                <div class="form-floating  mb-2">
                     <select class="form-select" name="category" formControlName="category" id="category">
                         <option selected value="">Seleccionar</option>
                         <option [value]="category.idCategory" *ngFor="let category of categories">
                             {{category.descripcion}}</option>
                     </select>
-                    <label for="estado">Animal</label>
+                    <label for="category">Category</label>
                 </div>
 
 
