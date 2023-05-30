@@ -1,0 +1,22 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Marca } from 'src/app/models/model/Marca';
+import { ResponseMarca } from 'src/app/models/response/ResponseMarca';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PublicMarcaService {
+
+  constructor(private http: HttpClient) { }
+
+  public getAllMarcas(): Observable<Marca[]> {
+    return this.http.get<Marca[]>(`${environment.backendUrl}global/marca`);
+  }
+
+  public getMarcaById(idMarca: number): Observable<ResponseMarca> {
+    return this.http.get<ResponseMarca>(`${environment.backendUrl}global/marca/${idMarca}`);
+  }
+}
