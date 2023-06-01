@@ -5,30 +5,36 @@
 
 <div class="container">
 
-  
+
     <div class="mt-5 mb-5">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6">
-                <h3 class="text-sm-center">Alimentos para perros ( 1 - 24 - 579 )</h3>
+                <h3 class="text-center text-sm-center text-md-center text-lg-start">Listado de Productos ( 1 - 24 - 579
+                    )</h3>
             </div>
             <div
                 class="col-lg-6 d-flex justify-lg-content-end justify-md-content-end justify-sm-content-end justify-content-center">
-                <div class="row align-items-center me-3">
+                <div class="row align-items-center justify-content-center me-3">
 
-                    <div class="col-lg-10 col-md-8 col-sm-8 col-6 ms-0">
-                        <select class="form-select mt-3 mt-lg-0">
-                            <option selected>Nombre,A a Z</option>
-                            <option value="1">Nombre,Z a A</option>
-                            <option value="2">Precio,de más bajo a más alto</option>
-                            <option value="3">Precio,de más alto a más bajo</option>
-                        </select>
+                    <div class="col-lg-10 col-md-8 col-sm-8 col-8 ms-0">
+                        <div class="form-floating">
+                            <select class="form-select mt-3 mt-lg-0" [(ngModel)]="orderSelected" name="orderSelected"
+                                (change)="onChangeOrder($event)" id="order">
+                                <option value="asc">Nombre,A a Z</option>
+                                <option value="desc">Nombre,Z a A</option>
+                                <option value="precio-asc">Precio,de más bajo a más alto</option>
+                                <option value="precio-desc">Precio,de más alto a más bajo</option>
+                            </select>
+                            <label for="order">orden</label>
+                        </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-4 col-4 ms-0 d-block d-sm-block d-md-block d-lg-none">
+                    <div
+                        class="col-md-4 col-sm-4 col-4 col-lg-2 ms-0 d-block d-sm-block d-md-block d-lg-none text-center">
                         <button class="btn btn-sm btn-icon-change mt-3" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-filter"
-                                width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                width="37" height="37" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path
@@ -39,11 +45,11 @@
 
                 </div>
 
-                
-                <a class="me-2 btn d-none d-lg-block" (click)="cambiarVista = !cambiarVista"
+
+                <a class="me-2 py-3 btn d-none d-lg-block" (click)="cambiarVista = !cambiarVista"
                     [ngClass]="cambiarVista ? 'btn-icon-change' : '' ">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid" width="30"
-                        height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler py-0 icon-tabler-layout-grid"
+                        width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <rect x="4" y="4" width="6" height="6" rx="1" />
@@ -52,7 +58,7 @@
                         <rect x="14" y="14" width="6" height="6" rx="1" />
                     </svg>
                 </a>
-                <a class="btn d-none d-lg-block" (click)="cambiarVista = !cambiarVista"
+                <a class="btn py-3 d-none d-lg-block" (click)="cambiarVista = !cambiarVista"
                     [ngClass]="!cambiarVista ? 'btn-icon-change' : '' ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-list" width="30"
                         height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
@@ -73,144 +79,96 @@
     <div class="collapse" id="collapseExample">
         <div class="row justify-content-center">
 
-            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
 
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4 class="mb-3">Alimento</h4>
-                    <select class="form-select">
-                        <option selected>SubCategory</option>
-                        <option value="1">SubCategory</option>
-                        <option value="2">SubCategory</option>
-                        <option value="3">SubCategory</option>
-                    </select>
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Marca</h4>
+                <form (ngSubmit)="onSubmitFilter()" [formGroup]="formFilter">
 
-                    <ng-container *ngFor="let marca of marcas;let i = index">
 
-                        <div *ngIf="i < 4" class="form-check ms-1">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                {{marca}}
-                            </label>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Categorías</h4>
+                        <div class="form-floating">
+                            <select class="form-select" formControlName="categoria" id="categoria"
+                                style="font-weight: 500;">
+                                <option value="" selected>Seleccione una Categoría</option>
+                                <option [value]="category.idCategory" *ngFor="let category of categories">
+                                    {{category.descripcion}}</option>
+                            </select>
+                            <label for="categoria">Categoría</label>
                         </div>
-                        <div *ngIf="i >= 4" [hidden]="!verMas" class="form-check ms-1">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                {{marca}}
-                            </label>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">SubCategorías</h4>
+                        <div class="form-floating">
+                            <select class="form-select" formControlName="subCategoria" id="subCategoria"
+                                style="font-weight: 500;">
+                                <option value="" selected>Seleccione una SubCategoría</option>
+                                <option [value]="subCategory.idSubCategory" *ngFor="let subCategory of subCategories">
+                                    {{subCategory.descripcion}}
+                                </option>
+                            </select>
+                            <label for="subCategoria">SubCategoría</label>
                         </div>
-                    </ng-container>
-                    <a (click)="verMas = !verMas" class="nav-link">Ver más</a>
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Marca</h4>
+                        <div class="form-floating">
+                            <select class="form-select" id="marca" formControlName="marca" style="font-weight: 500;">
+                                <option value="" selected>Seleccione una Marca</option>
+                                <option [value]="marca.idMarca" *ngFor="let marca of marcas">{{marca.descripcion}}
+                            </select>
+                            <label for="marca">Marca</label>
+                        </div>
 
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Mascota</h4>
+                        <div class="form-floating">
+                            <select class="form-select" id="animal" formControlName="animal" style="font-weight: 500;">
+                                <option value="" selected>Seleccione un Animal</option>
+                                <option [value]="animal.idAnimal" *ngFor="let animal of animals">{{animal.claseAnimal}}
+                            </select>
+                            <label for="animal">Mascota</label>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Etapa de vida</h4>
 
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Mascota</h4>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Perro
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Gato
-                        </label>
-                    </div>
+                        <div class="form-floating">
+                            <select class="form-select" id="etapaVida" formControlName="etapaVida"
+                                style="font-weight: 500;">
+                                <option value="" selected>Seleccione una Etapa de Vida</option>
+                                <option [value]="etapaVida.idEtapaVida" *ngFor="let etapaVida of etapaVidas">
+                                    {{etapaVida.descripcion}}
+                            </select>
+                            <label for="etapaVida">Etapa de Vida</label>
+                        </div>
 
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Etapa de vida</h4>
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Tamaño de raza</h4>
 
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Cachorro
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Adulto
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Adulto mayor
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Madre y cachorro
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Todas las etapas
-                        </label>
+                        <div class="form-floating">
+                            <select class="form-select" id="tamanioRaza" formControlName="tamanioRaza"
+                                style="font-weight: 500;">
+                                <option value="" selected>Seleccione un Tamaño de Raza</option>
+                                <option [value]="tamanioRaza.idTamanioRaza" *ngFor="let tamanioRaza of tamanioRazas">
+                                    {{tamanioRaza.descripcion}}
+                            </select>
+                            <label for="tamanioRaza">Etapa de Vida</label>
+                        </div>
                     </div>
 
-
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Tamaño de raza</h4>
-
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Todas las razas
-                        </label>
+                    <div class="card py-4 px-3">
+                        <button class="btn color-primary text-white" type="submit">Filtrar</button>
                     </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Toy
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Pequeña
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Mediana
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Grande
-                        </label>
-                    </div>
-
-                </div>
-
-                <div class="card py-4 px-3">
-                    <h4>Peso (Kg)</h4>
-                    <input type="range" class="form-range" step="1" id="customRange1">
-                    <label for="customRange1" class="form-label">Rango 0 - 18</label>
-                </div>
-
-                <div class="card py-4 px-3">
-                    <h4>Precio (S/)</h4>
-                    <input type="range" class="form-range" step="1" id="customRange1">
-                    <label for="customRange1" class="form-label">Rango 0 - 10</label>
-
-                </div>
+                </form>
 
             </div>
 
@@ -225,394 +183,206 @@
         <div class="row">
             <div class="col-lg-3 d-none d-sm-none d-md-none d-lg-block">
 
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4 class="mb-3">Alimento</h4>
-                    <select class="form-select">
-                        <option selected>SubCategory</option>
-                        <option value="1">SubCategory</option>
-                        <option value="2">SubCategory</option>
-                        <option value="3">SubCategory</option>
-                    </select>
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Marca</h4>
 
-                    <ng-container *ngFor="let marca of marcas;let i = index">
 
-                        <div *ngIf="i < 4" class="form-check ms-1">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                {{marca}}
-                            </label>
+                <form (ngSubmit)="onSubmitFilter()" [formGroup]="formFilter">
+
+
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Categorías</h4>
+                        <div class="form-floating">
+                            <select class="form-select" formControlName="categoria" style="font-weight: 500;"
+                                id="categoria">
+                                <option value="" selected>Seleccione una Categoría</option>
+                                <option [value]="category.idCategory" *ngFor="let category of categories">
+                                    {{category.descripcion}}</option>
+                            </select>
+                            <label for="categoria">Categoría</label>
                         </div>
-                        <div *ngIf="i >= 4" [hidden]="!verMas" class="form-check ms-1">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                {{marca}}
-                            </label>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">SubCategorías</h4>
+                        <div class="form-floating">
+                            <select class="form-select" formControlName="subCategoria" style="font-weight: 500;"
+                                id="subCategoria">
+                                <option value="" selected>Seleccione una SubCategoría</option>
+                                <option [value]="subCategory.idSubCategory" *ngFor="let subCategory of subCategories">
+                                    {{subCategory.descripcion}}
+                                </option>
+                            </select>
+                            <label for="subCategoria">SubCategoría</label>
                         </div>
-                    </ng-container>
-                    <a (click)="verMas = !verMas" class="nav-link">Ver más</a>
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Marca</h4>
+                        <div class="form-floating">
+                            <select class="form-select" id="idMarca" style="font-weight: 500;" formControlName="marca">
+                                <option value="" selected>Seleccione una Marca</option>
+                                <option [value]="marca.idMarca" *ngFor="let marca of marcas">{{marca.descripcion}}
+                            </select>
+                            <label for="idMarca">Marca</label>
+                        </div>
 
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Mascota</h4>
+                        <div class="form-floating">
+                            <select class="form-select" id="idAnimal" formControlName="animal"
+                                style="font-weight: 500;">
+                                <option value="" selected>Seleccione un Animal</option>
+                                <option [value]="animal.idAnimal" *ngFor="let animal of animals">{{animal.claseAnimal}}
+                            </select>
+                            <label for="idAnimal">Mascota</label>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Etapa de vida</h4>
 
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Mascota</h4>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Perro
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Gato
-                        </label>
-                    </div>
+                        <div class="form-floating">
+                            <select class="form-select" id="idEtapaVida" formControlName="etapaVida"
+                                style="font-weight: 500;">
+                                <option value="" selected>Seleccione una Etapa de Vida</option>
+                                <option [value]="etapaVida.idEtapaVida" *ngFor="let etapaVida of etapaVidas">
+                                    {{etapaVida.descripcion}}
+                            </select>
+                            <label for="idEtapaVida">Etapa de Vida</label>
+                        </div>
 
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Etapa de vida</h4>
+                    </div>
+                    <!--  -->
+                    <div class="card py-4 px-3">
+                        <h4 class="mb-3">Tamaño de raza</h4>
 
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Cachorro
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Adulto
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Adulto mayor
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Madre y cachorro
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Todas las etapas
-                        </label>
+                        <div class="form-floating">
+                            <select class="form-select" id="idTamanioRaza" formControlName="tamanioRaza"
+                                style="font-weight: 500;">
+                                <option value="" selected>Seleccione un Tamaño de Raza</option>
+                                <option [value]="tamanioRaza.idTamanioRaza" *ngFor="let tamanioRaza of tamanioRazas">
+                                    {{tamanioRaza.descripcion}}
+                            </select>
+                            <label for="idTamanioRaza">Etapa de Vida</label>
+                        </div>
                     </div>
 
-
-                </div>
-                <!--  -->
-                <div class="card py-4 px-3">
-                    <h4>Tamaño de raza</h4>
-
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Todas las razas
-                        </label>
+                    <div class="card py-4 px-3">
+                        <button class="btn color-primary text-white" type="submit">Filtrar</button>
                     </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Toy
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Pequeña
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Mediana
-                        </label>
-                    </div>
-                    <div class="form-check ms-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Grande
-                        </label>
-                    </div>
+                </form>
 
-                </div>
-
-                <div class="card py-4 px-3">
-                    <h4>Peso (Kg)</h4>
-                    <input type="range" class="form-range" step="1" id="customRange1">
-                    <label for="customRange1" class="form-label text-center">18</label>
-                </div>
-
-                <div class="card py-4 px-3">
-                    <h4>Precio (S/)</h4>
-                    <input type="range" class="form-range" step="1" id="customRange1">
-                    <label for="customRange1" class="form-label text-center">10</label>
-
-                </div>
 
             </div>
             <div class="col-lg-9 p-0">
 
                 <div class="container">
-                    <div class="row justify-content-center gap-1 p-1" *ngIf="cambiarVista">
 
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="d-flex flex-column vh-100 justify-content-center align-items-center"
+                        *ngIf="!loadingProducts && viewProducts.length === 0">
+                        <div>
+                            <img width="100" height="100" src="https://img.icons8.com/bubbles/100/not-bad-meme.png"
+                                alt="not-bad-meme" />
                         </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-    
-                        <div class="col-lg-3 col-md-4 col-9 p-0">
-                            <div class="card">
-                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                    width="400" class="img-fluid" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.</p>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-product">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-    
-    
-    
+                        <h2 class="text-center">No se encontró ningún registro.</h2>
                     </div>
-    
-    
-                    <!-- el otro modelo de vista -->
-                    <div class="row justify-content-center mt-4 gap-1" *ngIf="!cambiarVista">
-                        <div class="col-lg-9">
-    
-                            <div class="row justify-content-center">
-    
-                                <div class="col-lg-12 col-9">
-    
-                                    <div class="card mb-3">
-                                        <div class="row g-0">
-                                            <div class="col-lg-4 d-flex align-items-center  col-3">
-                                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                                    width="400" class="img-fluid rounded-start" alt="...">
-                                            </div>
-                                            <div class="col-lg-8 col-9">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">This is a wider card with supporting text below as
-                                                        a natural lead-in to additional content. This content is a little
-                                                        bit longer.</p>
-                                                    <div class="text-center mt-4">
-                                                        <a href="#" class="btn w-100 btn-product">Go somewhere</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                </div>
-    
-                                <div class="col-lg-12 col-9">
-    
-                                    <div class="card mb-3">
-                                        <div class="row g-0">
-                                            <div class="col-lg-4 d-flex align-items-center col-3">
-                                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                                    width="400" class="img-fluid rounded-start" alt="...">
-                                            </div>
-                                            <div class="col-lg-8 col-9">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">This is a wider card with supporting text below as
-                                                        a natural lead-in to additional content. This content is a little
-                                                        bit longer.</p>
-                                                    <div class="text-center">
-                                                        <a href="#" class="btn w-100 btn-product">Go somewhere</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                </div>
-    
-                                <div class="col-lg-12 col-9">
-    
-                                    <div class="card mb-3">
-                                        <div class="row g-0">
-                                            <div class="col-lg-4 d-flex align-items-center col-3">
-                                                <img src="https://cdn.shopify.com/s/files/1/0244/4866/3632/products/PROMO2X1PUPPIES_1_800x.png?v=1677783379"
-                                                    width="400" class="img-fluid rounded-start" alt="...">
-                                            </div>
-                                            <div class="col-lg-8 col-9">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">This is a wider card with supporting text below as
-                                                        a natural lead-in to additional content. This content is a little
-                                                        bit longer.</p>
-                                                    <div class="text-center">
-                                                        <a href="#" class="btn w-100 btn-product">Go somewhere</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                </div>
-    
-                            </div>
-    
-    
-    
-    
-                        </div>
+
+                    <div class="d-flex vh-100 justify-content-center align-items-center" *ngIf="loadingProducts">
+                        <div class="colorful"></div>
                     </div>
-    
+
+
+                    <ng-container *ngIf="!loadingProducts">
+                        <div class="row justify-content-center gap-1 p-1" *ngIf="cambiarVista">
+
+                            <div class="col-lg-3 col-md-4 col-9 p-0" *ngFor="let viewProduct of viewProducts">
+                                <div class="card">
+                                    <a [routerLink]="['/view-product']"
+                                        [queryParams]="{producto:viewProduct.product.idProduct}">
+                                        <img [src]="viewProduct.pathName" width="400" class="img-fluid" alt="...">
+                                    </a>
+                                    <div class="card-body">
+                                        <a [routerLink]="['/view-product']" class="nav-link"
+                                            [queryParams]="{producto:viewProduct.product.idProduct}">
+                                            <h5 class="card-title text-truncate text-center mb-3">
+                                                {{viewProduct.product.titulo}}
+                                            </h5>
+                                        </a>
+                                        <p class="card-text text-center">Precio : {{viewProduct.product.precio |
+                                            currency:"s/ "}}</p>
+                                        <p class="card-text text-center">Peso : {{viewProduct.product.peso}} <span
+                                                class="fw-bold"> {{viewProduct.product.peso > 0 ? 'KG' : 'GR'}}</span>
+                                        </p>
+                                        <p class="card-text text-center">Stock : {{viewProduct.product.stock}}</p>
+                                        <div class="text-center">
+                                            <a href="#" class="btn w-100 btn-product fw-bold">Agregar al carrito</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-container>
+
+
+
+                    <ng-container *ngIf="!loadingProducts">
+
+                        <!-- el otro modelo de vista -->
+                        <div class="row justify-content-center mt-4 gap-1" *ngIf="!cambiarVista">
+                            <div class="col-lg-9">
+
+                                <div class="row justify-content-center">
+
+                                    <div class="col-lg-12 col-12" *ngFor="let viewProduct of viewProducts">
+
+                                        <div class="card mb-3">
+                                            <div class="row g-0">
+                                                <div class="col-lg-4 d-flex align-items-center  col-3">
+                                                    <a [routerLink]="['/view-product']"
+                                                        [queryParams]="{producto:viewProduct.product.idProduct}">
+                                                        <img [src]="viewProduct.pathName" width="400"
+                                                            class="img-fluid rounded-start" alt="...">
+                                                    </a>
+                                                </div>
+                                                <div class="col-lg-8 col-9">
+                                                    <div class="card-body">
+                                                        <a [routerLink]="['/view-product']"
+                                                            [queryParams]="{producto:viewProduct.product.idProduct}"
+                                                            class="nav-link">
+                                                            <h5 class="card-title">{{viewProduct.product.titulo}}</h5>
+                                                        </a>
+                                                        <p class="card-text">Precio : {{viewProduct.product.precio |
+                                                            currency:"s/ "}}</p>
+                                                        <p class="card-text">Peso : {{viewProduct.product.peso}}
+                                                            <span class="fw-bold"> {{viewProduct.product.peso > 0 ? 'KG'
+                                                                : 'GR'}}</span>
+                                                        </p>
+                                                        <p class="card-text">Stock : {{viewProduct.product.stock}} </p>
+                                                        <div class="text-center mt-4">
+                                                            <a href="#" class="btn w-100 fw-bold btn-product">Agregar al
+                                                                carrito</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </ng-container>
+
                 </div>
-                
+
 
             </div>
         </div>
