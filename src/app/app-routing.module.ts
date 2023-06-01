@@ -35,6 +35,7 @@ import { UserPageEditComponent } from './dashboard/user-dashboard/user-page-edit
 import { CategoryPageListComponent } from './dashboard/category-dashboard/category-page-list/category-page-list.component';
 import { CategoryPageAddComponent } from './dashboard/category-dashboard/category-page-add/category-page-add.component';
 import { CategoryPageEditComponent } from './dashboard/category-dashboard/category-page-edit/category-page-edit.component';
+import { ViewProductPageComponent } from './petspit/view-product-page/view-product-page.component';
 
 
 //Ruta de category
@@ -131,6 +132,7 @@ const routes: Routes = [
   { path: 'home', component: HomePagePetspitComponent },
   { path: 'contact', component: ContactPagePetspitComponent },
   { path: 'products', component: ProductsPagePetspitComponent },
+  { path: 'view-product', component: ViewProductPageComponent },
   { path: 'about', component: AboutPagePetspitComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'profile', component: UserProfilePageComponent },
