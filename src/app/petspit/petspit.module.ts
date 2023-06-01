@@ -10,6 +10,7 @@ import { NgModel,FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilePageComponent } from './user-profile-page/user-profile-page.component';
 import { UserProfileInformationComponent } from './components/user-profile-information/user-profile-information.component';
 import { UserProfileOrdersComponent } from './components/user-profile-orders/user-profile-orders.component';
+import { ViewProductPageComponent } from './view-product-page/view-product-page.component';
 
 
 
@@ -21,7 +22,8 @@ import { UserProfileOrdersComponent } from './components/user-profile-orders/use
     AboutPagePetspitComponent,
     UserProfilePageComponent,
     UserProfileInformationComponent,
-    UserProfileOrdersComponent
+    UserProfileOrdersComponent,
+    ViewProductPageComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { UserProfileOrdersComponent } from './components/user-profile-orders/use
     HomePagePetspitComponent,
     ContactPagePetspitComponent,
     ProductsPagePetspitComponent,
-    AboutPagePetspitComponent
+    AboutPagePetspitComponent,
+    ViewProductPageComponent
   ],
   providers: [
 
