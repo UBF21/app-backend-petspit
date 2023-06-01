@@ -31,7 +31,7 @@ select {
 }
 
 
-select:focus,select:active {
+button:focus,button:active, select:focus,select:active {
     outline: none;
     box-shadow: none;
     border-color: rgb(111, 212, 16);
@@ -40,7 +40,11 @@ select:focus,select:active {
 
 .btn-product{
     background-color: #c0aa92;
-    color: black;
+    color: white;
+    transition: .2s all;
+}
+.btn-product:hover{
+    background-color: #41301e;
 }
 
 .btn-icon-change{
@@ -50,6 +54,8 @@ select:focus,select:active {
 
 .nav-link{
     color: #856047;
+    padding: 0;
+    text-decoration: none;
     transition: .3s all;
 }
 
