@@ -1,0 +1,53 @@
+
+button:focus,button:active, select:focus,select:active {
+    outline: none;
+    box-shadow: none;
+    border-color: rgb(111, 212, 16);
+    border-width: 1px;
+}
+
+.accordion-button{
+    background-color: #ff9e5d;
+    color: white;
+}
+
+.accordion-button::after{
+    background-image: none;
+}
+
+.accordion-button:not(.collapsed)::after{
+    color: #856047 !important;
+}
+
+
+.icon-hover {
+    color: var(--color-primary);
+    transition: .4s all;
+}
+
+.icon-hover:hover {
+    color: var(--color-secondary);
+}
+
+.btn-add {
+    background-color: #856047;
+    color: white;
+    font-weight: bold;
+    border-radius: 0%;
+}
+
+.btn-add:hover{
+    background-color: #f4a42d;
+    color: black;
+}
+
+.opacidad{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.no-seleccionable {
+    -webkit-user-select: none; /* Para navegadores basados en WebKit */
+    -moz-user-select: none; /* Para navegadores basados en Gecko */
+    -ms-user-select: none; /* Para navegadores basados en Trident/Edge */
+    user-select: none; /* Estándar */
+  }
