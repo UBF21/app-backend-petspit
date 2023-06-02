@@ -9,7 +9,10 @@
     <div class="mt-5 mb-5">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6">
-                <h3 class="text-center text-sm-center text-md-center text-lg-start">Listado de Productos <span *ngIf="!loadingSizeProducts">({{sizeProducts}})</span> <span><div class="spinner-grow text-warning" role="status" *ngIf="loadingSizeProducts"></div></span>
+                <h3 class="text-center text-sm-center text-md-center text-lg-start">Listado de Productos <span
+                        *ngIf="!loadingSizeProducts">({{sizeProducts}})</span> <span>
+                        <div class="spinner-grow text-warning" role="status" *ngIf="loadingSizeProducts"></div>
+                    </span>
                 </h3>
             </div>
             <div
@@ -166,7 +169,7 @@
                     </div>
 
                     <div class="card py-4 px-3">
-                        <button class="btn color-primary text-white" type="submit">Filtrar</button>
+                        <button class="btn btn-filter" type="submit">Filtrar</button>
                     </div>
                 </form>
 
@@ -271,7 +274,7 @@
                     </div>
 
                     <div class="card py-4 px-3">
-                        <button class="btn color-primary text-white" type="submit">Filtrar</button>
+                        <button class="btn btn-filter fw-bold" type="submit">Filtrar</button>
                     </div>
                 </form>
 
@@ -311,8 +314,9 @@
                                                 {{viewProduct.product.titulo}}
                                             </h5>
                                         </a>
-                                        <p class="card-text text-center">Precio :  <span class="fw-bold">{{viewProduct.product.precio |
-                                            currency:"PEN "}}</span> </p>
+                                        <p class="card-text text-center">Precio : <span
+                                                class="fw-bold">{{viewProduct.product.precio |
+                                                currency:"PEN "}}</span> </p>
                                         <p class="card-text text-center">Peso : {{viewProduct.product.peso}} <span
                                                 class="fw-bold"> {{viewProduct.product.peso > 0 ? 'KG' : 'GR'}}</span>
                                         </p>
@@ -355,8 +359,9 @@
                                                             class="nav-link">
                                                             <h5 class="card-title">{{viewProduct.product.titulo}}</h5>
                                                         </a>
-                                                        <p class="card-text">Precio : <span class="fw-bold">{{viewProduct.product.precio |
-                                                            currency:"PEN "}}</span></p>
+                                                        <p class="card-text">Precio : <span
+                                                                class="fw-bold">{{viewProduct.product.precio |
+                                                                currency:"PEN "}}</span></p>
                                                         <p class="card-text">Peso : {{viewProduct.product.peso}}
                                                             <span class="fw-bold"> {{viewProduct.product.peso > 0 ? 'KG'
                                                                 : 'GR'}}</span>
