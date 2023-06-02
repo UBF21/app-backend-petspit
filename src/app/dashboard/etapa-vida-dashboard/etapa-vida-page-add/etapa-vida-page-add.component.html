@@ -64,10 +64,16 @@
                 </div>
             </div>
             <div class="col-7 mt-4">
-                <button type="submit" [disabled]="formAddEtapaVida.invalid"
-                    class="btn btn-custom btn-hover">Agregar</button>
-                <a routerLink="/dashboard/etapa-vida/" class="btn btn-list ms-2">Etapas de vida</a>
-
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <button type="submit" [disabled]="formAddEtapaVida.invalid"
+                            class="btn w-100 btn-custom btn-hover">Agregar</button>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <a routerLink="/dashboard/etapa-vida/"
+                            class="btn w-100 mt-2 mt-sm-2 mt-md-2 mt-lg-0 btn-list ms-lg-0">Etapas de Vida</a>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
