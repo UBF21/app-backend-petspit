@@ -227,13 +227,17 @@
                     máximo 300 caracteres.</p>
             </div>
         </div>
-
-        <div class="pt-1 mb-3 col-lg-10">
-            <button class="btn btn-hover btn-lg btn-custom btn-block" [disabled]="formRegister.invalid" type="submit">
-                Agregar
-            </button>
-            <a routerLink="/dashboard/user/" class="btn btn-list btn-lg ms-2">Users</a>
-
+        <div class="col-lg-10 mt-4 col-12">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <button type="submit" [disabled]="formRegister.invalid"
+                        class="btn w-100 btn-custom btn-hover">Agregar</button>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <a routerLink="/dashboard/user/"
+                        class="btn w-100 mt-2 mt-sm-2 mt-md-2 mt-lg-0 btn-list ms-lg-0">Users</a>
+                </div>
+            </div>
         </div>
     </form>
 
