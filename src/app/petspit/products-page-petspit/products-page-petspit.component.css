@@ -38,9 +38,23 @@ button:focus,button:active, select:focus,select:active {
     border-width: 1px;
 }
 
-.btn-product{
-    background-color: #c0aa92;
+.btn-filter{
+    background-color: #5c2c14;
     color: white;
+    padding: 10px 0;
+    border-radius: 0%;
+    transition: .2s all;
+}
+
+.btn-filter:hover{
+    background-color: rgb(111, 212, 16);
+    color: black;
+}
+
+.btn-product{
+    background-color: #8b5d2c;
+    color: white;
+    border-radius: 0%;
     transition: .2s all;
 }
 .btn-product:hover{
