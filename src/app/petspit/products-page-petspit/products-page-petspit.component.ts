@@ -30,7 +30,9 @@ export class ProductsPagePetspitComponent implements OnInit {
   marcas: Marca[] = [];
   cambiarVista: boolean = true;
   loadingProducts: boolean = true;
+  loadingSizeProducts:boolean = true;
   orderSelected: string = "asc";
+  sizeProducts:number = 0;
 
   products: Product[] = [];
   animals: Animal[] = [];
@@ -38,9 +40,8 @@ export class ProductsPagePetspitComponent implements OnInit {
   tamanioRazas: TamanioRaza[] = [];
   categories: Category[] = [];
   subCategories: SubCategory[] = [];
-
   viewProducts: ViewImageProduct[] = [];
-
+  
 
   formFilter: FormGroup = new FormGroup({});
 
@@ -300,9 +301,16 @@ export class ProductsPagePetspitComponent implements OnInit {
       .forEach((item) => {
         this.getImageProduct(item.imagen)
           .subscribe({
-            next: (response) => this.addRowViewProduct(response, item),
+            next: (response) => {
+              this.addRowViewProduct(response, item);
+            },
             error: (error) => { console.log(error) }
           });
       });
+      
+      setTimeout(()=> {
+        this.sizeProducts = this.products.length;
+        this.loadingSizeProducts = false;
+      },500)
   }
 }
