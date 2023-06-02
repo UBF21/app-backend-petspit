@@ -301,10 +301,10 @@
 
             <div class="col-10">
 
-                    <label for="contenidoNutricional"  class="form-label p-2">Contenido nutricional</label>
-                    <editor id="otroIDUnico" formControlName="contenidoNutricional"
-                        [init]="{base_url: '/tinymce',suffix: '.min'}">
-                    </editor>
+                <label for="contenidoNutricional" class="form-label p-2">Contenido nutricional</label>
+                <editor id="otroIDUnico" formControlName="contenidoNutricional"
+                    [init]="{base_url: '/tinymce',suffix: '.min'}">
+                </editor>
 
                 <div class="mt-1"
                     *ngIf="formAddProduct.get('contenidoNutricional')?.invalid && (formAddProduct.get('contenidoNutricional')?.dirty || formAddProduct.get('contenidoNutricional')?.touched)">
@@ -313,12 +313,17 @@
                     </p>
                 </div>
             </div>
-
-
             <div class="col-10 mt-4">
-                <button type="submit" [disabled]="formAddProduct.invalid"
-                    class="btn btn-custom btn-hover">Agregar</button>
-                <a routerLink="/dashboard/producto/" class="btn btn-list ms-2">Productos</a>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <button type="submit" [disabled]="formAddProduct.invalid"
+                            class="btn w-100 btn-custom btn-hover">Agregar</button>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <a routerLink="/dashboard/producto/"
+                            class="btn w-100 mt-2 mt-sm-2 mt-md-2 mt-lg-0 btn-list ms-lg-0">Productos</a>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
