@@ -1,0 +1,108 @@
+<div class="container-fluid color-third">
+    <app-nav-bar-petspit></app-nav-bar-petspit>
+    <app-navs-petspit></app-navs-petspit>
+</div>
+
+<div class="container">
+    <div class="margin-y">
+        <div class="d-flex flex-column vh-100 justify-content-center align-items-center" *ngIf="loadingProduct">
+            <div class="colorful-spinner-circulos-view-product"></div>
+        </div>
+        <div class="row" *ngIf="!loadingProduct">
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <img [src]="viewProduct.pathName" class="img-fluid shadow"
+                        width="600" alt="imagen-view">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ms-5 me-5">
+                    <h2 class="fw-bold mt-0 mt-5">{{ viewProduct.product.titulo }}</h2>
+                    <p class="p-1 mt-3 mb-0">Marca : {{ viewProduct.product.marca.descripcion }}</p>
+                    <p class="p-1">Peso : {{ viewProduct.product.peso }} <span class="fw-bold">{{viewProduct.product.peso > 0 ? 'KG' : 'GR'}}</span> </p>
+                    <div class="card shadow">
+                        <div class="container">
+                            <div class="margin-y">
+                                <div class="row justify-content-center align-items-center">
+
+                                    <div class="col-lg-5 col-sm-12 col-md-12 col-12">
+                                        <p style="font-size: 1.4rem;" class="fw-bold text-center">{{viewProduct.product.precio | currency:'PEN '}}</p>
+                                    </div>
+                                    <div class="col-lg-5 col-sm-12 col-md-12 col-12">
+                                        <div class="text-center">
+                                            <p>
+                                                <span (click)="incrementoCantidad()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather icon-hover feather-plus-circle">
+                                                        <circle cx="12" cy="12" r="10"></circle>
+                                                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                                    </svg>
+                                                </span>
+
+                                                <span class="ms-3 me-3 no-seleccionable" style="font-size: 1.2rem;">{{cantidad}}</span>
+
+                                                <span (click)="decrementoCantidad()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather icon-hover feather-minus-circle">
+                                                        <circle cx="12" cy="12" r="10"></circle>
+                                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                                    </svg>
+                                                </span>
+                                            </p>
+                                            <a href="#" class="btn btn-add">Agregar al carrito</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5" *ngIf="!loadingProduct">
+            <div class="col-lg-12">
+                <div class="accordion shadow" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Descripción
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body mb-3 mt-3">
+                                
+                                <div [innerHTML]="viewProduct.product.descripcion"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Contenido Nutricional
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body mb-3 mt-3">
+                                <div [innerHTML]="viewProduct.product.contenidoNutricional"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer-petspit></app-footer-petspit>
