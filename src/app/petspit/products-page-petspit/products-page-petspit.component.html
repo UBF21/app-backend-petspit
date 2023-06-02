@@ -311,8 +311,8 @@
                                                 {{viewProduct.product.titulo}}
                                             </h5>
                                         </a>
-                                        <p class="card-text text-center">Precio : {{viewProduct.product.precio |
-                                            currency:"s/ "}}</p>
+                                        <p class="card-text text-center">Precio :  <span class="fw-bold">{{viewProduct.product.precio |
+                                            currency:"PEN "}}</span> </p>
                                         <p class="card-text text-center">Peso : {{viewProduct.product.peso}} <span
                                                 class="fw-bold"> {{viewProduct.product.peso > 0 ? 'KG' : 'GR'}}</span>
                                         </p>
@@ -355,8 +355,8 @@
                                                             class="nav-link">
                                                             <h5 class="card-title">{{viewProduct.product.titulo}}</h5>
                                                         </a>
-                                                        <p class="card-text">Precio : {{viewProduct.product.precio |
-                                                            currency:"s/ "}}</p>
+                                                        <p class="card-text">Precio : <span class="fw-bold">{{viewProduct.product.precio |
+                                                            currency:"PEN "}}</span></p>
                                                         <p class="card-text">Peso : {{viewProduct.product.peso}}
                                                             <span class="fw-bold"> {{viewProduct.product.peso > 0 ? 'KG'
                                                                 : 'GR'}}</span>
