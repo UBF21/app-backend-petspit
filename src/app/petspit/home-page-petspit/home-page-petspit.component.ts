@@ -10,6 +10,7 @@ export class HomePagePetspitComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
+
+}
 
 }
