@@ -21,6 +21,7 @@ import { SubcategoryDashboardModule } from './subcategory-dashboard/subcategory-
 import { TamanioRazaDashboardModule } from './tamanio-raza-dashboard/tamanio-raza-dashboard.module';
 import { UserDashboardModule } from './user-dashboard/user-dashboard.module';
 import { VentaDashboardModule } from './venta-dashboard/venta-dashboard.module';
+import { SwaggerUiPageComponent } from './swagger-ui-page/swagger-ui-page.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { VentaDashboardModule } from './venta-dashboard/venta-dashboard.module';
     LoginPageComponent,
     PublicRegisterUserComponent,
     DashboardPrincipalComponent,
-    HomePageDashboardComponent
+    HomePageDashboardComponent,
+    SwaggerUiPageComponent
   ],
   imports: [
     HttpClientModule,
@@ -54,7 +56,8 @@ import { VentaDashboardModule } from './venta-dashboard/venta-dashboard.module';
   exports: [
     LoginPageComponent,
     HomePageDashboardComponent,
-    DashboardPrincipalComponent
+    DashboardPrincipalComponent,
+    SwaggerUiPageComponent
   ],
   providers: []
 })
