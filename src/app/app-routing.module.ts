@@ -36,6 +36,7 @@ import { CategoryPageListComponent } from './dashboard/category-dashboard/catego
 import { CategoryPageAddComponent } from './dashboard/category-dashboard/category-page-add/category-page-add.component';
 import { CategoryPageEditComponent } from './dashboard/category-dashboard/category-page-edit/category-page-edit.component';
 import { ViewProductPageComponent } from './petspit/view-product-page/view-product-page.component';
+import { SwaggerUiPageComponent } from './dashboard/swagger-ui-page/swagger-ui-page.component';
 
 
 //Ruta de category
@@ -123,6 +124,7 @@ const routerChildrenDashboard: Routes = [
   { path: 'pedido', children: routerChildrenPedido },
   { path: 'venta', children: routerChildrenVenta },
   { path: 'user', children: routerChildrenUser },
+  { path: 'swagger-ui', component:SwaggerUiPageComponent },
   { path: '**', redirectTo: '/dashboard', pathMatch: 'full' }
 ]
 
