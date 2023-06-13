@@ -11,6 +11,7 @@ import { UserProfilePageComponent } from './user-profile-page/user-profile-page.
 import { UserProfileInformationComponent } from './components/user-profile-information/user-profile-information.component';
 import { UserProfileOrdersComponent } from './components/user-profile-orders/user-profile-orders.component';
 import { ViewProductPageComponent } from './view-product-page/view-product-page.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 
@@ -30,7 +31,8 @@ import { ViewProductPageComponent } from './view-product-page/view-product-page.
     SharedModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EditorModule
 
   ],
   exports: [
