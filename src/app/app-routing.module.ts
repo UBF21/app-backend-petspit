@@ -43,7 +43,7 @@ import { SwaggerUiPageComponent } from './dashboard/swagger-ui-page/swagger-ui-p
 const routerChildrenCategory: Routes = [
   { path: '', component: CategoryPageListComponent },
   { path: 'add', component: CategoryPageAddComponent },
-  { path: 'edit', component: CategoryPageEditComponent },
+  { path: 'edit/:id', component: CategoryPageEditComponent },
   { path: '**', redirectTo: '/dashboard/categoria', pathMatch: 'full' }
 ]
 
