@@ -1,4 +1,3 @@
-
 <div class="container-fluid color-third">
     <app-nav-bar-petspit></app-nav-bar-petspit>
     <app-navs-petspit></app-navs-petspit>
@@ -58,18 +57,20 @@
                     </div>
 
                 </div>
-                <div class="col-12 mb-2">
-                    <label for="message" class="form-label text-white p-2 mb-3"
-                        style="font-size: 1.1rem;">Mensaje</label>
-                    <textarea formControlName="message" autocomplete="off" class="form-control shadow" id="message"
-                        placeholder="mensaje" name="message" rows="5"></textarea>
 
-                    <div class="mt-2"
+                <div class="col-12 mb-2">
+
+                    <label for="message" class="form-label p-2 text-white" style="font-size: 1.1rem;">Mensaje</label>
+                    <editor id="messageEditor" formControlName="message" [init]="{base_url: '/tinymce',suffix: '.min'}">
+                    </editor>
+
+                    <div class="mt-1"
                         *ngIf="formEmail.get('message')?.invalid && (formEmail.get('message')?.dirty || formEmail.get('message')?.touched)">
                         <p *ngIf="formEmail.get('message')?.hasError('required')" class="p-1 fw-bold"
-                            style="color: rgb(187, 226, 81);">Mensaje requerido.</p>
+                            style="color: rgb(187, 226, 81);">mensaje requerido.
+                        </p>
                         <p *ngIf="formEmail.get('message')?.hasError('maxlength')" class="p-1 fw-bold"
-                            style="color: rgb(187, 226, 81);">El Mensaje solo admite máximo 255
+                            style="color: rgb(187, 226, 81);">El Mensaje solo admite máximo 20.000
                             caracteres.</p>
                     </div>
 
