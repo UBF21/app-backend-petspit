@@ -64,6 +64,7 @@ export class LoginService {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("userView");
+    localStorage.removeItem("items");
   }
 
   // Obtener el usuario del localStorage
