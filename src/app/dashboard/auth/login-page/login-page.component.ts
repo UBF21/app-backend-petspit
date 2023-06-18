@@ -6,6 +6,7 @@ import { Observable, map } from 'rxjs';
 import { UserCredentials } from 'src/app/models/model/UserCredentials';
 import { ResponseUserCurrent } from 'src/app/models/response/ResponseUserRecurrent';
 import { LoginService } from 'src/app/services/auth/login.service';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { PublicUploadService } from 'src/app/services/public/upload/public-upload.service';
 import { SharedInformationService } from 'src/app/services/shared-information/shared-information.service';
 
@@ -18,7 +19,8 @@ export class LoginPageComponent implements OnInit {
 
   formLogin: FormGroup = new FormGroup({});
 
-  constructor(private http: HttpClient, private loginService: LoginService, public shared: SharedInformationService, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, private publicUploadService: PublicUploadService) { }
+  constructor(private http: HttpClient, private loginService: LoginService, public shared: SharedInformationService,
+     private formBuilder: FormBuilder, private sanitizer: DomSanitizer,private carrito:CarritoService) { }
 
   ngOnInit(): void {
 
@@ -59,10 +61,9 @@ export class LoginPageComponent implements OnInit {
         next: (token) => {
           console.log(token);
           this.loginService.saveTokenUser(token.token);
-
           if (this.loginService.isLoggedIn()) {
             this.getCurrentUser();
-              
+            this.carrito.setListCarrito();
           } else {
             this.loginService.logout();
           }
