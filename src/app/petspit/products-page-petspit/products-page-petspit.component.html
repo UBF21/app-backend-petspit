@@ -322,7 +322,7 @@
                                         </p>
                                         <p class="card-text text-center">Stock : {{viewProduct.product.stock}}</p>
                                         <div class="text-center">
-                                            <a href="#" class="btn w-100 btn-product fw-bold">Agregar al carrito</a>
+                                            <a class="btn w-100 btn-product fw-bold" (click)="addItemCarrito(viewProduct.product)">Agregar al carrito</a>
                                         </div>
                                     </div>
                                 </div>
@@ -368,7 +368,7 @@
                                                         </p>
                                                         <p class="card-text">Stock : {{viewProduct.product.stock}} </p>
                                                         <div class="text-center mt-4">
-                                                            <a href="#" class="btn w-100 fw-bold btn-product">Agregar al
+                                                            <a class="btn w-100 fw-bold btn-product" (click)="addItemCarrito(viewProduct.product)">Agregar al
                                                                 carrito</a>
                                                         </div>
                                                     </div>

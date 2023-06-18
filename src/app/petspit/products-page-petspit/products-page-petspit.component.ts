@@ -8,9 +8,12 @@ import { Animal } from 'src/app/models/model/Animal';
 import { Category } from 'src/app/models/model/Category';
 import { EtapaVida } from 'src/app/models/model/EtapaVida';
 import { Marca } from 'src/app/models/model/Marca';
+import { Pedido } from 'src/app/models/model/Pedido';
 import { Product } from 'src/app/models/model/Product';
 import { SubCategory } from 'src/app/models/model/SubCategory';
 import { TamanioRaza } from 'src/app/models/model/TamanioRaza';
+import { LoginService } from 'src/app/services/auth/login.service';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { PublicAnimalService } from 'src/app/services/public/animal/public-animal.service';
 import { PublicCategoryService } from 'src/app/services/public/category/public-category.service';
 import { PublicEtapaVidaService } from 'src/app/services/public/etapavida/public-etapa-vida.service';
@@ -30,9 +33,9 @@ export class ProductsPagePetspitComponent implements OnInit {
   marcas: Marca[] = [];
   cambiarVista: boolean = true;
   loadingProducts: boolean = true;
-  loadingSizeProducts:boolean = true;
+  loadingSizeProducts: boolean = true;
   orderSelected: string = "asc";
-  sizeProducts:number = 0;
+  sizeProducts: number = 0;
 
   products: Product[] = [];
   animals: Animal[] = [];
@@ -41,14 +44,15 @@ export class ProductsPagePetspitComponent implements OnInit {
   categories: Category[] = [];
   subCategories: SubCategory[] = [];
   viewProducts: ViewImageProduct[] = [];
-  
+
 
   formFilter: FormGroup = new FormGroup({});
 
   constructor(private route: ActivatedRoute, private productServicePublic: PublicProductService, private builder: FormBuilder,
     private animalServicePublic: PublicAnimalService, private etapaVidaServicePublic: PublicEtapaVidaService, private marcaServicePublic: PublicMarcaService,
     private tamanioRazaServicePublic: PublictamanioRazaService, private categoryServicePublic: PublicCategoryService, private subCategoryServicePublic: PublicSubCategoryService,
-    private uploadImagePublic: PublicUploadService, private sanitizer: DomSanitizer) { }
+    private uploadImagePublic: PublicUploadService, private sanitizer: DomSanitizer, private carrito: CarritoService,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
 
@@ -185,7 +189,7 @@ export class ProductsPagePetspitComponent implements OnInit {
 
   geAllProductsByCategory(category: string): void {
     this.productServicePublic.getAllProducts()
-      .pipe(delay(2000),map((item) => item.filter(item => item.category.descripcion === category)))
+      .pipe(delay(2000), map((item) => item.filter(item => item.category.descripcion === category)))
       .subscribe({
         next: (response) => {
           this.viewProducts = [];
@@ -199,7 +203,7 @@ export class ProductsPagePetspitComponent implements OnInit {
 
   getAllProductsBySubCategory(subCategory: string): void {
     this.productServicePublic.getAllProducts()
-      .pipe(delay(2000),map((item) => item.filter(item => item.subCategory.descripcion === subCategory)))
+      .pipe(delay(2000), map((item) => item.filter(item => item.subCategory.descripcion === subCategory)))
       .subscribe({
         next: (response) => {
           this.viewProducts = [];
@@ -307,10 +311,25 @@ export class ProductsPagePetspitComponent implements OnInit {
             error: (error) => { console.log(error) }
           });
       });
-      
-      setTimeout(()=> {
-        this.sizeProducts = this.products.length;
-        this.loadingSizeProducts = false;
-      },500)
+
+    setTimeout(() => {
+      this.sizeProducts = this.products.length;
+      this.loadingSizeProducts = false;
+    }, 500)
+  }
+
+  //carrito de compras
+  addItemCarrito(producto: Product) {
+
+    if(this.loginService.isLoggedIn()){
+      let pedido: Pedido = new Pedido();
+      pedido.idProduct = producto.idProduct;
+      pedido.product = producto;
+      pedido.cantidad = 1;
+      pedido.importe = (producto.precio * pedido.cantidad);
+      this.carrito.additemCarrito(pedido);
+    }else{
+      alert("Create una cuenta para poder comprar o agregar un producto.");
+    }
   }
 }
