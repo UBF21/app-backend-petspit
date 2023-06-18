@@ -4,7 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { error } from '@rxweb/reactive-form-validators';
 import { Observable, delay, map } from 'rxjs';
 import { ViewImageProduct } from 'src/app/models/interfaces/ViewImageProduct';
+import { Pedido } from 'src/app/models/model/Pedido';
 import { Product } from 'src/app/models/model/Product';
+import { LoginService } from 'src/app/services/auth/login.service';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { PublicProductService } from 'src/app/services/public/product/public-product.service';
 import { PublicUploadService } from 'src/app/services/public/upload/public-upload.service';
 
@@ -22,7 +25,8 @@ export class ViewProductPageComponent implements OnInit {
   loadingProduct: boolean = true;
 
   constructor(private route: ActivatedRoute, private productServicePublic: PublicProductService,
-    private uploadImagePublic: PublicUploadService, private sanitizer: DomSanitizer) { }
+    private uploadImagePublic: PublicUploadService, private sanitizer: DomSanitizer, private carrito: CarritoService,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
 
@@ -73,5 +77,20 @@ export class ViewProductPageComponent implements OnInit {
 
   decrementoCantidad() {
     if (this.cantidad > 1) this.cantidad--;
+  }
+
+  //carrito de compras
+  addItemCarrito(producto: Product) {
+
+    if(this.loginService.isLoggedIn()){
+      let pedido: Pedido = new Pedido();
+      pedido.idProduct = producto.idProduct;
+      pedido.product = producto;
+      pedido.cantidad = this.cantidad;
+      pedido.importe = (producto.precio * pedido.cantidad);
+      this.carrito.additemCarrito(pedido);
+    }else{
+      alert("Create una cuenta para poder comprar o agregar un producto.")
+    }
   }
 }
