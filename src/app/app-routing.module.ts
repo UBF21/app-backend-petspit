@@ -37,6 +37,7 @@ import { CategoryPageAddComponent } from './dashboard/category-dashboard/categor
 import { CategoryPageEditComponent } from './dashboard/category-dashboard/category-page-edit/category-page-edit.component';
 import { ViewProductPageComponent } from './petspit/view-product-page/view-product-page.component';
 import { SwaggerUiPageComponent } from './dashboard/swagger-ui-page/swagger-ui-page.component';
+import { ViewCarritoPageComponent } from './petspit/view-carrito-page/view-carrito-page.component';
 
 
 //Ruta de category
@@ -135,6 +136,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactPagePetspitComponent },
   { path: 'products', component: ProductsPagePetspitComponent },
   { path: 'view-product', component: ViewProductPageComponent },
+  { path: 'view-carrito', component: ViewCarritoPageComponent },
   { path: 'about', component: AboutPagePetspitComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'profile', component: UserProfilePageComponent },
