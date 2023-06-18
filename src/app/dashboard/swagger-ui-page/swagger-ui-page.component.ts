@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 // @ts-ignore
 import SwaggerUI from 'swagger-ui';
 @Component({
@@ -12,7 +13,7 @@ export class SwaggerUiPageComponent implements OnInit {
 
   ngOnInit(): void {
     const ui = SwaggerUI({
-      url: 'http://localhost:8080/v3/api-docs',
+      url: `${environment.backendUrl}v3/api-docs`,
       dom_id: '#customer-api-documentation'
   })
   }
