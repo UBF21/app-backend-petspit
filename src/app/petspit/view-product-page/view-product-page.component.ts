@@ -83,12 +83,22 @@ export class ViewProductPageComponent implements OnInit {
   addItemCarrito(producto: Product) {
 
     if(this.loginService.isLoggedIn()){
-      let pedido: Pedido = new Pedido();
-      pedido.idProduct = producto.idProduct;
-      pedido.product = producto;
-      pedido.cantidad = this.cantidad;
-      pedido.importe = (producto.precio * pedido.cantidad);
-      this.carrito.additemCarrito(pedido);
+      
+      if(this.carrito.isItemExist(producto)){
+        let index = this.carrito.getIndexItemCarrito(producto);
+        let pedidos = this.carrito.getListCarrito();
+        pedidos[index].cantidad = pedidos[index].cantidad + this.cantidad;
+        pedidos[index].importe =pedidos[index].product.precio *  pedidos[index].cantidad;
+        this.carrito.updateListCarrito(pedidos);
+      }else{
+        let pedido: Pedido = new Pedido();
+        pedido.idProduct = producto.idProduct;
+        pedido.product = producto;
+        pedido.cantidad = this.cantidad;
+        pedido.importe = (producto.precio * pedido.cantidad);
+        this.carrito.additemCarrito(pedido);
+      }
+
     }else{
       alert("Create una cuenta para poder comprar o agregar un producto.")
     }
