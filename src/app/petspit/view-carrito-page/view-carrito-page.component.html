@@ -6,8 +6,20 @@
 <div class="container">
     <div class="margin-y-carrito">
         <h2 class="mb-4 fw-bold text-center text-sm-center text-md-start text-lg-start p-2">Carrito de compras</h2>
-        <div class="card shadow">   
-            <table class="table table-responsive align-middle table-borderless">
+        <div class="card shadow">
+            <div style="min-height: 30vh;" *ngIf="loadingPedidos"
+                class="d-flex justify-content-center align-items-center">
+
+
+                <div class="spinner-pedidos">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <table *ngIf="!loadingPedidos" class="table table-responsive align-middle table-borderless">
                 <thead>
                     <tr>
                         <th></th>
@@ -21,18 +33,19 @@
                 <tbody>
                     <tr *ngFor="let viewPedido of viewPedidos; let i = index">
                         <td class="text-center">
-                            <img [src]="viewPedido.pathName" class="shadow no-seleccionable"
-                                width="60" [alt]="viewPedido.name">
+                            <img [src]="viewPedido.pathName" class="shadow no-seleccionable" width="60"
+                                [alt]="viewPedido.name">
                         </td>
                         <td>{{viewPedido.pedido.product.titulo}}</td>
-                        <td><span class="no-seleccionable">{{viewPedido.pedido.product.precio | currency:'PEN ' }}</span></td>
+                        <td><span class="no-seleccionable">{{viewPedido.pedido.product.precio | currency:'PEN '
+                                }}</span></td>
                         <td>
                             <div>
                                 <p class="mb-1">
                                     <span (click)="incrementoCantidad(viewPedido.pedido)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
                                             class="feather icon-hover feather-plus-circle">
                                             <circle cx="12" cy="12" r="10"></circle>
                                             <line x1="12" y1="8" x2="12" y2="16"></line>
@@ -40,12 +53,14 @@
                                         </svg>
                                     </span>
 
-                                    <span class="ms-0 ms-sm-0 ms-md-3 ms-lg-3 me-0 me-sm-0 me-md-3 me-lg-3 no-seleccionable" style="font-size: 1.2rem;">{{ viewPedido.pedido.cantidad }}</span>
+                                    <span
+                                        class="ms-0 ms-sm-0 ms-md-3 ms-lg-3 me-0 me-sm-0 me-md-3 me-lg-3 no-seleccionable"
+                                        style="font-size: 1.2rem;">{{ viewPedido.pedido.cantidad }}</span>
 
                                     <span (click)="decrementoCantidad(viewPedido.pedido)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
                                             class="feather icon-hover feather-minus-circle">
                                             <circle cx="12" cy="12" r="10"></circle>
                                             <line x1="8" y1="12" x2="16" y2="12"></line>
@@ -58,9 +73,9 @@
                         <td>
                             <div class="mb-3" (click)="deleteItemCarrito(i)">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-trash-hover  icon-tabler icon-tabler-trash"
-                                    width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    class="icon icon-trash-hover  icon-tabler icon-tabler-trash" width="25" height="25"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <line x1="4" y1="7" x2="20" y2="7" />
                                     <line x1="10" y1="11" x2="10" y2="17" />
@@ -74,7 +89,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <div class="row justify-content-end mt-5">
             <div class="col-lg-5 col-md-7 col-sm-8">
                 <div class="card p-3 shadow">
@@ -84,16 +99,29 @@
                         <table class="table table-hover align-middle">
                             <tbody>
                                 <tr>
+                                    <th style="font-weight: 500;">Cantidad Total</th>
+                                    <td class="fw-bold">
+                                        <div *ngIf="loadingCantidad" class="progress-carrito"></div>
+                                        <div *ngIf="!loadingCantidad">{{cantdadTotalPedidos}}</div>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th style="font-weight: 500;">Subtotal</th>
-                                    <td class="fw-bold">{{total | currency:'PEN '}}</td>
+                                    <td class="fw-bold">
+                                        <div *ngIf="loadingSubTotal" class="progress-carrito"></div>
+                                        <div *ngIf="!loadingSubTotal">{{total | currency:'PEN '}}</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th style="font-weight: 500;">Total</th>
-                                    <td class="fw-bold">{{total | currency:'PEN '}}</td>
+                                    <td class="fw-bold">
+                                        <div *ngIf="loadingTotal" class="progress-carrito"></div>
+                                        <div *ngIf="!loadingTotal">{{total | currency:'PEN '}}</div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-comprar w-100">Comprar</button>
+                        <button class="btn btn-comprar w-100" [disabled]="loadingPedidos">Comprar</button>
                     </div>
                 </div>
             </div>
