@@ -15,7 +15,7 @@ import { UploadImageService } from 'src/app/services/models/upload/upload-image.
 export class ViewCarritoPageComponent implements OnInit {
   viewPedidos: ViewImagePedido[] = [];
   pedidos: Pedido[] = [];
-  total:number = 0;
+  total: number = 0;
   constructor(private carrito: CarritoService, private productoService: ProductService, private uploadService: UploadImageService, private sanitizer: DomSanitizer) { }
 
 
@@ -29,21 +29,22 @@ export class ViewCarritoPageComponent implements OnInit {
     this.fillViewPedidos();
   }
 
-  fillViewPedidos(){
+  fillViewPedidos() {
     this.pedidos.forEach(item => {
 
       this.getImageProduct(item.product.imagen)
-      .subscribe({
-        next:(response) =>{
-          this.addRowViewPedido(response,item);
-        },
-        error:(error) => {console.log(error)}
-      })
+        .subscribe({
+          next: (response) => {
+            this.addRowViewPedido(response, item);
+          },
+          error: (error) => { console.log(error) }
+        })
 
     });
   }
 
-  calcultePrecioTotal(){
+  calcultePrecioTotal() {
+    this.total = 0;
     this.pedidos.forEach(item => this.total += item.importe);
   }
 
@@ -59,5 +60,38 @@ export class ViewCarritoPageComponent implements OnInit {
         const url: string = URL.createObjectURL(response);
         return this.sanitizer.bypassSecurityTrustUrl(url);
       }));
+  }
+
+  deleteItemCarrito(index: number) {
+
+    if (index >= 0 && index < this.pedidos.length) {
+      this.pedidos.splice(index, 1);
+      this.carrito.updateListCarrito(this.pedidos);
+      this.viewPedidos = [];
+    }
+    this.getAllPedidosCarrito();
+    this.calcultePrecioTotal();
+  }
+
+  incrementoCantidad(pedido: Pedido): void {
+    let index = this.carrito.getIndexItemCarrito(pedido.product);
+    ++pedido.cantidad;
+    this.pedidos[index].cantidad = pedido.cantidad;
+    this.pedidos[index].importe = pedido.cantidad * pedido.product.precio;
+    this.carrito.updateListCarrito(this.pedidos);
+    this.calcultePrecioTotal();
+  }
+
+  decrementoCantidad(pedido: Pedido): void {
+    let index = this.carrito.getIndexItemCarrito(pedido.product);
+    if (pedido.cantidad > 1) {
+      pedido.cantidad--;
+      this.pedidos[index].cantidad = pedido.cantidad;
+      console.log(this.pedidos[index].importe);
+      this.pedidos[index].importe = (pedido.cantidad * pedido.product.precio);
+      console.log(this.pedidos[index].importe);
+      this.carrito.updateListCarrito(this.pedidos);
+      this.calcultePrecioTotal();
+    }
   }
 }
