@@ -11,15 +11,16 @@
         <div class="row" *ngIf="!loadingProduct">
             <div class="col-lg-6">
                 <div class="text-center">
-                    <img [src]="viewProduct.pathName" class="img-fluid shadow"
-                        width="600" alt="imagen-view">
+                    <img [src]="viewProduct.pathName" class="img-fluid rounded shadow"
+                        width="450" alt="imagen-view">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="ms-5 me-5">
                     <h2 class="fw-bold mt-0 mt-5">{{ viewProduct.product.titulo }}</h2>
                     <p class="p-1 mt-3 mb-0">Marca : {{ viewProduct.product.marca.descripcion }}</p>
-                    <p class="p-1">Peso : {{ viewProduct.product.peso }} <span class="fw-bold">{{viewProduct.product.peso > 0 ? 'KG' : 'GR'}}</span> </p>
+                    <p class="p-1 mb-0">Peso : {{ viewProduct.product.peso }} <span class="fw-bold">{{viewProduct.product.peso > 0 ? 'KG' : 'GR'}}</span> </p>
+                    <p class="p-1">Stock : <span class="fw-bold">{{ viewProduct.product.stock }}</span></p>
                     <div class="card shadow">
                         <div class="container">
                             <div class="margin-y">
@@ -71,14 +72,14 @@
                 <div class="accordion shadow" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button fw-bold no-seleccionable" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Descripción
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body mb-3 mt-3">
+                            <div class="accordion-body mb-3 mt-3 no-seleccionable">
                                 
                                 <div [innerHTML]="viewProduct.product.descripcion"></div>
                             </div>
@@ -86,14 +87,14 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed no-seleccionable fw-bold" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 Contenido Nutricional
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body mb-3 mt-3">
+                            <div class="accordion-body mb-3 mt-3 no-seleccionable">
                                 <div [innerHTML]="viewProduct.product.contenidoNutricional"></div>
                             </div>
                         </div>
