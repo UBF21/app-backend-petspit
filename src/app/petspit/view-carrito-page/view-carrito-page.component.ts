@@ -16,17 +16,37 @@ export class ViewCarritoPageComponent implements OnInit {
   viewPedidos: ViewImagePedido[] = [];
   pedidos: Pedido[] = [];
   total: number = 0;
+  cantdadTotalPedidos:number = 0;
+  loadingPedidos:boolean = true;
+  loadingCantidad:boolean = true;
+  loadingTotal:boolean = true;
+  loadingSubTotal:boolean = true;
   constructor(private carrito: CarritoService, private productoService: ProductService, private uploadService: UploadImageService, private sanitizer: DomSanitizer) { }
 
 
   ngOnInit(): void {
     this.getAllPedidosCarrito();
     this.calcultePrecioTotal();
+    this.totalCantidadPedidos();
   }
 
   getAllPedidosCarrito() {
     this.pedidos = this.carrito.getListCarrito();
-    this.fillViewPedidos();
+    if(this.pedidos.length !== 0) {      
+      setTimeout(()=> {
+        this.fillViewPedidos();
+        this.loadingPedidos = false;
+      },3000)
+    }
+  }
+
+  totalCantidadPedidos(){
+    this.cantdadTotalPedidos = 0;
+    
+    setTimeout(() => {
+      this.pedidos.forEach(item => this.cantdadTotalPedidos += item.cantidad);
+      this.loadingCantidad = false;
+    },3000);
   }
 
   fillViewPedidos() {
@@ -45,7 +65,11 @@ export class ViewCarritoPageComponent implements OnInit {
 
   calcultePrecioTotal() {
     this.total = 0;
-    this.pedidos.forEach(item => this.total += item.importe);
+    setTimeout( ()=> {
+      this.pedidos.forEach(item => this.total += item.importe);
+      this.loadingTotal = false;
+      this.loadingSubTotal = false;
+    },3000) 
   }
 
   addRowViewPedido(image: SafeUrl, pedido: Pedido) {
@@ -69,8 +93,13 @@ export class ViewCarritoPageComponent implements OnInit {
       this.carrito.updateListCarrito(this.pedidos);
       this.viewPedidos = [];
     }
+    this.loadingPedidos = true;
+    this.loadingSubTotal = true;
+    this.loadingCantidad = true;
+    this.loadingTotal = true;
     this.getAllPedidosCarrito();
     this.calcultePrecioTotal();
+    this.totalCantidadPedidos();
   }
 
   incrementoCantidad(pedido: Pedido): void {
@@ -79,7 +108,11 @@ export class ViewCarritoPageComponent implements OnInit {
     this.pedidos[index].cantidad = pedido.cantidad;
     this.pedidos[index].importe = pedido.cantidad * pedido.product.precio;
     this.carrito.updateListCarrito(this.pedidos);
+    this.loadingSubTotal = true;
+    this.loadingCantidad = true;
+    this.loadingTotal = true;
     this.calcultePrecioTotal();
+    this.totalCantidadPedidos();
   }
 
   decrementoCantidad(pedido: Pedido): void {
@@ -87,11 +120,13 @@ export class ViewCarritoPageComponent implements OnInit {
     if (pedido.cantidad > 1) {
       pedido.cantidad--;
       this.pedidos[index].cantidad = pedido.cantidad;
-      console.log(this.pedidos[index].importe);
       this.pedidos[index].importe = (pedido.cantidad * pedido.product.precio);
-      console.log(this.pedidos[index].importe);
       this.carrito.updateListCarrito(this.pedidos);
+      this.loadingSubTotal = true;
+      this.loadingCantidad = true;
+      this.loadingTotal = true;
       this.calcultePrecioTotal();
+      this.totalCantidadPedidos();
     }
   }
 }
