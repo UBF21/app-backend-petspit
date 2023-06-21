@@ -1,5 +1,4 @@
-
-.btn-comprar{
+.btn-comprar {
     background-color: #5c2c14;
     color: white;
     font-size: 1.3rem;
@@ -9,7 +8,7 @@
     transition: .2s all;
 }
 
-.btn-comprar:hover{
+.btn-comprar:hover {
     background-color: rgb(111, 212, 16);
     color: black;
 }
@@ -19,14 +18,26 @@
     transition: .4s all;
 }
 
-.icon-trash-hover:hover {
-    color: rgb(175, 5, 5);
-    font-weight: bold;
-    width: 32px;
-    height: 32px;
+.icon-hover {
+    color: var(--color-primary);
+    transition: .4s all;
 }
 
+.icon-hover:hover {
+    color: var(--color-secondary);
+}
 
-.margin-y-carrito{
+.margin-y-carrito {
     margin: 150px 0 60px 0;
+}
+
+.no-seleccionable {
+    -webkit-user-select: none;
+    /* Para navegadores basados en WebKit */
+    -moz-user-select: none;
+    /* Para navegadores basados en Gecko */
+    -ms-user-select: none;
+    /* Para navegadores basados en Trident/Edge */
+    user-select: none;
+    /* Estándar */
 }
