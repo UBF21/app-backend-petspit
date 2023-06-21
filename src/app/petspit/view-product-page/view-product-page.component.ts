@@ -29,7 +29,6 @@ export class ViewProductPageComponent implements OnInit {
     private loginService:LoginService) { }
 
   ngOnInit(): void {
-
     this.route.queryParams
       .subscribe({
         next: (params) => {
@@ -57,7 +56,7 @@ export class ViewProductPageComponent implements OnInit {
   }
 
   getProductById(): void {
-
+    this.loadingProduct = true;
     this.productServicePublic.getProductById(this.idProducto)
       .pipe(delay(2000))
       .subscribe({
