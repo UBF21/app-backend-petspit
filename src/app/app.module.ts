@@ -10,6 +10,7 @@ import { PetspitModule } from './petspit/petspit.module';
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { InterceptorRequestInterceptor } from './interceptor/interceptor-request.interceptor';
+import { CarritoService } from './services/carrito/carrito.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InterceptorRequestInterceptor } from './interceptor/interceptor-request
     DashboardModule
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass:InterceptorRequestInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:InterceptorRequestInterceptor,multi:true},
+    CarritoService
   ],
   bootstrap: [AppComponent]
 })
