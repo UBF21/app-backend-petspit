@@ -6,7 +6,7 @@
 <div class="container">
     <div class="margin-y-carrito">
         <h2 class="mb-4 fw-bold text-center text-sm-center text-md-start text-lg-start p-2">Carrito de compras</h2>
-        <div class="card py-3 px-4">   
+        <div class="card shadow">   
             <table class="table table-responsive align-middle table-borderless">
                 <thead>
                     <tr>
@@ -19,19 +19,46 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let viewPedido of viewPedidos">
-                        <td>
-                            <img [src]="viewPedido.pathName"
+                    <tr *ngFor="let viewPedido of viewPedidos; let i = index">
+                        <td class="text-center">
+                            <img [src]="viewPedido.pathName" class="shadow no-seleccionable"
                                 width="60" [alt]="viewPedido.name">
                         </td>
                         <td>{{viewPedido.pedido.product.titulo}}</td>
-                        <td>{{viewPedido.pedido.product.precio | currency:'PEN ' }}</td>
-                        <td><div class="ms-4">{{viewPedido.pedido.cantidad}}</div></td>
-                        <td>{{viewPedido.pedido.importe | currency:'PEN ' }}</td>
+                        <td><span class="no-seleccionable">{{viewPedido.pedido.product.precio | currency:'PEN ' }}</span></td>
                         <td>
-                            <div class="position-relative mb-3">
+                            <div>
+                                <p class="mb-1">
+                                    <span (click)="incrementoCantidad(viewPedido.pedido)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather icon-hover feather-plus-circle">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        </svg>
+                                    </span>
+
+                                    <span class="ms-0 ms-sm-0 ms-md-3 ms-lg-3 me-0 me-sm-0 me-md-3 me-lg-3 no-seleccionable" style="font-size: 1.2rem;">{{ viewPedido.pedido.cantidad }}</span>
+
+                                    <span (click)="decrementoCantidad(viewPedido.pedido)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather icon-hover feather-minus-circle">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        </svg>
+                                    </span>
+                                </p>
+                            </div>
+                        </td>
+                        <td><span class="no-seleccionable">{{viewPedido.pedido.importe | currency:'PEN ' }}</span></td>
+                        <td>
+                            <div class="mb-3" (click)="deleteItemCarrito(i)">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-trash-hover position-absolute icon-tabler icon-tabler-trash"
+                                    class="icon icon-trash-hover  icon-tabler icon-tabler-trash"
                                     width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -47,9 +74,10 @@
                 </tbody>
             </table>
         </div>
+        
         <div class="row justify-content-end mt-5">
             <div class="col-lg-5 col-md-7 col-sm-8">
-                <div class="card p-3">
+                <div class="card p-3 shadow">
                     <h4 class="card-title p-1 fw-bold">Total del carrito</h4>
                     <hr>
                     <div class="card-body p-4">
