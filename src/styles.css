@@ -152,3 +152,77 @@ body::-webkit-scrollbar-thumb{
        transform: rotate(0);
     }
  }
+
+ /* loading de view carrito */
+.spinner-pedidos {
+   width: 17.6px;
+   height: 17.6px;
+   animation: spinner-o824ag 1.2s infinite linear;
+}
+
+.spinner-pedidos div {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: #474b2b;
+   border-radius: 50%;
+   animation: spinner-vse6n7 1.5s infinite ease;
+}
+
+.spinner-pedidos div:nth-child(1) {
+   --rotation: 90;
+}
+
+.spinner-pedidos div:nth-child(2) {
+   --rotation: 180;
+}
+
+.spinner-pedidos div:nth-child(3) {
+   --rotation: 270;
+}
+
+.spinner-pedidos div:nth-child(4) {
+   --rotation: 360;
+}
+
+@keyframes spinner-vse6n7 {
+   0%, 100% {
+      transform: rotate(calc(var(--rotation) * 1deg)) translateY(0);
+   }
+
+   50% {
+      transform: rotate(calc(var(--rotation) * 1deg)) translateY(300%);
+   }
+}
+
+@keyframes spinner-o824ag {
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+/* ------- */
+.progress-carrito {
+    height: 4.5px;
+    width: 145.6px;
+    background: linear-gradient(#acd638 0 0),
+        linear-gradient(#acd638 0 0),
+        #13131c;
+    background-size: 60% 100%;
+    background-repeat: no-repeat;
+    animation: progress-7x9cg2 3s infinite;
+ }
+ 
+ @keyframes progress-7x9cg2 {
+    0% {
+       background-position: -150% 0,-150% 0;
+    }
+ 
+    66% {
+       background-position: 250% 0,-150% 0;
+    }
+ 
+    100% {
+       background-position: 250% 0, 250% 0;
+    }
+ }
