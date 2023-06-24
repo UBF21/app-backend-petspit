@@ -13,6 +13,7 @@ import { UserProfileOrdersComponent } from './components/user-profile-orders/use
 import { ViewProductPageComponent } from './view-product-page/view-product-page.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ViewCarritoPageComponent } from './view-carrito-page/view-carrito-page.component';
+import { ComprarPagePetspitComponent } from './comprar-page-petspit/comprar-page-petspit.component';
 
 
 
@@ -26,7 +27,8 @@ import { ViewCarritoPageComponent } from './view-carrito-page/view-carrito-page.
     UserProfileInformationComponent,
     UserProfileOrdersComponent,
     ViewProductPageComponent,
-    ViewCarritoPageComponent
+    ViewCarritoPageComponent,
+    ComprarPagePetspitComponent
   ],
   imports: [
     CommonModule,
