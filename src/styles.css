@@ -375,3 +375,26 @@ spinner-comprar-info {
       box-shadow: 21.3px 0 0 0, 42.6px 0 0 3.4px, 63.900000000000006px 0 0 7.8px;
    }
 }
+
+
+/* Loading home */
+.flipping-home-marca {
+   width: 44.8px;
+   height: 44.8px;
+   animation: flipping-fmo34qmd 1.5s infinite;
+   background-color: rgba(135, 52, 0, 0.7);
+}
+
+@keyframes flipping-fmo34qmd {
+   0% {
+      transform: perspective(44.8px) rotate(45deg) rotateX(0deg) rotateY(0deg);
+   }
+
+   50% {
+      transform: perspective(44.8px) rotate(45deg) rotateX(-180deg) rotateY(0deg);
+   }
+
+   100% {
+      transform: perspective(44.8px) rotate(45deg) rotateX(-180deg) rotateY(-180deg);
+   }
+}
