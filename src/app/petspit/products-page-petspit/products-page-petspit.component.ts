@@ -22,6 +22,7 @@ import { PublicProductService } from 'src/app/services/public/product/public-pro
 import { PublicSubCategoryService } from 'src/app/services/public/subCategory/public-sub-category.service';
 import { PublictamanioRazaService } from 'src/app/services/public/tamanioraza/publictamanio-raza.service';
 import { PublicUploadService } from 'src/app/services/public/upload/public-upload.service';
+import { PublicUploadStorageImageService } from 'src/app/services/public/uploadstorage/public-upload-storage-image.service';
 
 @Component({
   selector: 'app-products-page-petspit',
@@ -52,7 +53,7 @@ export class ProductsPagePetspitComponent implements OnInit {
     private animalServicePublic: PublicAnimalService, private etapaVidaServicePublic: PublicEtapaVidaService, private marcaServicePublic: PublicMarcaService,
     private tamanioRazaServicePublic: PublictamanioRazaService, private categoryServicePublic: PublicCategoryService, private subCategoryServicePublic: PublicSubCategoryService,
     private uploadImagePublic: PublicUploadService, private sanitizer: DomSanitizer, private carrito: CarritoService,
-    private loginService:LoginService) { }
+    private loginService:LoginService,private publicUploadStorageImageService:PublicUploadStorageImageService) { }
 
   ngOnInit(): void {
 
@@ -164,13 +165,15 @@ export class ProductsPagePetspitComponent implements OnInit {
 
   getAllProducts(): void {
     this.productServicePublic.getAllProducts()
-      .pipe(delay(2000))
+      .pipe()
       .subscribe({
         next: (response) => {
           this.viewProducts = [];
           this.products = response;
-          this.loadingProducts = false;
           this.fillViewProducts();
+          setTimeout(()=>{
+            this.loadingProducts = false;
+          },2000);
         },
         error: (error) => {
           this.loadingProducts = false;
@@ -194,8 +197,10 @@ export class ProductsPagePetspitComponent implements OnInit {
         next: (response) => {
           this.viewProducts = [];
           this.products = response;
-          this.loadingProducts = false;
           this.fillViewProducts();
+          setTimeout(()=>{
+            this.loadingProducts = false;
+          },2000);
         },
         error: (error) => console.log(error)
       });
@@ -208,9 +213,11 @@ export class ProductsPagePetspitComponent implements OnInit {
         next: (response) => {
           this.viewProducts = [];
           this.products = response;
-          this.loadingProducts = false;
           console.log(response);
           this.fillViewProducts();
+          setTimeout(()=>{
+            this.loadingProducts = false;
+          },2000);
         },
         error: (error) => console.log(error)
       });
@@ -245,12 +252,16 @@ export class ProductsPagePetspitComponent implements OnInit {
         next: (response) => {
           this.viewProducts = [];
           this.products = response;
-          this.loadingProducts = false;
           this.fillViewProducts();
+          setTimeout(()=>{
+            this.loadingProducts = false;
+          },2000);
         },
         error: (error) => {
           console.log(error);
-          this.loadingProducts = false;
+          setTimeout(()=>{
+            this.loadingProducts = false;
+          },2000);
         }
       });
 
@@ -279,7 +290,7 @@ export class ProductsPagePetspitComponent implements OnInit {
 
   // Metodos para obtener la imagen y mapearla con los registros
   getImageProduct(fileName: string): Observable<SafeUrl> {
-    return this.uploadImagePublic.getImageToProductOfApi(fileName)
+    return this.publicUploadStorageImageService.getPublicImageProduct(fileName)
       .pipe(map((response) => {
         URL.revokeObjectURL(response);
         const url: string = URL.createObjectURL(response);
@@ -314,7 +325,7 @@ export class ProductsPagePetspitComponent implements OnInit {
     setTimeout(() => {
       this.sizeProducts = this.products.length;
       this.loadingSizeProducts = false;
-    }, 500)
+    }, 2000)
   }
 
   //carrito de compras
