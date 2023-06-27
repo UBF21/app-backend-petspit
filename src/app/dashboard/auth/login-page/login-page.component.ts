@@ -73,7 +73,7 @@ export class LoginPageComponent implements OnInit {
 
         },
         error: (error) => { console.log(error); },
-        complete:() => {setTimeout(()=> {this.shared.generateViewImageUser()},100) }
+        complete:() => {setTimeout(()=> {this.shared.generateViewImageUser()},2000) }
       });
 
   }
