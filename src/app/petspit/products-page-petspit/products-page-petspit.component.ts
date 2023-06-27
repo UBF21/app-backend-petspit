@@ -334,6 +334,7 @@ export class ProductsPagePetspitComponent implements OnInit {
         pedido.idProduct = producto.idProduct;
         pedido.product = producto;
         pedido.cantidad = 1;
+        pedido.estado = "A";
         pedido.importe = (producto.precio * pedido.cantidad);
         this.carrito.additemCarrito(pedido);
       }
