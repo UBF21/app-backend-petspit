@@ -20,6 +20,7 @@ import { ProductService } from 'src/app/services/models/product/product.service'
 import { SubcategoryService } from 'src/app/services/models/subcategory/subcategory.service';
 import { TamanioRazaService } from 'src/app/services/models/tamanioraza/tamanio-raza.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { UploadStorageImageService } from 'src/app/services/models/uploadstorage/upload-storage-image.service';
 import { TinyMCE,Editor } from 'tinymce';
 
 declare const tinymce: TinyMCE;
@@ -55,8 +56,8 @@ export class ProductPageAddComponent implements OnInit,AfterViewInit {
 
   constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private categoryService: CategoryService,
     private subCategoryService: SubcategoryService, private tamanioRazaService: TamanioRazaService, private marcaService: MarcaService,
-    private etapaVidaService: EtapaVidaService, private uploadImageService: UploadImageService,
-    private productService: ProductService) { }
+    private etapaVidaService: EtapaVidaService, private uploadImageService: UploadImageService,private productService: ProductService,
+    private uploadStorageImageService:UploadStorageImageService) { }
 
   ngOnInit(): void {
     this.getAllAnimals();
@@ -256,7 +257,7 @@ export class ProductPageAddComponent implements OnInit,AfterViewInit {
   sendImageToProduct(image: File): void {
     const fileImage: FormData = new FormData();
     fileImage.append("file", image, image.name);
-    this.uploadImageService.saveImageToProduct(fileImage)
+    this.uploadStorageImageService.saveImageProduct(fileImage)
       .subscribe({
         next: (response) => { console.log(response) },
         error: (error) => { console.log(error) }
