@@ -6,6 +6,7 @@ import { ViewImageProduct } from 'src/app/models/interfaces/ViewImageProduct';
 import { Product } from 'src/app/models/model/Product';
 import { ProductService } from 'src/app/services/models/product/product.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { UploadStorageImageService } from 'src/app/services/models/uploadstorage/upload-storage-image.service';
 
 @Component({
   selector: 'app-product-page-list',
@@ -17,7 +18,8 @@ export class ProductPageListComponent implements OnInit {
   viewProducts: ViewImageProduct[] = [];
   products: Product[] = [];
 
-  constructor(private productService: ProductService, private uploadImageService: UploadImageService, private sanitizer: DomSanitizer) { }
+  constructor(private productService: ProductService, private uploadImageService: UploadImageService, private sanitizer: DomSanitizer,
+    private uploadStorageImageService:UploadStorageImageService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -62,7 +64,7 @@ export class ProductPageListComponent implements OnInit {
 
   getImageProduct(fileName: string): Observable<SafeUrl> {
 
-    return this.uploadImageService.getImageToProduct(fileName)
+    return this.uploadStorageImageService.getImageProduct(fileName)
       .pipe(map((response) => {
         URL.revokeObjectURL(response);
         const url: string = URL.createObjectURL(response);
