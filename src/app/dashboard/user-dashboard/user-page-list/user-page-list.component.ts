@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { ViewImageUser } from 'src/app/models/interfaces/ViewImageUser';
 import { User } from 'src/app/models/model/User';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { UploadStorageImageService } from 'src/app/services/models/uploadstorage/upload-storage-image.service';
 import { UserService } from 'src/app/services/models/user/user.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class UserPageListComponent implements OnInit {
   viewUsers: ViewImageUser[] = [];
   users: User[] = [];
 
-  constructor(private uploadImageService: UploadImageService, private userService: UserService, private sanitizer: DomSanitizer) { }
+  constructor(private uploadImageService: UploadImageService, private userService: UserService, private sanitizer: DomSanitizer,
+    private uploadStorageImageService:UploadStorageImageService) { }
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -67,7 +69,7 @@ export class UserPageListComponent implements OnInit {
   }
 
   getImageUser(fileName: string): Observable<SafeUrl> {
-    return this.uploadImageService.getImageToUser(fileName)
+    return this.uploadStorageImageService.getImageUser(fileName)
       .pipe(map((response) => {
         URL.revokeObjectURL(response);
         const url: string = URL.createObjectURL(response);
