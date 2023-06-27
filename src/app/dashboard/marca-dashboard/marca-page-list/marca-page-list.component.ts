@@ -6,6 +6,7 @@ import { ViewImageMarca } from 'src/app/models/interfaces/ViewImageMarca';
 import { Marca } from 'src/app/models/model/Marca';
 import { MarcaService } from 'src/app/services/models/marca/marca.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { UploadStorageImageService } from 'src/app/services/models/uploadstorage/upload-storage-image.service';
 
 @Component({
   selector: 'app-marca-page-list',
@@ -17,7 +18,8 @@ export class MarcaPageListComponent implements OnInit {
   viewMarcas: ViewImageMarca[] = [];
   marcas: Marca[] = [];
 
-  constructor(private marcaService: MarcaService, private uploadImageService: UploadImageService, private sanitizer: DomSanitizer) { }
+  constructor(private marcaService: MarcaService, private uploadImageService: UploadImageService, private sanitizer: DomSanitizer,
+    private uploadStorageImageService:UploadStorageImageService) { }
 
   ngOnInit(): void {
     this.getAllMarcas();
@@ -74,7 +76,7 @@ export class MarcaPageListComponent implements OnInit {
 
   getImageMarca(fileName: string): Observable<SafeUrl> {
 
-    return this.uploadImageService.getImageToMarca(fileName)
+    return this.uploadStorageImageService.getImageMarca(fileName)
       .pipe(map((response) => {
 
         URL.revokeObjectURL(response);
