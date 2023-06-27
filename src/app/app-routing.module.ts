@@ -39,6 +39,8 @@ import { ViewProductPageComponent } from './petspit/view-product-page/view-produ
 import { SwaggerUiPageComponent } from './dashboard/swagger-ui-page/swagger-ui-page.component';
 import { ViewCarritoPageComponent } from './petspit/view-carrito-page/view-carrito-page.component';
 import { ComprarPagePetspitComponent } from './petspit/comprar-page-petspit/comprar-page-petspit.component';
+import { UserGuard } from './guards/user/user.guard';
+import { AdminGuard } from './guards/admin/admin.guard';
 
 
 //Ruta de category
@@ -115,17 +117,17 @@ const routerChildrenUser: Routes = [
 
 //Rutas principales del dashboard
 const routerChildrenDashboard: Routes = [
-  { path: '', component: HomePageDashboardComponent },
-  { path: 'home', component: HomePageDashboardComponent },
-  { path: 'categoria', children:routerChildrenCategory },
-  { path: 'sub-categoria', children: routerChildrenSubCategory },
-  { path: 'marca', children: routerChildrenMarca },
-  { path: 'etapa-vida', children: routerChildrenEtapaVida },
-  { path: 'tamanio-raza', children: routerChildrenTamanioRaza },
-  { path: 'producto', children: routerChildrenProducto },
-  { path: 'pedido', children: routerChildrenPedido },
-  { path: 'venta', children: routerChildrenVenta },
-  { path: 'user', children: routerChildrenUser },
+  { path: '', component: HomePageDashboardComponent,canActivate:[AdminGuard] },
+  { path: 'home', component: HomePageDashboardComponent,canActivate:[AdminGuard] },
+  { path: 'categoria', children:routerChildrenCategory,canActivate:[AdminGuard] },
+  { path: 'sub-categoria', children: routerChildrenSubCategory,canActivate:[AdminGuard] },
+  { path: 'marca', children: routerChildrenMarca,canActivate:[AdminGuard] },
+  { path: 'etapa-vida', children: routerChildrenEtapaVida,canActivate:[AdminGuard] },
+  { path: 'tamanio-raza', children: routerChildrenTamanioRaza,canActivate:[AdminGuard] },
+  { path: 'producto', children: routerChildrenProducto,canActivate:[AdminGuard] },
+  { path: 'pedido', children: routerChildrenPedido,canActivate:[AdminGuard] },
+  { path: 'venta', children: routerChildrenVenta,canActivate:[AdminGuard] },
+  { path: 'user', children: routerChildrenUser,canActivate:[AdminGuard] },
   { path: 'swagger-ui', component:SwaggerUiPageComponent },
   { path: '**', redirectTo: '/dashboard', pathMatch: 'full' }
 ]
@@ -137,12 +139,12 @@ const routes: Routes = [
   { path: 'contact', component: ContactPagePetspitComponent },
   { path: 'products', component: ProductsPagePetspitComponent },
   { path: 'view-product', component: ViewProductPageComponent },
-  { path: 'view-carrito', component: ViewCarritoPageComponent },
-  { path: 'comprar', component: ComprarPagePetspitComponent },
+  { path: 'view-carrito', component: ViewCarritoPageComponent,canActivate:[UserGuard] },
+  { path: 'comprar', component: ComprarPagePetspitComponent,canActivate:[UserGuard]},
   { path: 'about', component: AboutPagePetspitComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'profile', component: UserProfilePageComponent },
-  { path: 'dashboard', component: DashboardPrincipalComponent, children: routerChildrenDashboard },
+  { path: 'profile', component: UserProfilePageComponent,canActivate:[UserGuard] },
+  { path: 'dashboard', component: DashboardPrincipalComponent, children: routerChildrenDashboard,canActivate:[AdminGuard] },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
