@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Route, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { UserCredentials } from 'src/app/models/model/UserCredentials';
 import { ResponseUserCurrent } from 'src/app/models/response/ResponseUserRecurrent';
@@ -20,7 +21,8 @@ export class LoginPageComponent implements OnInit {
   formLogin: FormGroup = new FormGroup({});
 
   constructor(private http: HttpClient, private loginService: LoginService, public shared: SharedInformationService,
-     private formBuilder: FormBuilder, private sanitizer: DomSanitizer,private carrito:CarritoService) { }
+     private formBuilder: FormBuilder, private sanitizer: DomSanitizer,private carrito:CarritoService,
+     private router:Router) { }
 
   ngOnInit(): void {
 
@@ -64,6 +66,7 @@ export class LoginPageComponent implements OnInit {
           if (this.loginService.isLoggedIn()) {
             this.getCurrentUser();
             this.carrito.setListCarrito();
+            this.router.navigateByUrl("/home");
           } else {
             this.loginService.logout();
           }
