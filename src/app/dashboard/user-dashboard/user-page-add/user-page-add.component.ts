@@ -5,6 +5,7 @@ import { Rol } from 'src/app/models/model/Rol';
 import { User } from 'src/app/models/model/User';
 import { RolService } from 'src/app/services/models/rol/rol.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { UploadStorageImageService } from 'src/app/services/models/uploadstorage/upload-storage-image.service';
 import { UserService } from 'src/app/services/models/user/user.service';
 
 @Component({
@@ -20,7 +21,9 @@ export class UserPageAddComponent implements OnInit {
   formRegister: FormGroup = new FormGroup({});
   fileImage: File = new File([], "");
 
-  constructor(private formBuilder: FormBuilder, private rolService: RolService, private userService: UserService, private uploadImageService: UploadImageService) { }
+  constructor(private formBuilder: FormBuilder, private rolService: RolService, private userService: UserService,
+     private uploadImageService: UploadImageService,private uploadStorageImageService:UploadStorageImageService
+     ) { }
 
   ngOnInit(): void {
     this.getAllRols();
@@ -94,7 +97,7 @@ export class UserPageAddComponent implements OnInit {
   sendImageUser(image: File): void {
     const fileImage: FormData = new FormData();
     fileImage.append("file", image, image.name);
-    this.uploadImageService.saveImageToUser(fileImage)
+    this.uploadStorageImageService.saveImageUser(fileImage)
       .subscribe({
         next: (response) => { console.log(response) },
         error: (error) => { console.log(error) }
