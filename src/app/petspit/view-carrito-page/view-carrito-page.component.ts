@@ -6,6 +6,7 @@ import { Pedido } from 'src/app/models/model/Pedido';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { ProductService } from 'src/app/services/models/product/product.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { PublicUploadStorageImageService } from 'src/app/services/public/uploadstorage/public-upload-storage-image.service';
 
 @Component({
   selector: 'app-view-carrito-page',
@@ -21,7 +22,8 @@ export class ViewCarritoPageComponent implements OnInit {
   loadingCantidad:boolean = true;
   loadingTotal:boolean = true;
   loadingSubTotal:boolean = true;
-  constructor(private carrito: CarritoService, private productoService: ProductService, private uploadService: UploadImageService, private sanitizer: DomSanitizer) { }
+  constructor(private carrito: CarritoService, private productoService: ProductService, private uploadService: UploadImageService,
+     private sanitizer: DomSanitizer,private publicUploadStorageImageService:PublicUploadStorageImageService) { }
 
 
   ngOnInit(): void {
@@ -33,8 +35,8 @@ export class ViewCarritoPageComponent implements OnInit {
   getAllPedidosCarrito() {
     this.pedidos = this.carrito.getListCarrito();
     if(this.pedidos.length !== 0) {      
+      this.fillViewPedidos();
       setTimeout(()=> {
-        this.fillViewPedidos();
         this.loadingPedidos = false;
       },3000)
     }
@@ -78,7 +80,7 @@ export class ViewCarritoPageComponent implements OnInit {
 
   getImageProduct(fileName: string): Observable<SafeUrl> {
 
-    return this.uploadService.getImageToProduct(fileName)
+    return this.publicUploadStorageImageService.getPublicImageProduct(fileName)
       .pipe(map((response) => {
         URL.revokeObjectURL(response);
         const url: string = URL.createObjectURL(response);
