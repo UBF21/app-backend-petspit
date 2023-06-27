@@ -5,6 +5,7 @@ import { NumericValueType, RxwebValidators, extension } from '@rxweb/reactive-fo
 import { User } from 'src/app/models/model/User';
 import { PublicUserService } from 'src/app/services/public/user/public-user.service';
 import { PublicUploadService } from 'src/app/services/public/upload/public-upload.service';
+import { PublicUploadStorageImageService } from 'src/app/services/public/uploadstorage/public-upload-storage-image.service';
 
 @Component({
   selector: 'app-public-register-user',
@@ -18,7 +19,7 @@ export class PublicRegisterUserComponent implements OnInit {
   formRegister: FormGroup = new FormGroup({});
   fileImage: File = new File([], "");
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedInformationService, private publicUserService: PublicUserService, private publicUploadServices: PublicUploadService) { }
+  constructor(private formBuilder: FormBuilder, private shared: SharedInformationService, private publicUserService: PublicUserService, private publicUploadServices: PublicUploadService,private publicUploadStorageImageService:PublicUploadStorageImageService) { }
 
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
@@ -95,7 +96,7 @@ export class PublicRegisterUserComponent implements OnInit {
     const fileImage: FormData = new FormData();
     fileImage.append("file", image, image.name);
 
-    this.publicUploadServices.saveImageToUser(fileImage)
+    this.publicUploadStorageImageService.saveImageUser(fileImage)
       .subscribe({
         next: (response) => { console.log(response) },
         error: (error) => { console.log(error) }
