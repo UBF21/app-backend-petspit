@@ -4,6 +4,7 @@ import { NavBarPetspitComponent } from './nav-bar-petspit/nav-bar-petspit.compon
 import { NavsPetspitComponent } from './navs-petspit/navs-petspit.component';
 import { FooterPetspitComponent } from './footer-petspit/footer-petspit.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule ,NgModel} from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     NavBarPetspitComponent,
