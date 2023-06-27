@@ -81,6 +81,16 @@
     text-decoration: none;
     transition: .4s all;
 }
+.title-item-search{
+    text-decoration: none;
+    color: #6d472d;
+    transition: .4s all;
+}
+
+.title-item-search:hover {
+    text-decoration: underline;
+    color: #b8ab81;
+}
 
 .title-item:hover {
     text-decoration: underline;
