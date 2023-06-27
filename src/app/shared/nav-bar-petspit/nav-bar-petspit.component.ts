@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { ViewImagePedido } from 'src/app/models/interfaces/ViewImagePedido';
 import { Category } from 'src/app/models/model/Category';
@@ -186,6 +186,10 @@ export class NavBarPetspitComponent implements OnInit {
 
   routerOfAllProducts(){
     this.router.navigate(['/products'],{queryParams :{todas : "all"}});
+  }
+
+  redictToComprar():void{
+    this.router.navigate(['/comprar']);
   }
 
   datosPedidos(){
