@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 import { PublicProductService } from 'src/app/services/public/product/public-product.service';
 import { Product } from 'src/app/models/model/Product';
 import { ViewImageProduct } from 'src/app/models/interfaces/ViewImageProduct';
+import { PublicUploadStorageImageService } from 'src/app/services/public/uploadstorage/public-upload-storage-image.service';
 
 @Component({
   selector: 'app-nav-bar-petspit',
@@ -44,7 +45,8 @@ export class NavBarPetspitComponent implements OnInit {
 
   constructor(public shared: SharedInformationService, public loginServices: LoginService, private publicCategoryServices: PublicCategoryService,
     private publicSubCategoryService: PublicSubCategoryService, private router: Router, private carrito: CarritoService,
-    private sanitizer: DomSanitizer, private publicUploadService: PublicUploadService, private publicProductService: PublicProductService) { }
+    private sanitizer: DomSanitizer, private publicUploadService: PublicUploadService, private publicProductService: PublicProductService,
+    private publicUploadStorageImageService:PublicUploadStorageImageService) { }
 
   ngOnInit(): void {
     this.getAllProducts()
@@ -55,8 +57,8 @@ export class NavBarPetspitComponent implements OnInit {
   getAllPedidosCarrito() {
     this.pedidos = this.carrito.getListCarrito();
     if (this.pedidos.length !== 0) {
+      this.fillViewPedidos();
       setTimeout(() => {
-        this.fillViewPedidos();
         this.loadingPedidos = false;
       }, 3000)
     }
@@ -101,7 +103,7 @@ export class NavBarPetspitComponent implements OnInit {
   }
 
   getImageProduct(fileName: string): Observable<SafeUrl> {
-    return this.publicUploadService.getImageToProductOfApi(fileName)
+    return this.publicUploadStorageImageService.getPublicImageProduct(fileName)
       .pipe(map((response) => {
         URL.revokeObjectURL(response);
         const url: string = URL.createObjectURL(response);
