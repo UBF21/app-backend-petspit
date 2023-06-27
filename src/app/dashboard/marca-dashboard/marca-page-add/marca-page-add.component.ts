@@ -6,6 +6,7 @@ import { Marca } from 'src/app/models/model/Marca';
 import { AnimalService } from 'src/app/services/models/animal/animal.service';
 import { MarcaService } from 'src/app/services/models/marca/marca.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
+import { UploadStorageImageService } from 'src/app/services/models/uploadstorage/upload-storage-image.service';
 
 @Component({
   selector: 'app-marca-page-add',
@@ -20,7 +21,8 @@ export class MarcaPageAddComponent implements OnInit {
   animales: Animal[] = [];
 
 
-  constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private uploadImageService: UploadImageService, private marcaService: MarcaService) { }
+  constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private uploadImageService: UploadImageService,
+     private marcaService: MarcaService,private uploadStorageImageService:UploadStorageImageService) { }
 
   ngOnInit(): void {
     this.getAllAnimals();
@@ -83,7 +85,7 @@ export class MarcaPageAddComponent implements OnInit {
   sendImageToMarca(image: File) {
     const fileImage: FormData = new FormData();
     fileImage.append("file", image, image.name);
-    this.uploadImageService.saveImageToMarca(fileImage)
+    this.uploadStorageImageService.saveImageMarca(fileImage)
       .subscribe({
         next: (response) => { console.log(response) },
         error: (error) => { console.log(error) }
