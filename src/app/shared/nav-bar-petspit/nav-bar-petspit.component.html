@@ -98,7 +98,7 @@
 
                                         <div class="col-3">
                                             <a [routerLink]="['/view-product']"
-                                            [queryParams]="{producto:viewPedido.pedido.product.idProduct}">
+                                                [queryParams]="{producto:viewPedido.pedido.product.idProduct}">
                                                 <img [src]="viewPedido.pathName" width="75" alt="">
                                             </a>
 
@@ -107,7 +107,8 @@
                                         <div class="col-9 text-start">
 
                                             <a [routerLink]="['/view-product']"
-                                            [queryParams]="{producto:viewPedido.pedido.product.idProduct}" class="mb-0 title-item">
+                                                [queryParams]="{producto:viewPedido.pedido.product.idProduct}"
+                                                class="mb-0 title-item">
                                                 <p style="font-size: 1rem;">{{viewPedido.pedido.product.titulo}}</p>
                                             </a>
                                             <span class="me-4 mt-0 fw-bold">{{viewPedido.pedido.product.precio |
@@ -169,7 +170,8 @@
                             <!-- Total , Sub-Total -->
                             <div class="row no-gutters justify-content-between">
 
-                                <div *ngIf="loadingCantidad" class="mb-4 d-flex justify-content-center align-items-center">
+                                <div *ngIf="loadingCantidad"
+                                    class="mb-4 d-flex justify-content-center align-items-center">
                                     <div class="spinner-sidebar-carrito-totales"></div>
                                 </div>
                                 <div *ngIf="loadingTotal" class="mb-4 d-flex justify-content-center align-items-center">
@@ -199,8 +201,10 @@
                             </div>
 
                             <div class="d-grid gap-2 mt-4">
-                                <button routerLink="/view-carrito" [disabled]="loadingPedidos" class="btn btn-ver-compras" type="button">Ver Productos</button>
-                                <button class="btn btn-comprar" (click)="redictToComprar()" [disabled]="loadingPedidos" type="button">Comprar</button>
+                                <button routerLink="/view-carrito" [disabled]="loadingPedidos"
+                                    class="btn btn-ver-compras" type="button">Ver Productos</button>
+                                <button class="btn btn-comprar" (click)="redictToComprar()" [disabled]="loadingPedidos"
+                                    type="button">Comprar</button>
                             </div>
 
                         </div>
@@ -215,19 +219,40 @@
             class="col-lg-3 col-md-12 col-sm-12 col-12 order-md-2 mt-md-3 mb-4 mb-sm-4 mb-md-4 mb-lg-0 mt-sm-3 mt-3 mt-lg-0 order-sm-2 order-lg-0">
 
             <div class="input-group">
-                <input class="form-control form-control-lg shadow border-end-0 border" placeholder="buscar.."
-                    type="search" id="example-search-input">
+                <input class="form-control form-control-lg shadow border-end-0 border" [(ngModel)]="valueSearch"  (input)="searchProduct()"
+                    placeholder="buscar.." type="search" id="example-search-input">
                 <span class="input-group-append shadow">
-                    <button
-                        class="btn btn-lg btn-outline-secondary bg-white border-start-0 border-bottom-0 border ms-n5"
+                    <a  *ngIf="!loadingSearch" class="btn btn-lg btn-outline-secondary bg-white border-start-0 border-bottom-0 border"
                         type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-search">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg> </button>
+                        </svg> </a>
+
+                    <a *ngIf="loadingSearch" class="btn btn-lg btn-outline-secondary bg-white border-start-0 border-bottom-0 border">
+                        <div class="spinner-border text-warning" role="status"></div>
+                    </a>
                 </span>
+            </div>
+            <!-- <div>{{viewProducts | json }}</div> -->
+            <div *ngIf="valueSearch" class="position-relative">
+                <div class="position-absolute w-100" style="z-index: 99999;">
+                    <ul class="list-group shadow">
+                        <!-- <li class="list-group-item">{{viewProduct.product.titulo}}</li> -->
+                        <div class="list-group-item" *ngFor="let viewProduct of viewProductsSearchResult">
+                            <div class="row align-items-center">
+                                <div class="col-5 col-lg-4 text-center">
+                                    <img [src]="viewProduct.pathName" (click)="valueSearch = ''" [routerLink]="['/view-product']" [queryParams]="{producto:viewProduct.product.idProduct}"  width="45" height="45" [alt]="viewProduct.name">
+                                </div>
+                                <div class="col-7 col-lg-8">
+                                    <a class="title-item-search" [routerLink]="['/view-product']" (click)="valueSearch = ''" [queryParams]="{producto:viewProduct.product.idProduct}">{{viewProduct.product.titulo}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
