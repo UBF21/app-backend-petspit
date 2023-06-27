@@ -1,0 +1,14 @@
+.btn-filter{
+    background-color: #5c2c14;
+    color: white;
+    padding: 10px 10px;
+    width: 130px;
+    border-radius: 0%;
+    font-weight: bold;
+    transition: .2s all;
+}
+
+.btn-filter:hover{
+    background-color: rgb(232, 236, 230);
+    color: black;
+}
