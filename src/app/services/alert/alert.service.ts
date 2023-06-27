@@ -9,6 +9,17 @@ export class AlertService {
 
   constructor() { }
 
+
+  messageAddItemCarrito(title:string){
+    Swal.fire({
+      position: 'bottom-left',
+      icon: 'success',
+      title: title,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   messageSuccess(title:string){
     Swal.fire({
       position: 'center',
