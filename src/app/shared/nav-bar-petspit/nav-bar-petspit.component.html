@@ -200,7 +200,7 @@
 
                             <div class="d-grid gap-2 mt-4">
                                 <button routerLink="/view-carrito" [disabled]="loadingPedidos" class="btn btn-ver-compras" type="button">Ver Productos</button>
-                                <button class="btn btn-comprar" [disabled]="loadingPedidos" type="button">Comprar</button>
+                                <button class="btn btn-comprar" (click)="redictToComprar()" [disabled]="loadingPedidos" type="button">Comprar</button>
                             </div>
 
                         </div>
