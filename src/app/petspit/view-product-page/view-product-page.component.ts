@@ -94,6 +94,7 @@ export class ViewProductPageComponent implements OnInit {
         pedido.idProduct = producto.idProduct;
         pedido.product = producto;
         pedido.cantidad = this.cantidad;
+        pedido.estado = "A";
         pedido.importe = (producto.precio * pedido.cantidad);
         this.carrito.additemCarrito(pedido);
       }
