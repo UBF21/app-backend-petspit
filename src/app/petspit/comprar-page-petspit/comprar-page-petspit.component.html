@@ -1,0 +1,132 @@
+<div class="container-fluid color-third">
+    <app-nav-bar-petspit></app-nav-bar-petspit>
+    <app-navs-petspit></app-navs-petspit>
+</div>
+
+<div class="container">
+    <div class="margin-y">
+        <div class="card p-4" style="min-height: 70vh;">
+            <div class="row justify-content-center">
+                <div class="col-lg-11">
+                    <h2 class="mb-5 fw-bold">Verificar compra</h2>
+                </div>
+                <div class="col-lg-6" *ngIf="loadingInfoCompra">
+                    <div  style="min-height: 70vh;" class="d-flex justify-content-center align-items-center">
+                        <div class="spinner-comprar-info"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6" *ngIf="!loadingInfoCompra">
+                    <h4 class="mb-4 mt-4">Detalle de venta</h4>
+                    <form class="row g-3">
+                        <div class="col-lg-6">
+                            <label for="inputEmail4" class="form-label">Nombre</label>
+                            <input type="email" [value]="user.user.nombre" readonly class="form-control"
+                                id="inputEmail4">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="inputPassword4" class="form-label">Apellido</label>
+                            <input type="text" [value]="user.user.apellido" readonly class="form-control"
+                                id="inputPassword4">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="inputAddress" class="form-label">Username</label>
+                            <input type="text" [value]="user.user.username" readonly class="form-control"
+                                id="inputAddress">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="inputAddress2" class="form-label">Dni</label>
+                            <input type="text" [value]="user.user.dni" readonly class="form-control" id="inputAddress2">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="inputCity" class="form-label">Teléfono</label>
+                            <input type="text" [value]="user.user.telefono" readonly class="form-control"
+                                id="inputCity">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="inputCity" class="form-label">Dirección</label>
+                            <textarea readonly class="form-control" id="inputCity">{{user.user.direccion}}</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 mt-4 mt-lg-0">
+                    <div class="card shadow overflow-auto p-4" style="min-height: 70vh;max-height: 70vh;">
+                        <h4 class="mb-4">Tu Orden</h4>
+
+                        <table class="table table-borderless align-middle">
+                            <thead>
+                                <tr>
+                                    <th style="font-size: 1.2rem;">Producto</th>
+                                    <th style="font-size: 1.2rem;">Cantidad</th>
+                                    <th style="font-size: 1.2rem;">SubTotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="loadingItemsCompra">
+                                    <td><div class="spinner-comprar-pedidos-items w-60"></div></td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="spinner-comprar-pedidos-items w-50"></div>
+                                        </div>
+                                    </td>
+                                    <td><div class="spinner-comprar-pedidos-items w-60"></div></td>
+                                </tr>
+                                <ng-container *ngIf="!loadingItemsCompra">
+                                    <tr *ngFor="let pedido of pedidos">
+                                        <td>
+                                            <span class="text-break"> {{ pedido.product.titulo }} </span>
+                                        </td>
+                                        <td class="text-center"><span class="shadow badge rounded-pill bg-light text-dark"
+                                                style="font-size: 1rem;">{{ pedido.cantidad }}</span></td>
+                                        <td>{{ pedido.product.precio | currency:'PEN ' }}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="row px-2">
+                            
+                            <div *ngIf="loadingTotalCompra" class="d-flex mt-3 justify-content-center align-items-center">
+                                <div class="spinner-comprar-pedidos-calculo"></div>
+                            </div>
+
+                            <div class="col-6" *ngIf="!loadingTotalCompra">
+                                <p class="m-0 mb-2">SubTotal</p>
+                            </div>
+                            
+                            <div *ngIf="loadingTotalCompra" class="d-flex mt-4 justify-content-center align-items-center">
+                                <div class="spinner-comprar-pedidos-calculo"></div>
+                            </div>
+
+                            <div class="col-6 text-end" *ngIf="!loadingTotalCompra">{{precioTotal | currency:"PEN " }}</div>
+                            
+                            <div *ngIf="loadingCantidadCompra" class="d-flex mt-4 justify-content-center align-items-center">
+                                <div class="spinner-comprar-pedidos-calculo"></div>
+                            </div>
+
+                            <div class="col-6" *ngIf="!loadingCantidadCompra">
+                                <p class="m-0 mb-2">Cantidad total</p>
+                            </div>
+                            
+                            <div class="col-6 text-end" *ngIf="!loadingCantidadCompra">{{cantidadTotal }}</div>
+                            
+                            <div class="col-6" *ngIf="!loadingTotalCompra">
+                                <p class="m-0">Total</p>
+                            </div>
+                            
+                            <div class="col-6 text-end" *ngIf="!loadingTotalCompra">{{precioTotal | currency:"PEN " }}</div>
+                        </div>
+                        <p class="px-2 mt-4">
+                            Sus datos personales se utilizarán para procesar su pedido, respaldar su experiencia en este
+                            sitio web y para otros fines descritos en nuestra privacy policy.
+                        </p>
+                        <div class="px-2 mt-2">
+                            <button class="btn btn-comprar" [disabled]="loadingItemsCompra" (click)="generarCompraPedidos()">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer-petspit></app-footer-petspit>
