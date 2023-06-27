@@ -5,13 +5,15 @@ import { LoginService } from '../auth/login.service';
 import { PublicUploadService } from '../public/upload/public-upload.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Observable, delay, map } from 'rxjs';
+import { PublicUploadStorageImageService } from '../public/uploadstorage/public-upload-storage-image.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedInformationService implements OnInit {
 
-  constructor(private loginServices: LoginService, private publicUploadService: PublicUploadService, private sanitizer: DomSanitizer) { }
+  constructor(private loginServices: LoginService, private publicUploadService: PublicUploadService, private sanitizer: DomSanitizer,
+    private publicUploadStorageImageService:PublicUploadStorageImageService ) { }
 
   showRegistration: boolean = false;
   viewUser: ViewImageUser = { name: "", pathName: "", user: new User() };
@@ -42,7 +44,7 @@ export class SharedInformationService implements OnInit {
 
 
   private getImageUpload(fileName: string): Observable<SafeUrl> {
-    return this.publicUploadService.getImageToUserOfApi(fileName)
+    return this.publicUploadStorageImageService.getPublicImageUser(fileName)
       .pipe(map((response) => {
         console.log(response);
         const url: string = URL.createObjectURL(response);
