@@ -52,4 +52,28 @@ export class AlertService {
       }
     });
   }
+
+  messageTimeError(messageTimer:string,titleAlert:string) {
+    let timerInterval: NodeJS.Timeout;
+  
+    Swal.fire({
+      html: 'Esto tomará <b></b> milliseconds estamos procesando '+ messageTimer,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b:HTMLElement | null = Swal.getHtmlContainer()?.querySelector('b')!;
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()?.toString() as string;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        this.messageError(titleAlert);
+      }
+    });
+  }
 }
