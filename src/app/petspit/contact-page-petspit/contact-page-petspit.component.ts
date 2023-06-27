@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import emailjs from 'emailjs-com';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { TinyMCE,Editor } from 'tinymce';
 declare const tinymce: TinyMCE;
 
@@ -20,7 +21,7 @@ export class ContactPagePetspitComponent implements OnInit,AfterViewInit {
     toolbar_drawer: 'floating'
   };
 
-  constructor(private formBulder: FormBuilder) { }
+  constructor(private formBulder: FormBuilder,private alertService:AlertService) { }
 
 
   ngOnInit(): void {
@@ -44,6 +45,7 @@ export class ContactPagePetspitComponent implements OnInit,AfterViewInit {
 
     emailjs.send('service_w8mxzgo', 'template_x0gkpkk', this.formEmail.value, 'hv85HqEeJ5R8JqIZY')
       .then((response) => {
+        this.alertService.messageTimeSuccess("el mensaje.","Se Envió el correo correctamente.");
         console.log('Correo enviado', response.status, response.text);
       }).catch((error) => {
         console.log("Error al enviar el correo.", error);
