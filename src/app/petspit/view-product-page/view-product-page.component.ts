@@ -6,6 +6,7 @@ import { Observable, delay, map } from 'rxjs';
 import { ViewImageProduct } from 'src/app/models/interfaces/ViewImageProduct';
 import { Pedido } from 'src/app/models/model/Pedido';
 import { Product } from 'src/app/models/model/Product';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { PublicProductService } from 'src/app/services/public/product/public-product.service';
@@ -27,7 +28,7 @@ export class ViewProductPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private productServicePublic: PublicProductService,
     private uploadImagePublic: PublicUploadService, private sanitizer: DomSanitizer, private carrito: CarritoService,
-    private loginService:LoginService,private publicUploadStorageImageService:PublicUploadStorageImageService) { }
+    private loginService:LoginService,private publicUploadStorageImageService:PublicUploadStorageImageService,private alertService:AlertService) { }
 
   ngOnInit(): void {
     this.route.queryParams
@@ -89,6 +90,7 @@ export class ViewProductPageComponent implements OnInit {
         pedidos[index].cantidad = pedidos[index].cantidad + this.cantidad;
         pedidos[index].importe =pedidos[index].product.precio *  pedidos[index].cantidad;
         this.carrito.updateListCarrito(pedidos);
+        this.alertService.messageAddItemCarrito("Se añadió correctamente el producto.");
       }else{
         let pedido: Pedido = new Pedido();
         pedido.idProduct = producto.idProduct;
@@ -97,6 +99,7 @@ export class ViewProductPageComponent implements OnInit {
         pedido.estado = "A";
         pedido.importe = (producto.precio * pedido.cantidad);
         this.carrito.additemCarrito(pedido);
+        this.alertService.messageAddItemCarrito("Se añadió correctamente el producto.");
       }
 
     }else{
