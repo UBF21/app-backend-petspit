@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/services/auth/login.service';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { PublicProductService } from 'src/app/services/public/product/public-product.service';
 import { PublicUploadService } from 'src/app/services/public/upload/public-upload.service';
+import { PublicUploadStorageImageService } from 'src/app/services/public/uploadstorage/public-upload-storage-image.service';
 
 @Component({
   selector: 'app-view-product-page',
@@ -26,7 +27,7 @@ export class ViewProductPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private productServicePublic: PublicProductService,
     private uploadImagePublic: PublicUploadService, private sanitizer: DomSanitizer, private carrito: CarritoService,
-    private loginService:LoginService) { }
+    private loginService:LoginService,private publicUploadStorageImageService:PublicUploadStorageImageService) { }
 
   ngOnInit(): void {
     this.route.queryParams
@@ -43,7 +44,7 @@ export class ViewProductPageComponent implements OnInit {
   }
 
   getImageProduct(fileName: string): Observable<SafeUrl> {
-    return this.uploadImagePublic.getImageToProductOfApi(fileName)
+    return this.publicUploadStorageImageService.getPublicImageProduct(fileName)
       .pipe(map((response) => {
         URL.revokeObjectURL(response);
         const url: string = URL.createObjectURL(response);
@@ -58,13 +59,12 @@ export class ViewProductPageComponent implements OnInit {
   getProductById(): void {
     this.loadingProduct = true;
     this.productServicePublic.getProductById(this.idProducto)
-      .pipe(delay(2000))
       .subscribe({
         next: ({ product }) => {
           console.log(product);
           this.getImageProduct(product.imagen)
             .subscribe({ next: (response) => this.getViewProduct(response, product), error: (error) => console.log(error) });
-          this.loadingProduct = false;
+          setTimeout(()=>{this.loadingProduct = false},2000);
         },
         error: (error) => console.log(error)
       });
