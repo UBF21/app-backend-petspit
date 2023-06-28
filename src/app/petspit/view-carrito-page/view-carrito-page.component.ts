@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { ViewImagePedido } from 'src/app/models/interfaces/ViewImagePedido';
 import { Pedido } from 'src/app/models/model/Pedido';
@@ -23,7 +24,7 @@ export class ViewCarritoPageComponent implements OnInit {
   loadingTotal:boolean = true;
   loadingSubTotal:boolean = true;
   constructor(private carrito: CarritoService, private productoService: ProductService, private uploadService: UploadImageService,
-     private sanitizer: DomSanitizer,private publicUploadStorageImageService:PublicUploadStorageImageService) { }
+     private sanitizer: DomSanitizer,private publicUploadStorageImageService:PublicUploadStorageImageService,private router:Router) { }
 
 
   ngOnInit(): void {
@@ -130,5 +131,9 @@ export class ViewCarritoPageComponent implements OnInit {
       this.calcultePrecioTotal();
       this.totalCantidadPedidos();
     }
+  }
+
+  redirectToCompra(){
+      this.router.navigateByUrl('/comprar');
   }
 }
