@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Animal } from 'src/app/models/model/Animal';
 import { EtapaVida } from 'src/app/models/model/EtapaVida';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AnimalService } from 'src/app/services/models/animal/animal.service';
 import { EtapaVidaService } from 'src/app/services/models/etapavida/etapa-vida.service';
 
@@ -17,7 +18,7 @@ export class EtapaVidaPageAddComponent implements OnInit {
   animales: Animal[] = [];
   estados: string[] = ["Activo", "Inactivo"];
 
-  constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private etapaVidaService: EtapaVidaService) { }
+  constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private etapaVidaService: EtapaVidaService,private alertService:AlertService) { }
 
   ngOnInit(): void {
     this.getAllAnimals();
@@ -40,8 +41,14 @@ export class EtapaVidaPageAddComponent implements OnInit {
   addEtapaVida(etapaVida: EtapaVida) {
     this.etapaVidaService.saveEtapaVida(etapaVida).
       subscribe({
-        next: (response) => { console.log(response) },
-        error: (error) => { console.log(error) }
+        next: (response) => { 
+          this.alertService.messageSuccess("Se Agregó la etapa de vida correctamente.");
+          console.log(response);
+         },
+        error: (error) => { 
+          this.alertService.messageSuccess("No se Agregó la etapa de vida.");
+          console.log(error);
+         }
       });
   }
 
