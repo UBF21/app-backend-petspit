@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Animal } from 'src/app/models/model/Animal';
 import { Category } from 'src/app/models/model/Category';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AnimalService } from 'src/app/services/models/animal/animal.service';
 import { CategoryService } from 'src/app/services/models/category/category.service';
 
@@ -14,7 +15,8 @@ export class CategoryPageAddComponent implements OnInit {
   formAddCategory: FormGroup = new FormGroup({});
   animales: Animal[] = [];
 
-  constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private categoryService: CategoryService) { }
+  constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private categoryService: CategoryService,
+    private alertService:AlertService) { }
 
   ngOnInit(): void {
     this.getAllAnimals();
@@ -38,8 +40,14 @@ export class CategoryPageAddComponent implements OnInit {
 
     this.categoryService.saveCategory(category)
       .subscribe({
-        next: (response) => { console.log(response) },
-        error: (error) => { console.log(error) }
+        next: (response) => { 
+          console.log(response);
+          this.alertService.messageSuccess("Se Agregó la categoría correctamente.");
+        },
+        error: (error) => { 
+          this.alertService.messageError("No se Agregó la categoría.");
+          console.log(error);
+         }
       });
   }
 
