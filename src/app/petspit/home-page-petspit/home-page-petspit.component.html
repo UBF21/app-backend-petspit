@@ -52,10 +52,10 @@
             <div class="flipping-home-marca"></div>
         </div>
         <div class="container" *ngIf="!loadingMarca">
-            <div class="row">
+            <div class="row g-3">
                 <div class="col-lg-4 col-6" *ngFor="let viewMarca of viewMarcas">
                     <div class="card shadow">
-                        <img [src]="viewMarca.pathName" class="card-img-top" [alt]="viewMarca.name">
+                        <img [src]="viewMarca.pathName" class="card-img-top" height="300" [alt]="viewMarca.name">
                         <div class="card-body">
                             <h5 class="card-title fs-3">{{ viewMarca.marca.descripcion }}</h5>
                         </div>
