@@ -10,7 +10,7 @@ export class AlertService {
   constructor() { }
 
 
-  messageAddItemCarrito(title:string){
+  messageAddItemCarrito(title: string) {
     Swal.fire({
       position: 'bottom-left',
       icon: 'success',
@@ -20,7 +20,7 @@ export class AlertService {
     })
   }
 
-  messageSuccess(title:string){
+  messageSuccess(title: string) {
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -30,7 +30,7 @@ export class AlertService {
     })
   }
 
-  messageError(title:string){
+  messageError(title: string) {
     Swal.fire({
       position: 'center',
       icon: 'error',
@@ -40,16 +40,25 @@ export class AlertService {
     })
   }
 
-  messageTimeSuccess(messageTimer:string,titleAlert:string) {
-    let timerInterval: NodeJS.Timeout;
-  
+  messageInfo(title:string){
     Swal.fire({
-      html: 'Esto tomará <b></b> milliseconds estamos procesando '+ messageTimer,
+      icon: 'info',
+      title: title,
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+
+  messageTimeSuccess(messageTimer: string, titleAlert: string) {
+    let timerInterval: NodeJS.Timeout;
+
+    Swal.fire({
+      html: 'Esto tomará <b></b> milliseconds estamos procesando ' + messageTimer,
       timer: 3000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading();
-        const b:HTMLElement | null = Swal.getHtmlContainer()?.querySelector('b')!;
+        const b: HTMLElement | null = Swal.getHtmlContainer()?.querySelector('b')!;
         timerInterval = setInterval(() => {
           b.textContent = Swal.getTimerLeft()?.toString() as string;
         }, 100);
@@ -64,16 +73,16 @@ export class AlertService {
     });
   }
 
-  messageTimeError(messageTimer:string,titleAlert:string) {
+  messageTimeError(messageTimer: string, titleAlert: string) {
     let timerInterval: NodeJS.Timeout;
-  
+
     Swal.fire({
-      html: 'Esto tomará <b></b> milliseconds estamos procesando '+ messageTimer,
+      html: 'Esto tomará <b></b> milliseconds estamos procesando ' + messageTimer,
       timer: 3000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading();
-        const b:HTMLElement | null = Swal.getHtmlContainer()?.querySelector('b')!;
+        const b: HTMLElement | null = Swal.getHtmlContainer()?.querySelector('b')!;
         timerInterval = setInterval(() => {
           b.textContent = Swal.getTimerLeft()?.toString() as string;
         }, 100);
