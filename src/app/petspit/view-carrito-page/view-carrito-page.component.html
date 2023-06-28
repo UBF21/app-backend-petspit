@@ -121,7 +121,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-comprar w-100" [disabled]="loadingPedidos">Comprar</button>
+                        <button class="btn btn-comprar w-100" (click)="redirectToCompra()" [disabled]="loadingPedidos">Comprar</button>
                     </div>
                 </div>
             </div>
