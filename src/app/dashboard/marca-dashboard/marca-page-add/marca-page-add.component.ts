@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators, file } from '@rxweb/reactive-form-validators';
 import { Animal } from 'src/app/models/model/Animal';
 import { Marca } from 'src/app/models/model/Marca';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { AnimalService } from 'src/app/services/models/animal/animal.service';
 import { MarcaService } from 'src/app/services/models/marca/marca.service';
 import { UploadImageService } from 'src/app/services/models/upload/upload-image.service';
@@ -22,7 +23,7 @@ export class MarcaPageAddComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private animalService: AnimalService, private uploadImageService: UploadImageService,
-     private marcaService: MarcaService,private uploadStorageImageService:UploadStorageImageService) { }
+     private marcaService: MarcaService,private uploadStorageImageService:UploadStorageImageService,private alertService:AlertService) { }
 
   ngOnInit(): void {
     this.getAllAnimals();
@@ -77,8 +78,12 @@ export class MarcaPageAddComponent implements OnInit {
         next: (response) => {
           this.sendImageToMarca(image);
           console.log(response);
+          this.alertService.messageSuccess("Se Agregó la marca correctamente");
         },
-        error: () => { }
+        error: (error) => {
+          this.alertService.messageError("No se Agregó la marca.");
+          console.log(error);
+         }
       });
   }
 
