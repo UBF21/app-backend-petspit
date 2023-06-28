@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ViewImageUser } from 'src/app/models/interfaces/ViewImageUser';
 import { Pedido } from 'src/app/models/model/Pedido';
 import { User } from 'src/app/models/model/User';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { PublicVentaService } from 'src/app/services/public/venta/public-venta.service';
 import { SharedInformationService } from 'src/app/services/shared-information/shared-information.service';
@@ -24,7 +26,8 @@ export class ComprarPagePetspitComponent implements OnInit {
   loadingCantidadCompra: boolean = true;
 
 
-  constructor(private sharedInformationService: SharedInformationService, private carrito: CarritoService, private ventaService: PublicVentaService) { }
+  constructor(private sharedInformationService: SharedInformationService, private carrito: CarritoService, private ventaService: PublicVentaService,
+    private alertService:AlertService,private router:Router) { }
 
   ngOnInit(): void {
     this.loadingInfoCompra = true;
@@ -68,7 +71,11 @@ export class ComprarPagePetspitComponent implements OnInit {
     this.ventaService.generarCompra(pedidos, idUsuario)
       .subscribe(
         {
-          next: (response) => { console.log(response) },
+          next: (response) => { 
+            this.alertService.messageTimeSuccess("su compra.","Se realizó la compra correctamente.");
+            setTimeout(()=> {this.router.navigate(['/home'])},4500);
+            console.log(response)
+          },
           error: (error) => { console.log(error) }
         }
       );
