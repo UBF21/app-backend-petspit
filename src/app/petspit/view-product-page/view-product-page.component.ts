@@ -103,7 +103,7 @@ export class ViewProductPageComponent implements OnInit {
       }
 
     }else{
-      alert("Create una cuenta para poder comprar o agregar un producto.")
+      this.alertService.messageInfo("Necesita Iniciar sesión para poder comprar un productos.");
     }
   }
 }
