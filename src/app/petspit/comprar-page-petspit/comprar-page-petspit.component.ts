@@ -73,7 +73,11 @@ export class ComprarPagePetspitComponent implements OnInit {
         {
           next: (response) => { 
             this.alertService.messageTimeSuccess("su compra.","Se realizó la compra correctamente.");
-            setTimeout(()=> {this.router.navigate(['/home'])},4500);
+            setTimeout(()=> {
+              this.router.navigate(['/home']);
+              this.carrito.clearListCarrito();
+            },4500);
+
             console.log(response)
           },
           error: (error) => { console.log(error) }
