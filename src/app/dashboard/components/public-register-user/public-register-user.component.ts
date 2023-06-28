@@ -6,6 +6,7 @@ import { User } from 'src/app/models/model/User';
 import { PublicUserService } from 'src/app/services/public/user/public-user.service';
 import { PublicUploadService } from 'src/app/services/public/upload/public-upload.service';
 import { PublicUploadStorageImageService } from 'src/app/services/public/uploadstorage/public-upload-storage-image.service';
+import { AlertService } from 'src/app/services/alert/alert.service';
 
 @Component({
   selector: 'app-public-register-user',
@@ -19,7 +20,8 @@ export class PublicRegisterUserComponent implements OnInit {
   formRegister: FormGroup = new FormGroup({});
   fileImage: File = new File([], "");
 
-  constructor(private formBuilder: FormBuilder, private shared: SharedInformationService, private publicUserService: PublicUserService, private publicUploadServices: PublicUploadService,private publicUploadStorageImageService:PublicUploadStorageImageService) { }
+  constructor(private formBuilder: FormBuilder, private shared: SharedInformationService, private publicUserService: PublicUserService,
+     private publicUploadServices: PublicUploadService,private publicUploadStorageImageService:PublicUploadStorageImageService,private alertService:AlertService) { }
 
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
@@ -86,8 +88,12 @@ export class PublicRegisterUserComponent implements OnInit {
         next: (user) => { 
           console.log(user);
           this.sendImageUser(image); 
+          this.alertService.messageTimeSuccess("sus datos de registro.","Felicidades, tu registro fue exitoso.");
         },
-        error: (error) => { console.log(error); },
+        error: (error) => { 
+          this.alertService.messageTimeError("sus datos de registro.","Ops, ocurrip un error al registrar tus datos.");
+          console.log(error);
+         },
       });
   }
 
@@ -98,7 +104,9 @@ export class PublicRegisterUserComponent implements OnInit {
 
     this.publicUploadStorageImageService.saveImageUser(fileImage)
       .subscribe({
-        next: (response) => { console.log(response) },
+        next: (response) => { 
+          console.log(response)
+         },
         error: (error) => { console.log(error) }
       });
   }
