@@ -6,6 +6,7 @@ import { Route, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { UserCredentials } from 'src/app/models/model/UserCredentials';
 import { ResponseUserCurrent } from 'src/app/models/response/ResponseUserRecurrent';
+import { AlertService } from 'src/app/services/alert/alert.service';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { PublicUploadService } from 'src/app/services/public/upload/public-upload.service';
@@ -22,7 +23,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private http: HttpClient, private loginService: LoginService, public shared: SharedInformationService,
      private formBuilder: FormBuilder, private sanitizer: DomSanitizer,private carrito:CarritoService,
-     private router:Router) { }
+     private router:Router,private alertService:AlertService) { }
 
   ngOnInit(): void {
 
@@ -66,13 +67,18 @@ export class LoginPageComponent implements OnInit {
           if (this.loginService.isLoggedIn()) {
             this.getCurrentUser();
             this.carrito.setListCarrito();
-            this.router.navigateByUrl("/home");
+            this.alertService.messageTimeSuccess("las credenciales.","Bienvenido, gracias por iniciar sesión.");
+           setTimeout(()=> {this.router.navigateByUrl("/home")},4500);
           } else {
+            this.alertService.messageTimeError("las credenciales.","Lo sentimos, tus credenciales son erróneas.");
             this.loginService.logout();
           }
 
         },
-        error: (error) => { console.log(error); },
+        error: (error) => { 
+          this.alertService.messageTimeError("las credenciales.","Lo sentimos, tus credenciales son erróneas.");
+          console.log(error);
+         },
         complete:() => {setTimeout(()=> {this.shared.generateViewImageUser()},2000) }
       });
 
