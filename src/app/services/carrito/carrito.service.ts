@@ -51,8 +51,12 @@ export class CarritoService {
     return index;
   }
 
-  updateListCarrito(pedidos:Pedido[]){
+  public updateListCarrito(pedidos:Pedido[]){
     localStorage.setItem("items",JSON.stringify(pedidos));
+  }
+
+  public clearListCarrito(){
+    this.updateListCarrito([]);
   }
 
   public additemCarrito(pedido:Pedido):void{
